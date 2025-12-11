@@ -6,19 +6,19 @@ export default function TermsOfService() {
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       <Card>
         <CardContent className="space-y-4 pt-6">
-          <h1 className="text-3xl font-bold">Terms of Service – ExamBro by SolvIQ.in</h1>
+          <h1 className="text-3xl font-bold">Terms of Service – PrepOne by SolvIQ.in</h1>
           <p className="text-sm text-muted-foreground">Effective Date: August 4, 2025</p>
 
           <Separator />
 
           <h2 className="text-xl font-semibold">1. Acceptance of Terms</h2>
           <p>
-            By creating an account, downloading, or using the ExamBro app, you agree to comply with and be legally
+            By creating an account, downloading, or using the PrepOne app, you agree to comply with and be legally
             bound by these Terms. If you do not agree to any part, you should not use the app.
           </p>
 
           <h2 className="text-xl font-semibold">2. Eligibility</h2>
-          <p>You must be at least 13 years old to use ExamBro. Users below this age must have parental or guardian consent.</p>
+          <p>You must be at least 13 years old to use PrepOne. Users below this age must have parental or guardian consent.</p>
 
           <h2 className="text-xl font-semibold">3. User Account</h2>
           <ul className="list-disc list-inside space-y-1">
@@ -44,14 +44,14 @@ export default function TermsOfService() {
 
           <h2 className="text-xl font-semibold">6. Advertisements and Third-Party Links</h2>
           <p>
-            ExamBro may display ads and link to external services. We are not responsible for content or privacy
+            PrepOne may display ads and link to external services. We are not responsible for content or privacy
             practices of third-party sites.
           </p>
 
           <h2 className="text-xl font-semibold">7. Data and Privacy</h2>
           <p>
             Your data is collected and processed as outlined in our{" "}
-            <a href="/privacy-policy" className="text-blue-600 underline">Privacy Policy</a>. By using ExamBro,
+            <a href="/privacy-policy" className="text-blue-600 underline">Privacy Policy</a>. By using PrepOne,
             you consent to these practices.
           </p>
 

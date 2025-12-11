@@ -12,14 +12,14 @@ const testimonials = [
   {
     name: "Aditya Kumar",
     role: "Class 12 Science Student",
-    quote: "ExamBro helped me understand which topics I was struggling with, and the chapter-wise tests were perfect for targeting my weak areas. I improved my marks by 15% in just two months!",
+    quote: "PrepOne helped me understand which topics I was struggling with, and the chapter-wise tests were perfect for targeting my weak areas. I improved my marks by 15% in just two months!",
     avatar: "AK",
     rating: 5
   },
   {
     name: "Priya Singh",
     role: "Class 10 Student",
-    quote: "I was always nervous before exams, but practicing with ExamBro's mock tests made me confident. The detailed explanations for each answer really helped me understand concepts better.",
+    quote: "I was always nervous before exams, but practicing with PrepOne's mock tests made me confident. The detailed explanations for each answer really helped me understand concepts better.",
     avatar: "PS",
     rating: 5
   },
@@ -33,7 +33,7 @@ const testimonials = [
   {
     name: "Meera Patel",
     role: "Class 10 Student",
-    quote: "My parents got me ExamBro after I struggled in mid-terms. The practice questions are exactly like what comes in Bihar Board exams, and the explanations are clear and easy to understand.",
+    quote: "My parents got me PrepOne after I struggled in mid-terms. The practice questions are exactly like what comes in Bihar Board exams, and the explanations are clear and easy to understand.",
     avatar: "MP",
     rating: 5
   },
@@ -53,7 +53,7 @@ export function TestimonialsSection() {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <h2 className="text-3xl font-bold mb-4">What Students Say</h2>
           <p className="text-lg text-muted-foreground">
-            Hear from students who have transformed their exam preparation with ExamBro.
+            Hear from students who have transformed their exam preparation with PrepOne.
           </p>
         </div>
 

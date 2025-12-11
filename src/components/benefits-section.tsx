@@ -66,10 +66,10 @@ export function BenefitsSection() {
           
           <div className="order-1 lg:order-2">
             <div className="space-y-6 text-center lg:text-left">
-              <h2 className="text-3xl font-bold">Why Students Love ExamBro</h2>
+              <h2 className="text-3xl font-bold">Why Students Love PrepOne</h2>
               
               <p className="text-lg text-muted-foreground">
-                ExamBro transforms how Bihar Board students prepare for their exams, making the process 
+                PrepOne transforms how Bihar Board students prepare for their exams, making the process 
                 more effective and less stressful.
               </p>
               

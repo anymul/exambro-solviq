@@ -11,7 +11,7 @@ export function AboutSection() {
               <h3 className="text-xl font-bold text-primary mb-2">Our Story</h3>
               <h2 className="text-3xl font-bold mb-4">Meet Solviq.in</h2>
               <p className="text-lg text-muted-foreground">
-                The EdTech company behind ExamBro, building smarter learning tools for India's students.
+                The EdTech company behind PrepOne, building smarter learning tools for India's students.
               </p>
             </div>
             
@@ -28,7 +28,7 @@ export function AboutSection() {
               
               <p>
                 With a team of passionate developers, educators, and designers, Solviq.in is committed to 
-                delivering clean, focused, and effective digital learning tools — starting with our flagship product, ExamBro.
+                delivering clean, focused, and effective digital learning tools — starting with our flagship product, PrepOne.
               </p>
             </div>
             

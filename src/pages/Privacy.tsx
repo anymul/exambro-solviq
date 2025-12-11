@@ -6,14 +6,14 @@ export default function PrivacyPolicy() {
     <div className="max-w-4xl mx-auto p-6 space-y-6">
       <Card>
         <CardContent className="space-y-4 pt-6">
-          <h1 className="text-3xl font-bold">Privacy Policy for ExamBro by SolvIQ.in</h1>
+          <h1 className="text-3xl font-bold">Privacy Policy for PrepOne by SolvIQ.in</h1>
           <p className="text-sm text-muted-foreground">Effective Date: August 4, 2025</p>
 
           <Separator />
 
           <p>
             At <strong>SolvIQ.in</strong>, we respect your privacy and are committed to protecting
-            the personal information you provide while using our mobile application, <strong>ExamBro</strong>.
+            the personal information you provide while using our mobile application, <strong>PrepOne</strong>.
             This Privacy Policy outlines how we collect, use, store, and safeguard your data.
           </p>
 
@@ -63,7 +63,7 @@ export default function PrivacyPolicy() {
 
           <h2 className="text-xl font-semibold">7. Children’s Privacy</h2>
           <p>
-            ExamBro is designed for students in classes 10 to 12. We do not knowingly collect
+            PrepOne is designed for students in classes 10 to 12. We do not knowingly collect
             information from children under 13 without parental consent.
           </p>
 

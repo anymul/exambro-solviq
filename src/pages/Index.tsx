@@ -16,7 +16,7 @@ export default function LandingPage() {
         <HeroSection />
         <FeaturesSection />
         <BenefitsSection />
-        <TestimonialsSection />
+        {/* <TestimonialsSection /> */}
         <AboutSection />
         <FaqSection />
         <CtaSection />
