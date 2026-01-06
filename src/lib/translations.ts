@@ -5,7 +5,7 @@ export const translations = {
     en: {
         nav: {
             features: "Features",
-            benefits: "For Students",
+            benefits: "Matric & Inter",
             about: "About Us",
             testimonials: "Reviews",
             faq: "FAQ",
@@ -14,14 +14,14 @@ export const translations = {
             download: "Download App"
         },
         hero: {
-            badge: "For Bihar Board Class 10 & 12 Students",
+            badge: "For Bihar Board (BSEB) 2026 Exam",
             title_start: "Prep",
             title_middle: "Earlier",
             title_middle_2: "Prep",
             title_end: "Better",
-            description: "Practice, track progress, and conquer exams with confidence. PrepOne makes learning stress-free.",
-            cta_primary: "Download App",
-            cta_secondary: "Learn More",
+            description: "Unlock Chapter-wise VVI Objectives, Model Papers 2026, and AI-powered Mock Tests for Class 10th (Matric) & 12th (Inter). PrepOne se Tayyari Hui Aasaan!",
+            cta_primary: "Start Free Mock Test",
+            cta_secondary: "Join Waitlist for App",
             mock_test: "Mock Test",
             mock_title: "Science - Physics",
             mock_question: "Which of the following is the unit of electric current?",
@@ -35,45 +35,44 @@ export const translations = {
             mock_badge_value: "94%"
         },
         features: {
-            title: "Everything You Need to Excel",
-            description: "PrepOne provides all the tools Bihar Board students need for effective exam preparation.",
+            title: "Everything You Need to Crack BSEB 2026",
+            description: "At PrepOne, We belive tech should empower students for their success. We combine technology with Bihar Board syllabus to help you score 400+ marks.",
             cards: [
                 {
-                    title: "Chapter-wise Practice",
+                    title: "Chapter-wise VVI Objectives",
                     description: "Master concepts with targeted questions from each chapter. Perfect for focused revision and concept strengthening."
                 },
                 {
-                    title: "Full Syllabus Tests",
-                    description: "Simulate real exam experience with comprehensive tests based on the latest Bihar Board patterns."
+                    title: "Official Model Paper Practice",
+                    description: " Practice with tests based on the latest BSEB 2026 Model Paper pattern. Real exam feel, real confidence."
                 },
                 {
-                    title: "Performance Insights",
-                    description: "Track your progress with detailed analytics that pinpoint strengths and areas needing improvement."
+                    title: "Weak Area Insights",
+                    description: " Our AI tells you exactly which topics are weak (Physic, Math, or Grammar) so you stop guessing and start improving."
                 },
                 {
-                    title: "Latest Exam Patterns",
-                    description: "Always updated with the most current Bihar Board exam patterns to ensure relevant preparation."
+                    title: "AI Adaptive Learning",
+                    description: "Our AI customizes practice sessions to focus on your weak areas and helps you optimise your study time."
                 },
                 {
-                    title: "Achievement System",
-                    description: "Stay motivated with badges and rewards as you complete practice tests and improve scores."
+                    title: "Daily Live Challenges",
+                    description: "Compete with thousands of Bihar students daily. Earn badges, track your rank, and win rewards."
                 },
                 {
                     title: "Smart Recommendations",
-                    description: "Get personalized suggestions on what to study next based on your performance data."
+                    description: "Our AI Core suggests you, what to study next based on your performance data."
                 }
             ]
         },
-        // ... I will add other sections iteratively if needed, but for now I'll include the main ones to prevent compilation errors if I use them immediately.
         benefits: {
             title: "Why Students Love PrepOne",
-            description: "PrepOne transforms how Bihar Board students prepare for their exams, making the process more effective and less stressful.",
+            description: "PrepOne envisions to revamp how Bihar Board students prepare for their exams, making the process more effective and less stressful.",
             class10: {
-                title: "Class 10 Special",
+                title: "Class 10",
                 subtitle: "Science • Math • Social Studies • English • Hindi"
             },
             class12: {
-                title: "Class 12 Advanced",
+                title: "Class 12",
                 subtitle: "Science • Commerce • Arts Streams"
             },
             items_1: [
@@ -83,8 +82,8 @@ export const translations = {
             ]
         },
         footer: {
-            tagline: "Your Exam Companion",
-            description: "Making exam preparation smarter and stress-free for Bihar Board students.",
+            tagline: "Your True Exam Companion",
+            description: "Making exam preparation smarter and stress-free.",
             quick_links: "Quick Links",
             contact: "Contact",
             address: "Patna, Bihar, India",
@@ -104,13 +103,13 @@ export const translations = {
         },
         hero: {
             badge: "बिहार बोर्ड कक्षा 10 और 12 के छात्रों के लिए",
-            title_start: "तैयारी",
-            title_middle: "जल्दी",
-            title_middle_2: "तैयारी",
-            title_end: "बेहतर",
-            description: "अभ्यास करें, प्रगति ट्रैक करें और आत्मविश्वास के साथ परीक्षा जीतें। PrepOne सीखने को तनाव मुक्त बनाता है।",
-            cta_primary: "ऐप डाउनलोड करें",
-            cta_secondary: "और जानें",
+            title_start: "बेहतर",
+            title_middle: "तैयारी",
+            title_middle_2: "अब",
+            title_end: "आपकी बारी",
+            description: "अभ्यास करें, प्रगति ट्रैक करें और आत्मविश्वास के साथ परीक्षा जीतें। PrepOne से तैयारी हुई आसान!",
+            cta_primary: "वेब पर अभी आज़माएं",
+            cta_secondary: "ऐप के लिए वेटलिस्ट में शामिल हों",
             mock_test: "मॉक टेस्ट",
             mock_title: "विज्ञान - भौतिकी",
             mock_question: "विद्युत धारा का मात्रक निम्नलिखित में से कौन है?",
@@ -125,11 +124,11 @@ export const translations = {
         },
         features: {
             title: "सफलता के लिए सब कुछ",
-            description: "PrepOne बिहार बोर्ड के छात्रों को प्रभावी परीक्षा तैयारी के लिए आवश्यक सभी उपकरण प्रदान करता है।",
+            description: "PrepOne में, हम मानते हैं कि तकनीक छात्रों की सफलता के लिए अहम है । इसलिए हम बिहार बोर्ड के छात्रों को बेहतर परीक्षा तैयारी के लिए सभी मदद प्रदान करते हैं।",
             cards: [
                 {
                     title: "अध्याय-वार अभ्यास",
-                    description: "प्रत्येक अध्याय के लक्षित प्रश्नों के साथ अवधारणाओं में महारत हासिल करें। केंद्रित संशोधन के लिए बिल्कुल सही।"
+                    description: "प्रत्येक अध्याय से प्रश्नों की उपलब्धता, जिससे आप अपनी कमजोर अवधारणाओं को मजबूत कर सकते हैं।"
                 },
                 {
                     title: "पूर्ण पाठ्यक्रम टेस्ट",
@@ -140,7 +139,7 @@ export const translations = {
                     description: "विस्तृत विश्लेषण के साथ अपनी प्रगति को ट्रैक करें जो आपकी ताकत और सुधार के क्षेत्रों को इंगित करता है।"
                 },
                 {
-                    title: "नवीनतम परीक्षा पैटर्न",
+                    title: "AI अनुकूलित सीखना",
                     description: "प्रासंगिक तैयारी सुनिश्चित करने के लिए हमेशा नवीनतम बिहार बोर्ड परीक्षा पैटर्न के साथ अपडेट किया जाता है।"
                 },
                 {
@@ -148,7 +147,7 @@ export const translations = {
                     description: "बैज और पुरस्कारों के साथ प्रेरित रहें क्योंकि आप अभ्यास परीक्षण पूरा करते हैं और स्कोर में सुधार करते हैं।"
                 },
                 {
-                    title: "स्मार्ट सिफारिशें",
+                    title: "स्मार्ट सुझाव",
                     description: "अपने प्रदर्शन डेटा के आधार पर आगे क्या अध्ययन करना है, इस पर व्यक्तिगत सुझाव प्राप्त करें।"
                 }
             ]

@@ -32,10 +32,19 @@ export function HeroSection() {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" className="gap-2 h-14 px-8 text-base shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300">
+              <Button
+                size="lg"
+                className="gap-2 h-14 px-8 text-base shadow-lg shadow-primary/20 hover:shadow-primary/40 hover:-translate-y-1 transition-all duration-300"
+                onClick={() => window.open('https://prepone.solviq.in', '_blank')}
+              >
                 {t('hero.cta_primary')} <MoveRight className="h-5 w-5" />
               </Button>
-              <Button size="lg" variant="outline" className="h-14 px-8 text-base hover:bg-muted transition-all duration-300">
+              <Button
+                size="lg"
+                variant="outline"
+                className="h-14 px-8 text-base hover:bg-muted transition-all duration-300"
+                onClick={() => window.open('https://prepone.solviq.in', '_blank')}
+              >
                 {t('hero.cta_secondary')}
               </Button>
             </div>

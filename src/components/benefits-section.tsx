@@ -18,7 +18,7 @@ export function BenefitsSection() {
                     <p className="text-sm text-muted-foreground">Science • Math • Social Studies • English • Hindi</p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-3 mb-6">
                   {[
                     "500+ Practice Questions",
@@ -33,9 +33,9 @@ export function BenefitsSection() {
                     </div>
                   ))}
                 </div>
-                
+
                 <div className="h-[1px] bg-gray-200 my-6"></div>
-                
+
                 <div className="flex items-center gap-3 mb-6">
                   <div className="bg-indigo-100 h-10 w-10 rounded-full flex items-center justify-center">
                     <span className="text-lg font-bold text-indigo-700">12</span>
@@ -45,7 +45,7 @@ export function BenefitsSection() {
                     <p className="text-sm text-muted-foreground">Science • Commerce • Arts Streams</p>
                   </div>
                 </div>
-                
+
                 <div className="space-y-3">
                   {[
                     "700+ Practice Questions",
@@ -63,29 +63,28 @@ export function BenefitsSection() {
               </div>
             </div>
           </div>
-          
+
           <div className="order-1 lg:order-2">
             <div className="space-y-6 text-center lg:text-left">
               <h2 className="text-3xl font-bold">Why Students Love PrepOne</h2>
-              
+
               <p className="text-lg text-muted-foreground">
-                PrepOne transforms how Bihar Board students prepare for their exams, making the process 
+                PrepOne transforms how Bihar Board students prepare for their exams, making the process
                 more effective and less stressful.
               </p>
-              
+
               <div className="space-y-6">
                 <div className="flex flex-col lg:flex-row gap-4 items-center lg:items-start">
                   <div className="bg-blue-100 text-blue-700 h-12 w-12 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-xl font-bold">1</span>
                   </div>
                   <div>
-                    <h3 className="text-xl font-medium mb-2">Stress-Free Learning</h3>
+                    <h3 className="text-xl font-medium mb-2">Hindi & English Medium</h3>
                     <p className="text-muted-foreground">
-                      Our approach breaks down complex topics into manageable chunks, reducing overwhelm and building confidence.
-                    </p>
+                      Study in your preferred language. Toggle between Hindi and English with one tap.                    </p>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col lg:flex-row gap-4 items-center lg:items-start">
                   <div className="bg-blue-100 text-blue-700 h-12 w-12 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-xl font-bold">2</span>
@@ -97,15 +96,15 @@ export function BenefitsSection() {
                     </p>
                   </div>
                 </div>
-                
+
                 <div className="flex flex-col lg:flex-row gap-4 items-center lg:items-start">
                   <div className="bg-blue-100 text-blue-700 h-12 w-12 rounded-full flex items-center justify-center flex-shrink-0">
                     <span className="text-xl font-bold">3</span>
                   </div>
                   <div>
-                    <h3 className="text-xl font-medium mb-2">Exam-Focused Content</h3>
+                    <h3 className="text-xl font-medium mb-2">100% Exam Focused</h3>
                     <p className="text-muted-foreground">
-                      All content is tailored specifically to Bihar Board exams, ensuring you're practicing what matters.
+                      No useless content. Only what comes in the Bihar Board exam.
                     </p>
                   </div>
                 </div>

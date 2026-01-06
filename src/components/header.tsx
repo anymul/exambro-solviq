@@ -42,7 +42,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           {/* Logo Placeholder - Text based for now */}
           <a href="#" className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-violet-600 font-heading">
-            PrepOne
+            PrepOne <span className="text-sm font-normal text-muted-foreground ml-1">by SolvIQ.in</span>
           </a>
         </div>
 
@@ -81,7 +81,8 @@ export function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Button className="font-medium px-6 shadow-lg hover:shadow-primary/25 transition-all duration-300">
+          <Button  onClick={() => window.open('https://prepone.solviq.in', '_blank')}
+          className="font-medium px-6 shadow-lg hover:shadow-primary/25 transition-all duration-300">
             {t('nav.download')}
           </Button>
         </div>

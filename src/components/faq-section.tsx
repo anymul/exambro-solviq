@@ -7,20 +7,20 @@ import {
 
 const faqs = [
   {
-    question: "Is PrepOne only for Bihar Board students?",
-    answer: "Yes, currently PrepOne is specifically designed for Bihar Board Class 10 and 12 students, with content tailored to their syllabus and exam patterns. We plan to expand to other boards in the future."
+    question: " Is PrepOne content based on the new 2026 Syllabus?",
+    answer: "Yes! We update our Model Papers and Objective Questions weekly to match the latest notifications from Bihar School Examination Board (BSEB)."
   },
   {
-    question: "How often is the content updated?",
-    answer: "We update our question bank and mock tests regularly to reflect the latest Bihar Board exam patterns and syllabus changes. Major updates happen before the start of each academic year, with minor updates throughout the year."
+    question: "Is this app free for Matric and Inter students?",
+    answer: "PrepOne offers a Free Plan with daily practice sets. We also have a Premium plan for unlimited full-length mock tests, which is currently free for all til March 2026."
   },
   {
     question: "Can I use PrepOne without internet access?",
     answer: "Yes, once you download the app and the required content, most features work offline. Performance data will sync when you reconnect to the internet."
   },
   {
-    question: "How do performance analytics work?",
-    answer: "PrepOne tracks various metrics including accuracy, time spent per question, topic-wise strengths and weaknesses, and improvement over time. This data is presented in easy-to-understand charts and insights."
+    question: "Can I use PrepOne in Hindi Medium?",
+    answer: "Absolutely. The entire app is optimized for Hindi Medium students, including Science and Social Studies subjects."
   },
   {
     question: "Is there a free version available?",

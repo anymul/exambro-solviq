@@ -19,9 +19,10 @@ export function CtaSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Button size="lg" variant="secondary" className="gap-2 h-12 px-8 text-base shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+            <Button onClick={() => window.open('https://prepone.solviq.in', '_blank')}
+              size="lg" variant="secondary" className="gap-2 h-12 px-8 text-base shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
               <Download className="h-5 w-5" />
-              Download PrepOne
+              Start Free Mock Test Now
             </Button>
 
             <Button size="lg" variant="outline" className="bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary gap-2 h-12 px-8 text-base">
@@ -33,7 +34,7 @@ export function CtaSection() {
           <div className="pt-8 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4 sm:gap-6 text-primary-foreground/80 text-sm font-medium">
             <span className="flex items-center gap-2">
               <Smartphone className="h-4 w-4" />
-              Available on Android
+              Available on Android and Web
             </span>
             <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-primary-foreground/50"></span>
             <span className="flex items-center gap-2">

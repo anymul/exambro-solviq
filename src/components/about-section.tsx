@@ -8,8 +8,8 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <div>
-              <h3 className="text-xl font-bold text-primary mb-2">Our Story</h3>
-              <h2 className="text-3xl font-bold mb-4">Meet Solviq.in</h2>
+              <h3 className="text-xl font-bold text-primary mb-2">About Us</h3>
+              <h2 className="text-3xl font-bold mb-4">Powered by SolvIQ.in</h2>
               <p className="text-lg text-muted-foreground">
                 The EdTech company behind PrepOne, building smarter learning tools for India's students.
               </p>
