@@ -11,6 +11,8 @@ import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
 import SEO from '../componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 const mathJaxConfig = {
     tex: {
         inlineMath: [['\\(', '\\)']],
@@ -36,10 +38,10 @@ const Hero = () => (
             <p className="font-body text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Why revise what you already know? PrepOne generates bite-sized, personalized revision notes based on the exact mistakes you made in your mock tests.
             </p>
-            <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] font-bold text-lg group">
+            <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] font-bold text-lg group">
                 <Sparkles className="w-5 h-5 mr-3 group-hover:rotate-12 transition-transform" />
                 Generate My Notes
-            </button>
+            </a>
         </div>
     </section>
 );
@@ -228,10 +230,10 @@ export default function RevisionNotesPage() {
             <section className="bg-white py-20 text-center border-t border-gray-200">
                 <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">Revise smarter today.</h2>
                 <p className="text-[#64748B] mb-8 max-w-xl mx-auto text-lg">Take a test, and watch your personalized notes generate instantly.</p>
-                <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-xl font-bold">
+                <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-xl font-bold">
                     <Smartphone className="w-5 h-5 mr-3 text-indigo-300" />
                     Download PrepOne App
-                </button>
+                </a>
             </section>
 
             <Footer />

@@ -6,6 +6,8 @@ import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
 import blogsData from '../data/blogs.json'; // IMPORTING THE JSON DATA
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 // --- CUSTOM HOOKS ---
 const Reveal = ({ children, delay = 0, className = "", threshold = 0.1 }) => {
     const ref = useRef(null);
@@ -226,12 +228,14 @@ const AppUpsellCTA = () => (
                 Downloading PYQs is just step one. Download the PrepOne App to attempt these papers digitally and get your handwritten answers evaluated by AI instantly.
             </p>
 
-            <button
-                onClick={() => window.location.href = '#'} // Link to Play Store
+            <a
+                href={PREPONE_PLAY_STORE_URL}
+                target="_blank"
+                rel="noreferrer"
                 className="bg-white hover:bg-gray-50 text-[#0F172A] px-8 py-4 rounded-xl font-bold transition-all shadow-xl flex items-center justify-center mx-auto text-lg"
             >
                 Download Free PrepOne App <ArrowRight className="w-5 h-5 ml-2" />
-            </button>
+            </a>
         </Reveal>
     </section>
 );

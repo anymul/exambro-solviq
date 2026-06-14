@@ -10,6 +10,8 @@ import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
 import SEO from '../componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#0F172A] overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -28,10 +30,10 @@ const Hero = () => (
             <p className="font-body text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Stop practicing with random MCQs on your phone. Take full-length, board-aligned mock tests on physical paper, and let our AI evaluate your subjective answers instantly.
             </p>
-            <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] font-bold text-lg group">
+            <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] font-bold text-lg group">
                 <PlayCircle className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
                 Start Your First Free Mock
-            </button>
+            </a>
         </div>
     </section>
 );
@@ -220,10 +222,10 @@ export default function MockTestsPage() {
             <section className="bg-white py-20 text-center border-t border-gray-200">
                 <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">Stop guessing. Start testing.</h2>
                 <p className="text-[#64748B] mb-8 max-w-xl mx-auto text-lg">Get your first 3 full-length Mock Tests evaluated by AI absolutely free.</p>
-                <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] font-bold">
+                <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-[0_0_20px_rgba(79,70,229,0.3)] font-bold">
                     <Smartphone className="w-5 h-5 mr-3" />
                     Download PrepOne App
-                </button>
+                </a>
             </section>
 
             <Footer />

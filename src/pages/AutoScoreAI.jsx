@@ -10,6 +10,8 @@ import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
 import SEO from '../componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#0F172A] overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -28,10 +30,10 @@ const Hero = () => (
             <p className="font-body text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Don't wait 14 days for your coaching center to return your test. Upload your handwritten subjective answers and get step-by-step evaluation, partial marks, and feedback in 60 seconds.
             </p>
-            <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] font-bold text-lg group">
+            <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] font-bold text-lg group">
                 <Scan className="w-5 h-5 mr-3 group-hover:scale-110 transition-transform" />
                 Scan Your First Answer
-            </button>
+            </a>
         </div>
     </section>
 );
@@ -228,10 +230,10 @@ export default function AIEvaluationStudentPage() {
             <section className="bg-[#F8F9FC] py-20 text-center border-t border-gray-200">
                 <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">Test the AI yourself.</h2>
                 <p className="text-[#64748B] mb-8 max-w-xl mx-auto text-lg">Upload an old answer sheet right now and see the magic happen. Your first 3 evaluations are free.</p>
-                <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-xl font-bold">
+                <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-xl font-bold">
                     <Scan className="w-5 h-5 mr-3 text-indigo-300" />
                     Download PrepOne App
-                </button>
+                </a>
             </section>
             
             <Footer />

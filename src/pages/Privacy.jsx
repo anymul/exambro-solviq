@@ -4,6 +4,8 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 export default function PrivacyPolicy() {
     const [activeTab, setActiveTab] = useState('prepone');
 
@@ -56,7 +58,7 @@ export default function PrivacyPolicy() {
                             <div className="mb-10">
                                 <h2 className="font-display text-3xl font-bold text-[#0F172A] mb-2">Privacy Policy — PrepOne</h2>
                                 <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
-                                <p className="text-gray-600"><strong>Product:</strong> PrepOne (Mobile Application)</p>
+                                <p className="text-gray-600"><strong>Product:</strong> PrepOne (<a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">Mobile Application</a>)</p>
                                 <p className="text-gray-600"><strong>Effective Date:</strong> June 14, 2026</p>
                                 <p className="text-gray-600"><strong>Last Updated:</strong> June 14, 2026</p>
                             </div>
@@ -66,7 +68,7 @@ export default function PrivacyPolicy() {
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">1. Introduction</h3>
                                 <p className="mb-3">SolvIQ India Pvt. Ltd. ("Company," "we," "us," or "our"), a company incorporated under the Companies Act, 2013, with its registered office in Gandhinagar, Gujarat, India, operates <strong>PrepOne</strong> — an AI-powered adaptive mock test and exam preparation platform for students.</p>
-                                <p className="mb-3">This Privacy Policy explains how we collect, use, store, share, and protect your personal information when you use the PrepOne mobile application ("App"). By accessing or using PrepOne, you agree to the terms of this Privacy Policy. If you do not agree, please discontinue use of the App immediately.</p>
+                                <p className="mb-3">This Privacy Policy explains how we collect, use, store, share, and protect your personal information when you use the <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">PrepOne mobile application</a> ("App"). By accessing or using PrepOne, you agree to the terms of this Privacy Policy. If you do not agree, please discontinue use of the App immediately.</p>
                                 <p>This policy complies with the <strong>Information Technology Act, 2000</strong>, the <strong>Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</strong>, and the <strong>Digital Personal Data Protection Act, 2023 (DPDPA)</strong>.</p>
                             </section>
 

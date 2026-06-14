@@ -4,6 +4,8 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 export default function TermsOfService() {
     const [activeTab, setActiveTab] = useState('prepone');
 
@@ -56,7 +58,7 @@ export default function TermsOfService() {
                             <div className="mb-10">
                                 <h2 className="font-display text-3xl font-bold text-[#0F172A] mb-2">Terms of Service — PrepOne</h2>
                                 <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
-                                <p className="text-gray-600"><strong>Product:</strong> PrepOne (Mobile Application)</p>
+                                <p className="text-gray-600"><strong>Product:</strong> PrepOne (<a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">Mobile Application</a>)</p>
                                 <p className="text-gray-600"><strong>Effective Date:</strong> June 14, 2026</p>
                                 <p className="text-gray-600"><strong>Last Updated:</strong> June 14, 2026</p>
                             </div>
@@ -66,7 +68,7 @@ export default function TermsOfService() {
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">1. Acceptance of Terms</h3>
                                 <p className="mb-3">These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you") and <strong>SolvIQ India Pvt. Ltd.</strong> ("Company," "we," "us"), a private limited company incorporated under the Companies Act, 2013, with its registered office in Gandhinagar, Gujarat, India.</p>
-                                <p>By downloading, installing, registering, or using the <strong>PrepOne</strong> mobile application, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree, do not use the App.</p>
+                                <p>By downloading, installing, registering, or using the <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline"><strong>PrepOne</strong> mobile application</a>, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree, do not use the App.</p>
                             </section>
 
                             <hr className="border-gray-200" />

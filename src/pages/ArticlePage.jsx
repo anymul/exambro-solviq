@@ -8,6 +8,8 @@ import SEO from '../componenets/SEO';
 // IMPORT YOUR JSON DATA DIRECTLY
 import blogsData from '../data/blogs.json'; 
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 export default function DynamicArticlePage() {
     const { slug } = useParams();
 
@@ -80,9 +82,9 @@ export default function DynamicArticlePage() {
                         </div>
                         <h3 className="text-3xl font-bold mb-4">Get your answers evaluated by AI</h3>
                         <p className="text-gray-300 mb-8">Download PrepOne to attempt PYQs and get instant step-marks.</p>
-                        <button className="bg-white text-[#0F172A] px-8 py-3.5 rounded-xl font-bold flex items-center">
+                        <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-white text-[#0F172A] px-8 py-3.5 rounded-xl font-bold inline-flex items-center">
                             <Smartphone className="w-5 h-5 mr-3 text-indigo-600" /> Download App
-                        </button>
+                        </a>
                     </div>
                 </div>
             </article>

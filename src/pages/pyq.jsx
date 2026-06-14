@@ -10,6 +10,8 @@ import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
 import SEO from '../componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#0F172A] overflow-hidden">
@@ -29,10 +31,10 @@ const Hero = () => (
             <p className="font-body text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Don't just read the solutions. See which topics repeat every year, practice chapter-wise, and get your handwritten PYQ answers graded against the official board rubrics.
             </p>
-            <button className="bg-[#F59E0B] hover:bg-[#D97706] text-[#0F172A] px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] font-bold text-lg group">
+            <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#F59E0B] hover:bg-[#D97706] text-[#0F172A] px-8 py-4 rounded-xl inline-flex items-center transition-all shadow-[0_0_20px_rgba(245,158,11,0.3)] font-bold text-lg group">
                 <Search className="w-5 h-5 mr-3 group-hover:scale-15 transition-transform" />
                 Explore the PYQ Library
-            </button>
+            </a>
         </div>
     </section>
 );
@@ -236,10 +238,10 @@ export default function PYQsMarketingPage() {
             <section className="bg-[#F8F9FC] py-20 text-center border-t border-gray-200">
                 <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">Unlock 5 years of Mastery.</h2>
                 <p className="text-[#64748B] mb-8 max-w-xl mx-auto text-lg">Stop searching the internet for blurry PDFs. Get fully evaluated PYQs right in your pocket.</p>
-                <button className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-xl font-bold">
+                <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center mx-auto transition-all shadow-xl font-bold">
                     <Smartphone className="w-5 h-5 mr-3 text-indigo-300" />
                     Download PrepOne App
-                </button>
+                </a>
             </section>
 
             <Footer />

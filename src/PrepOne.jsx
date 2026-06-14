@@ -10,6 +10,8 @@ import Footer from './componenets/Footer';
 import FadeIn from './componenets/FadeIn';
 import SEO from './componenets/SEO';
 
+const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+
 // --- CUSTOM HOOKS ---
 const useCountUp = (end, duration = 2000) => {
     const [count, setCount] = useState(0);
@@ -84,7 +86,7 @@ const Hero = () => (
 
                 <FadeIn delay={1400}>
                     <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href='https://play.google.com/store/apps/details?id=com.solviq.prepone' className="w-full sm:w-auto bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:-translate-y-1">
+                        <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-[#4F46E5] hover:bg-[#4338CA] text-white px-8 py-4 rounded-xl flex items-center justify-center transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)] hover:-translate-y-1">
                             <PlayCircle className="w-6 h-6 mr-3" />
                             <div className="text-left">
                                 <div className="text-[10px] uppercase leading-none opacity-80">Get it on</div>
@@ -305,7 +307,7 @@ const Pricing = () => (
                         <li className="flex items-center text-[#0F172A]"><CheckCircle2 className="w-5 h-5 text-gray-300 mr-3" /> Basic Analytics Dashboard</li>
                         <li className="flex items-center text-[#0F172A]"><CheckCircle2 className="w-5 h-5 text-gray-300 mr-3" /> Access to PYQs</li>
                     </ul>
-                    <button className="w-full py-4 rounded-xl font-bold text-[#0F172A] border border-gray-200 hover:bg-gray-50 transition-colors">Download Free App</button>
+                    <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="block w-full py-4 rounded-xl font-bold text-[#0F172A] border border-gray-200 hover:bg-gray-50 transition-colors text-center">Download Free App</a>
                 </div>
 
                 {/* Pro Tier */}
@@ -323,7 +325,7 @@ const Pricing = () => (
                         <li className="flex items-center text-[#0F172A]"><CheckCircle2 className="w-5 h-5 text-[#4F46E5] mr-3" /> Custom Micro-Revision Notes</li>
                         <li className="flex items-center text-[#0F172A]"><CheckCircle2 className="w-5 h-5 text-[#4F46E5] mr-3" /> PrepGuide - Recommended for You </li>
                     </ul>
-                    <button className="w-full py-4 rounded-xl font-bold text-white bg-[#4F46E5] hover:bg-[#4338CA] transition-colors shadow-lg">Get Pro Plan</button>
+                    <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="block w-full py-4 rounded-xl font-bold text-white bg-[#4F46E5] hover:bg-[#4338CA] transition-colors shadow-lg text-center">Get Pro Plan</a>
                 </div>
             </div>
         </div>
@@ -335,7 +337,10 @@ const FAQ = () => {
     const faqs = [
         { q: "Is the AI evaluation accurate for subjective answers?", a: "Yes. Our AI is trained on millions of real board exam answer sheets. It looks for keywords, step-by-step logic, and specific formulas, mimicking a real examiner's rubric." },
         { q: "Can I use it for Hindi medium?", a: "Yes Our AI is now available in Hindi medium as well." },
-        { q: "Do I need to pay immediately?", a: "No. You get 3 full mock tests evaluated absolutely free when you download the app. No credit card required." },
+        {
+            q: "Do I need to pay immediately?",
+            a: <>No. You get 3 full mock tests evaluated absolutely free when you <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-[#4F46E5] font-bold hover:underline">download the app</a>. No credit card required.</>
+        },
         { q: "How is Abhyas+ different from normal quizzes?", a: "Abhyas+ analyzes where you lost marks in your mock tests. If you failed an Optics question, it will automatically generate practice questions specifically targeting Optics formulas for you." }
     ];
 
@@ -370,11 +375,11 @@ const FinalCTA = () => (
             <h2 className="font-display text-4xl md:text-6xl font-bold text-white mb-6">Ready to engineer your success?</h2>
             <p className="font-body text-xl text-indigo-100 mb-12">Download Free - No payment required.</p>
 
-            <div onClick={() => (window.location.href = 'https://play.google.com/store/apps/details?id=com.solviq.prepone')} className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-                <button className="w-full sm:w-auto bg-white text-[#0F172A] px-8 py-4 rounded-xl flex items-center justify-center transition-all hover:bg-gray-50 hover:shadow-lg font-bold">
+            <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="w-full sm:w-auto bg-white text-[#0F172A] px-8 py-4 rounded-xl flex items-center justify-center transition-all hover:bg-gray-50 hover:shadow-lg font-bold">
                     <PlayCircle className="w-6 h-6 mr-3 text-[#4F46E5]" />
                     Google Play Store
-                </button>
+                </a>
             </div>
         </div>
     </section>
