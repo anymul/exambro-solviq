@@ -39,7 +39,7 @@ export default function DynamicArticlePage() {
             {/* Breadcrumbs */}
             <div className="bg-[#0b0909] pt-32 pb-6 border-b border-gray-100">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 flex items-center text-sm text-gray-300 font-medium">
-                    <Link to="/study-material" className="hover:text-[#a7a2ff] transition-colors flex items-center">
+                    <Link to="/blog" className="hover:text-[#a7a2ff] transition-colors flex items-center">
                         <ArrowLeft className="w-4 h-4 mr-1" /> Study Hub
                     </Link>
                     <span className="mx-2 text-gray-200">/</span>
