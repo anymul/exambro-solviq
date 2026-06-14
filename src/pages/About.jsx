@@ -4,6 +4,7 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer'; 
 import founder from '../assets/founder.png'; 
 import growth from '../assets/growth.png';
+import SEO from '../componenets/SEO';
 
 // --- CUSTOM HOOKS ---
 const Reveal = ({ children, delay = 0, className = "", threshold = 0.1 }) => {
@@ -267,6 +268,12 @@ const Roadmap = () => (
 export default function About() {
   return (
     <div className="min-h-screen bg-white font-body selection:bg-[#4F46E5] selection:text-white">
+      
+      <SEO
+        title="About SolvIQ India | Transforming Education with AI"
+        description="Learn about SolvIQ's mission to revolutionize educational assessment and analytics through cutting-edge AI technology."
+        canonicalUrl="https://solviq.in/about"
+      />
       <Navbar />
       <Hero />
       <TheOrigin />

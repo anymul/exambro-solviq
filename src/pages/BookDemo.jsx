@@ -3,6 +3,7 @@ import emailjs from '@emailjs/browser';
 import { Calendar, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
+import SEO from '../componenets/SEO';
 
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
@@ -53,6 +54,11 @@ export default function BookDemo() {
             {/* Ambient Background Glow */}
             <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#01696f] rounded-full mix-blend-screen filter blur-[150px] opacity-10 pointer-events-none"></div>
 
+            <SEO
+                title="Book a Demo | CoachOne"
+                description="Schedule a personalized demo of CoachOne's AI-powered educational platform and see how it can transform your institute's assessment and analytics processes."
+                canonicalUrl="https://solviq.in/book-demo"
+            />
             <Navbar />
 
             <section className="pt-32 pb-24 relative z-10">

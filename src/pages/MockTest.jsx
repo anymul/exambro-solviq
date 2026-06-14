@@ -1,13 +1,14 @@
 import React from 'react';
-import { 
-    Timer, FileEdit, Smartphone, BrainCircuit, 
-    Target, PlayCircle, ArrowRight, 
+import {
+    Timer, FileEdit, Smartphone, BrainCircuit,
+    Target, PlayCircle, ArrowRight,
     CheckCircle2, BookOpen, UploadCloud, Lock
 } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
+import SEO from '../componenets/SEO';
 
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#0F172A] overflow-hidden">
@@ -53,7 +54,7 @@ const AppUISimulation = () => (
                     </div>
                     <div className="text-white/50 text-sm font-mono tracking-wider">PrepOne App View</div>
                 </div>
-                
+
                 <div className="p-8 bg-[#F8F9FC]">
                     <div className="grid md:grid-cols-2 gap-6">
                         {/* Active Test */}
@@ -127,7 +128,7 @@ const Workflow = () => {
                             <div className="bg-white rounded-[2rem] p-8 h-full shadow-sm border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all relative group overflow-hidden">
                                 <div className="absolute -right-4 -top-4 w-24 h-24 bg-indigo-50 rounded-full group-hover:scale-150 transition-transform duration-500 ease-out z-0"></div>
                                 <div className="relative z-10">
-                                    <div className="text-5xl font-display font-bold text-gray-100 mb-4 group-hover:text-indigo-100 transition-colors">0{i+1}</div>
+                                    <div className="text-5xl font-display font-bold text-gray-100 mb-4 group-hover:text-indigo-100 transition-colors">0{i + 1}</div>
                                     <h3 className="font-display text-xl font-bold text-[#0F172A] mb-3">{step.title}</h3>
                                     <p className="text-[#64748B] leading-relaxed text-sm">{step.desc}</p>
                                 </div>
@@ -152,7 +153,7 @@ const PostTestAnalytics = () => (
                     <p className="font-body text-gray-400 text-lg mb-8 leading-relaxed">
                         Knowing you scored 82/100 is useless if you don't know why you lost 18 marks. PrepOne breaks down your test performance and instantly creates a remedial action plan.
                     </p>
-                    
+
                     <ul className="space-y-6">
                         <li className="flex items-start">
                             <div className="bg-white/10 p-2 rounded-lg mr-4 mt-1 border border-white/10">
@@ -186,7 +187,7 @@ const PostTestAnalytics = () => (
                             -2 Marks
                         </div>
                     </div>
-                    
+
                     <div className="space-y-4">
                         <div className="bg-[#0F172A] p-4 rounded-xl border border-gray-800">
                             <p className="text-gray-300 text-sm italic">"Student applied the first law of thermodynamics correctly but failed to account for work done BY the gas during expansion..."</p>
@@ -204,12 +205,17 @@ const PostTestAnalytics = () => (
 export default function MockTestsPage() {
     return (
         <div className="min-h-screen bg-white font-body selection:bg-[#4F46E5] selection:text-white">
+            <SEO
+                title="PrepOne Mock Tests | AI-Evaluated, Board-Aligned Practice Papers"
+                description="Experience the future of exam prep with PrepOne's AI-evaluated mock tests. Download full-length, board-aligned papers, practice on physical paper, and get instant AI feedback to boost your performance."
+                canonicalUrl="https://solviq.in/prepone/mock-tests"
+            />
             <Navbar />
             <Hero />
             <AppUISimulation />
             <Workflow />
             <PostTestAnalytics />
-            
+
             {/* Simple CTA */}
             <section className="bg-white py-20 text-center border-t border-gray-200">
                 <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">Stop guessing. Start testing.</h2>
@@ -219,7 +225,7 @@ export default function MockTestsPage() {
                     Download PrepOne App
                 </button>
             </section>
-            
+
             <Footer />
         </div>
     );

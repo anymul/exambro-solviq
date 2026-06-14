@@ -8,6 +8,7 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
+import SEO from '../componenets/SEO';
 
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#111210] overflow-hidden">
@@ -208,6 +209,11 @@ const BottomCTA = () => (
 export default function StudentAnalyticsMarketingPage() {
     return (
         <div className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
+            <SEO
+                title="CoachOne Student Analytics | Data-Driven Insights for Better Learning"
+                description="Gain valuable insights into your students' performance with CoachOne's AI-powered analytics. Make informed decisions to enhance learning outcomes."
+                canonicalUrl="https://solviq.in/student-analytics"
+            />
             <Navbar />
             <Hero />
             <MicroConceptSection />

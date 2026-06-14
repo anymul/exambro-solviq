@@ -8,6 +8,7 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
+import SEO from '../componenets/SEO';
 
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#111210] overflow-hidden">
@@ -208,6 +209,11 @@ const BottomCTA = () => (
 export default function TimeManagementMarketingPage() {
     return (
         <div className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
+            <SEO
+                title="CoachOne Test Management | Automate Your Assessment Process"
+                description="Streamline your test management with CoachOne's AI-powered platform. Save time, reduce manual work, and focus on what matters most."
+                canonicalUrl="https://solviq.in/test-management"
+            />
             <Navbar />
             <Hero />
             <Comparison />

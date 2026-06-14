@@ -10,6 +10,7 @@ import Footer from './componenets/Footer';
 import ProblemStatement from './componenets/ProblemStatement';
 import LetterReveal from './componenets/LetterReveal';
 import FadeIn from './componenets/FadeIn';
+import SEO from './componenets/SEO';
 
 // --- CUSTOM HOOKS ---
 
@@ -244,7 +245,7 @@ const DualGateway = () => {
               </li>
             </ul>
 
-            <button onClick={() => window.location.href='/prepone'} className="bg-[#0F172A] hover:bg-black text-white px-6 py-3 rounded-xl font-body font-semibold transition-all flex items-center group/btn mb-12">
+            <button onClick={() => window.location.href = '/prepone'} className="bg-[#0F172A] hover:bg-black text-white px-6 py-3 rounded-xl font-body font-semibold transition-all flex items-center group/btn mb-12">
               Explore PrepOne
               <ArrowRight className="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform" />
             </button>
@@ -294,7 +295,7 @@ const DualGateway = () => {
               </li>
             </ul>
 
-            <button onClick={() => window.location.href='/coachone'} className="bg-[#0F172A] hover:bg-black text-white px-6 py-3 rounded-xl font-body font-semibold transition-all flex items-center group/btn mb-12">
+            <button onClick={() => window.location.href = '/coachone'} className="bg-[#0F172A] hover:bg-black text-white px-6 py-3 rounded-xl font-body font-semibold transition-all flex items-center group/btn mb-12">
               Explore CoachOne
               <ArrowRight className="w-4 h-4 ml-2 transform group-hover/btn:translate-x-1 transition-transform" />
             </button>
@@ -617,6 +618,13 @@ export default function App() {
           opacity: 0;
         }
       `}} />
+
+      <SEO
+        title="SolvIQ India | Building the Intelligence Layer for Student Evaluation"
+        description="SolvIQ builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable. Stop guessing. Start engineering your success."
+        keywords="PrepOne app, AI exam prep, board exam mock tests, Bihar board class 12, CBSE preparation app, AI subjective grading"
+        canonicalUrl="https://solviq.in"
+      />
 
       <Navbar />
       <Hero />

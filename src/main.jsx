@@ -20,6 +20,8 @@ import AutoScoreAI from './pages/AutoScoreAI.jsx'
 import RevisionNotes from './pages/Revision.jsx'
 import { HelmetProvider } from 'react-helmet-async';
 import ArticlePage from './pages/ArticlePage.jsx';
+import TermsOfService from './pages/Terms.jsx';
+import PrivacyPolicy from './pages/Privacy.jsx';
 
 
 
@@ -47,6 +49,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/prepone/ai-evaluation-students" element={<AutoScoreAI />} />
           <Route path="/prepone/revision-notes" element={<RevisionNotes />} />
           <Route path="/study-material/:slug" element={<ArticlePage />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

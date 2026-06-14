@@ -8,6 +8,7 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import LetterReveal from '../componenets/LetterReveal';
 import FadeIn from '../componenets/FadeIn';
+import SEO from '../componenets/SEO';
 
 const Hero = () => (
     <section className="relative pt-32 pb-24 bg-[#111210] overflow-hidden">
@@ -183,6 +184,11 @@ const TrustBanner = () => (
 export default function AIEvaluationMarketingPage() {
     return (
         <div className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
+            <SEO
+                title="CoachOne AI Evaluation | Automated Grading for Better Insights"
+                description="Experience the future of assessment with CoachOne's AI-powered evaluation workflow. Save time, reduce bias, and gain valuable insights into student performance."
+                canonicalUrl="https://solviq.in/ai-evaluation"
+            />
             <Navbar />
             <Hero />
             <StepMarkingDemo />
