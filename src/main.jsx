@@ -22,7 +22,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import ArticlePage from './pages/ArticlePage.jsx';
 import TermsOfService from './pages/Terms.jsx';
 import PrivacyPolicy from './pages/Privacy.jsx';
-
+import DownloadRedirect from './pages/DownloadRedirect.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -48,6 +48,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/prepone/pyqs" element={<PYQsMarketingPage />} />
           <Route path="/prepone/ai-evaluation-students" element={<AutoScoreAI />} />
           <Route path="/prepone/revision-notes" element={<RevisionNotes />} />
+          <Route path="/prepone/download" element={<DownloadRedirect />} />
           <Route path="/study-material/:slug" element={<ArticlePage />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
