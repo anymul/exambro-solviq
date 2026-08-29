@@ -1,0 +1,16 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.solviq.prepone",
+      "sha256_cert_fingerprints": [
+        "FA:C6:17:45:DC:09:03:78:6F:B9:ED:E6:2A:96:2B:39:9F:73:48:F0:BB:6F:89:9B:83:32:66:75:91:03:3B:9C",
+        "A3:ED:FC:BD:1B:61:24:6A:B4:7F:30:02:58:60:45:4F:D2:B1:75:69:54:6E:53:95:ED:DC:23:67:D1:02:CE:0A"
+      ]
+    }
+  }
+]
