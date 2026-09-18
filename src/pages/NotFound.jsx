@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Home, ArrowLeft, ShieldAlert, Sparkles } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
@@ -53,7 +53,7 @@ export default function NotFound() {
             
             {/* Mock Header */}
             <div className="flex justify-between items-start mb-12 border-b-2 border-gray-800 pb-4">
-              <div className="font-mono text-gray-500 text-sm">
+              <div className="text-gray-500 text-sm font-medium">
                 <p>Subject: Web Navigation</p>
                 <p>Topic: Finding the right URL</p>
               </div>
@@ -70,7 +70,7 @@ export default function NotFound() {
               <p className="font-bold text-gray-800 text-lg">Q1. Navigate to the requested page.</p>
               
               <div className="relative">
-                <p className="font-mono text-gray-500 italic text-lg leading-[32px]">
+                <p className="text-gray-500 italic text-lg leading-[32px]">
                   "I tried looking everywhere on the server, but the file you requested seems to have vanished into the digital void."
                 </p>
                 

@@ -1,4 +1,39 @@
+# SolvIQ India - Robots Configuration
+# https://solviq.in/
+
+# All standard search crawlers
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /prepone/download
 
+# AI & LLM Search Engine Crawlers (AEO / GEO indexing)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+# Sitemap Reference
 Sitemap: https://solviq.in/sitemap.xml

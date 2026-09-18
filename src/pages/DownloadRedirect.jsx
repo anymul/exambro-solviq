@@ -1,6 +1,7 @@
 // src/pages/DownloadRedirect.jsx
 import { useEffect, useState } from 'react';
 import icon from '../assets/icon.png';
+import SEO from '../componenets/SEO';
 
 const PLAY_STORE_URL =
     'https://play.google.com/store/apps/details?id=com.solviq.prepone';
@@ -22,6 +23,12 @@ export default function DownloadRedirect() {
 
     return (
         <div style={styles.page}>
+            <SEO
+                title="Download PrepOne App | Google Play Store"
+                description="Redirecting to download PrepOne app on Google Play Store."
+                canonicalUrl="https://solviq.in/prepone/download"
+                robots="noindex, follow"
+            />
             <div style={styles.card}>
                 <div style={styles.logoWrap}>
                     <div style={styles.logoCircle}><img src={icon} alt="" /></div>
@@ -60,19 +67,19 @@ const styles = {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #6C5CE7 0%, #4834d4 100%)',
+        background: 'linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #312E81 100%)',
         fontFamily:
             "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
         padding: '24px',
     },
     card: {
         background: '#ffffff',
-        borderRadius: '20px',
+        borderRadius: '24px',
         padding: '40px 32px',
         maxWidth: '360px',
         width: '100%',
         textAlign: 'center',
-        boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
+        boxShadow: '0 24px 64px rgba(0,0,0,0.3)',
     },
     logoWrap: {
         display: 'flex',
@@ -83,7 +90,7 @@ const styles = {
         width: '64px',
         height: '64px',
         borderRadius: '16px',
-        background: 'linear-gradient(135deg, #6C5CE7, #4834d4)',
+        background: 'linear-gradient(135deg, #818CF8, #5046E5)',
         color: '#fff',
         fontWeight: 700,
         fontSize: '20px',
@@ -91,16 +98,17 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         letterSpacing: '0.5px',
+        boxShadow: '0 10px 25px rgba(80,70,229,0.35)',
     },
     title: {
         fontSize: '20px',
         fontWeight: 700,
-        color: '#1a1a2e',
+        color: '#0F172A',
         margin: '0 0 8px',
     },
     subtitle: {
         fontSize: '14px',
-        color: '#666',
+        color: '#64748B',
         margin: '0 0 24px',
         lineHeight: 1.5,
     },
@@ -112,8 +120,8 @@ const styles = {
     spinner: {
         width: '32px',
         height: '32px',
-        border: '3px solid #ece9fb',
-        borderTopColor: '#6C5CE7',
+        border: '3px solid #EEF2FF',
+        borderTopColor: '#5046E5',
         borderRadius: '50%',
         animation: 'spin 0.8s linear infinite',
     },
@@ -121,11 +129,12 @@ const styles = {
         display: 'inline-block',
         marginTop: '4px',
         padding: '12px 20px',
-        background: '#6C5CE7',
+        background: '#5046E5',
         color: '#fff',
-        borderRadius: '10px',
+        borderRadius: '12px',
         fontSize: '14px',
         fontWeight: 600,
         textDecoration: 'none',
+        boxShadow: '0 4px 14px rgba(80,70,229,0.3)',
     },
 };

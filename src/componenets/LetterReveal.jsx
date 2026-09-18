@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const LetterReveal = ({ text, delay = 0, stagger = 25, className = "", threshold = 0.5 }) => {
   const [isMounted, setIsMounted] = useState(false);

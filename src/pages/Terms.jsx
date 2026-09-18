@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import { Scale, Smartphone, Building2, AlertCircle } from 'lucide-react';
+import { useState } from 'react';
+import { Scale, Smartphone, Building2 } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
+import { buildBreadcrumbSchema } from '../componenets/Schema';
 
 const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
 
@@ -14,7 +15,13 @@ export default function TermsOfService() {
             <SEO
                 title="Terms of Service | SolvIQ India Pvt. Ltd."
                 description="Read the terms and conditions for using SolvIQ platforms including PrepOne and CoachOne."
-                canonicalUrl="https://solviq.in/terms"
+                canonicalUrl="https://solviq.in/terms-of-service"
+                schema={[
+                    buildBreadcrumbSchema([
+                        { name: 'Home', url: '/' },
+                        { name: 'Terms of Service', url: '/terms-of-service' }
+                    ])
+                ]}
             />
             <Navbar />
 

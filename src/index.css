@@ -28,3 +28,55 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Content Protection & Copy Prevention */
+.protected-content {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.protected-content img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
+}
+
+@media print {
+  nav, footer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  /* Prevent text extraction in print to protect proprietary questions */
+  .protected-content {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+  }
+  details {
+    display: block !important;
+  }
+  details[open] summary, details summary {
+    font-weight: bold;
+  }
+  details > div {
+    display: block !important;
+  }
+  /* Security watermark across printed PDF pages */
+  .article-content::before {
+    content: "PREPONE EXCLUSIVE STUDY MATERIAL • UNAUTHORIZED REPRODUCTION PROHIBITED";
+    display: block;
+    text-align: center;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #94a3b8;
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+}

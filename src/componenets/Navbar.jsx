@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, Smartphone, Laptop, ChevronRight } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({ theme = 'dark' }) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const isLight = theme === 'light';
 
     // Handle scroll for transparent -> solid background
     useEffect(() => {
@@ -35,9 +36,10 @@ export default function Navbar() {
 
     const instituteLinks = [
         { name: 'CoachOne Overview', path: '/coachone' },
-        { name: 'Test Management', path: '/test-management' },
-        { name: 'Student Analytics', path: '/student-analytics' },
-        { name: 'AI Evaluation Workflow', path: '/ai-evaluation' },
+        { name: 'Academic Test Studio', path: '/test-management' },
+        { name: 'AI Subjective Evaluation', path: '/ai-evaluation' },
+        { name: 'Pedagogical Telemetry', path: '/student-analytics' },
+        { name: 'Institute Operations CRM', path: '/institute-operations' },
         { name: 'Book a Demo', path: '/book-demo' }
     ];
 
@@ -47,7 +49,7 @@ export default function Navbar() {
                 Increased z-index to z-[100] to ensure no hero sections overlap it. 
                 This solves the issue of the hamburger not being clickable at the top.
             */}
-            <nav className={`fixed w-full z-[100] transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm py-3 text-[#0F172A]' : 'bg-transparent py-5 text-white'}`}>
+            <nav className={`fixed w-full z-[100] transition-all duration-300 ${isScrolled ? 'bg-white shadow-sm py-3 text-[#0F172A]' : (isLight ? 'bg-[#faf8f4]/95 backdrop-blur-md shadow-xs py-4 text-[#0F172A] border-b border-amber-100/60' : 'bg-transparent py-5 text-white')}`}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between items-center relative">
 
@@ -55,7 +57,7 @@ export default function Navbar() {
                         <Link
                             to="/"
                             onClick={() => setMobileMenuOpen(false)}
-                            className={`flex-shrink-0 flex items-center cursor-pointer relative z-10 transition-colors duration-300 ${isScrolled ? 'text-[#333a2f]' : 'text-white'}`}
+                            className={`flex-shrink-0 flex items-center cursor-pointer relative z-10 transition-colors duration-300 ${isScrolled || isLight ? 'text-[#333a2f]' : 'text-white'}`}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -142,11 +144,11 @@ export default function Navbar() {
 
                         {/* Desktop CTAs */}
                         <div className="hidden md:flex items-center space-x-4">
-                            <Link to="/book-demo" className={`px-5 py-2.5 rounded-lg font-body font-semibold text-sm transition-all border ${isScrolled ? 'border-[#0F172A] text-[#0F172A] hover:bg-gray-50' : 'border-white/30 text-white hover:bg-white/10'}`}>
+                            <Link to="/book-demo" className={`px-5 py-2.5 rounded-lg font-body font-semibold text-sm transition-all border ${isScrolled ? 'border-[#0F172A] text-[#0F172A] hover:bg-gray-50' : (isLight ? 'border-[#01696f]/40 text-[#01696f] bg-[#01696f]/5 hover:bg-[#01696f]/10' : 'border-white/30 text-white hover:bg-white/10')}`}>
                                 Book a Demo
                             </Link>
                             <Link to="/prepone" className="bg-[#4F46E5] hover:bg-[#4338CA] text-white px-5 py-2.5 rounded-lg font-body font-semibold text-sm transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 inline-block">
-                                Get PrepOne — Free
+                                Get PrepOne Free
                             </Link>
                         </div>
 
@@ -154,7 +156,7 @@ export default function Navbar() {
                         <div className="md:hidden flex items-center">
                             <button
                                 onClick={() => setMobileMenuOpen(true)}
-                                className={`p-2 rounded-lg focus:outline-none transition-colors ${isScrolled ? 'text-[#0F172A] hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
+                                className={`p-2 rounded-lg focus:outline-none transition-colors ${isScrolled || isLight ? 'text-[#0F172A] hover:bg-gray-100' : 'text-white hover:bg-white/10'}`}
                                 aria-label="Open Menu"
                             >
                                 <Menu className="w-7 h-7" />

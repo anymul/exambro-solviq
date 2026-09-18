@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Shield, Smartphone, Building2 } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
+import { buildBreadcrumbSchema } from '../componenets/Schema';
 
 const PREPONE_PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
 
@@ -14,7 +15,13 @@ export default function PrivacyPolicy() {
             <SEO
                 title="Privacy Policy | SolvIQ India Pvt. Ltd."
                 description="Learn how SolvIQ protects your data across the PrepOne student app and CoachOne institute platform."
-                canonicalUrl="https://solviq.in/privacy"
+                canonicalUrl="https://solviq.in/privacy-policy"
+                schema={[
+                    buildBreadcrumbSchema([
+                        { name: 'Home', url: '/' },
+                        { name: 'Privacy Policy', url: '/privacy-policy' }
+                    ])
+                ]}
             />
             <Navbar />
 

@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Target, BrainCircuit, Rocket, MapPin, Users, Lightbulb, Code } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer'; 
 import founder from '../assets/founder.png'; 
 import growth from '../assets/growth.png';
 import SEO from '../componenets/SEO';
+import { SOLVIQ_ORGANIZATION_SCHEMA, buildBreadcrumbSchema } from '../componenets/Schema';
 
 // --- CUSTOM HOOKS ---
 const Reveal = ({ children, delay = 0, className = "", threshold = 0.1 }) => {
@@ -40,7 +41,10 @@ const Reveal = ({ children, delay = 0, className = "", threshold = 0.1 }) => {
 
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => { setIsLoaded(true); }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoaded(true), 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="relative bg-[#111210] pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
@@ -53,7 +57,6 @@ const Hero = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         <div className={`transition-all duration-1000 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
-            <span className="w-2 h-2 rounded-full bg-[#F59E0B] animate-ping"></span>
             <span className="font-body text-sm text-gray-300 tracking-wide uppercase font-bold">Our Story</span>
           </div>
         </div>
@@ -82,7 +85,7 @@ const TheOrigin = () => (
             <div className="absolute -inset-4 bg-gradient-to-tr from-[#EEF2FF] to-[#f7f6f2] rounded-[3rem] transform -rotate-3 z-0"></div>
             <img 
               src={growth} 
-              alt="Founder" 
+              alt="SolvIQ Journey and Growth from IIT Gandhinagar" 
               className="relative z-10 rounded-[2rem] shadow-xl border border-gray-100 object-cover aspect-[4/3]"
             />
             {/* Location Tag */}
@@ -268,11 +271,29 @@ const Roadmap = () => (
 export default function About() {
   return (
     <div className="min-h-screen bg-white font-body selection:bg-[#4F46E5] selection:text-white">
-      
       <SEO
         title="About SolvIQ India | Transforming Education with AI"
-        description="Learn about SolvIQ's mission to revolutionize educational assessment and analytics through cutting-edge AI technology."
+        description="Learn about SolvIQ's mission to revolutionize educational assessment and analytics through cutting-edge AI technology for CBSE and state board exams."
+        keywords="About SolvIQ, SolvIQ India, IIT Gandhinagar EdTech, AI exam prep India, Anmol Kumar SolvIQ"
         canonicalUrl="https://solviq.in/about"
+        schema={[
+          SOLVIQ_ORGANIZATION_SCHEMA,
+          {
+            "@context": "https://schema.org",
+            "@type": "AboutPage",
+            "@id": "https://solviq.in/about#webpage",
+            "url": "https://solviq.in/about",
+            "name": "About SolvIQ India",
+            "description": "SolvIQ India is an educational technology company born out of IIT Gandhinagar, building the intelligence layer for student evaluation and coaching institute management.",
+            "mainEntity": {
+              "@id": "https://solviq.in/#organization"
+            }
+          },
+          buildBreadcrumbSchema([
+            { name: 'Home', url: '/' },
+            { name: 'About SolvIQ', url: '/about' }
+          ])
+        ]}
       />
       <Navbar />
       <Hero />
