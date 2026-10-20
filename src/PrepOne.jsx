@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
     Check,
     PlayCircle,
@@ -200,49 +200,6 @@ const HowItWorks = () => (
 // =========================================================================
 // 3. FEATURES (tabbed, all panels stay in the DOM for crawlers)
 // =========================================================================
-const DiagnosticMock = () => (
-    <div className="sticker w-full max-w-sm bg-white p-5">
-        <div className="mb-4 flex items-start justify-between gap-3 border-b-2 border-dashed border-rule pb-4">
-            <div>
-                <p className="text-xs font-bold text-brand">ABHYAS+ diagnosis</p>
-                <h4 className="text-base font-extrabold text-ink">Physics: Ray Optics</h4>
-            </div>
-            <span className="rounded-md border-2 border-ink bg-sun px-2.5 py-1 text-xs font-extrabold text-ink">Live path</span>
-        </div>
-
-        <div className="space-y-3">
-            <div className="flex items-center justify-between rounded-lg border-2 border-ink bg-mintwash p-3.5 text-xs">
-                <div>
-                    <span className="block font-bold text-ink">Lens Formula and Magnification</span>
-                    <span className="text-[11px] text-ink/60">14 questions mastered</span>
-                </div>
-                <span className="font-extrabold text-mint">92% Strong</span>
-            </div>
-            <div className="flex items-center justify-between rounded-lg border-2 border-ink bg-butter p-3.5 text-xs">
-                <div>
-                    <span className="block font-bold text-ink">Sign Convention Traps</span>
-                    <span className="text-[11px] text-ink/60">Convex vs Concave mirror slips</span>
-                </div>
-                <span className="font-extrabold text-ink">58% Review</span>
-            </div>
-            <div className="flex items-center justify-between rounded-lg border-2 border-ink bg-blush p-3.5 text-xs">
-                <div>
-                    <span className="block font-bold text-ink">Lens Maker&apos;s Derivation</span>
-                    <span className="text-[11px] text-ink/60">Surface 2 refraction sign slips</span>
-                </div>
-                <span className="font-extrabold text-pen">34% Priority</span>
-            </div>
-        </div>
-
-        <div className="mt-5 rounded-lg border-2 border-dashed border-ink/40 p-4 text-xs">
-            <p className="mb-1 font-extrabold text-ink">Next in your queue</p>
-            <p className="text-[11px] leading-relaxed text-ink/70">
-                3 targeted questions on <strong>Thin Lens Surface Refraction</strong>. Finish them to lift your Board Readiness by 8%.
-            </p>
-        </div>
-    </div>
-);
-
 const FEATURES = [
     {
         id: 'marking',
@@ -254,8 +211,7 @@ const FEATURES = [
         intro: 'Board exams are written exams. Write your solution on paper, photograph it in the PrepOne app, and get step-by-step marking based on official CBSE and Bihar Board answer keys.',
         points: [
             ['Partial step marking', 'Earn marks for correct formulas and derivation steps even if your final arithmetic has a typo.'],
-            ['Presentation and unit checks', 'Get alerts for missing SI units, omitted diagrams, or unclear step transitions.'],
-            ['Hinglish and English feedback', 'Read the explanation in the language you are most comfortable with.']
+            ['Presentation and unit checks', 'Get alerts for missing SI units, omitted diagrams, or unclear step transitions.']
         ],
         visual: <PhoneShot src={scannerEvaluationImg} alt="PrepOne AI handwritten answer scanner and evaluation screen" />
     },
@@ -271,7 +227,7 @@ const FEATURES = [
             ['Weak topic detection', 'Flags whether you are dropping marks to conceptual gaps, derivation steps, or arithmetic.'],
             ['Calibrated difficulty', 'Starts at your current mastery and levels up to board exam standard.']
         ],
-        visual: <DiagnosticMock />
+        visual: <PhoneShot src={homescreen} alt="PrepOne home screen with board exam countdown, exam readiness by subject and chapters due for review" />
     },
     {
         id: 'mocks',
@@ -317,29 +273,103 @@ const FEATURES = [
     }
 ];
 
+// Shared with the page-level scroll choreography, which drives this section: it holds the GSAP instance (only when
+// motion is allowed), the pin trigger, and setters so scrolling through the pinned section steps through the tabs.
+const featureBridge = {};
+
 const FeaturesShowcase = () => {
     const [active, setActive] = useState(FEATURES[0].id);
+    const [pinned, setPinned] = useState(false);
+    const previous = useRef(FEATURES[0].id);
+
+    useEffect(() => {
+        featureBridge.setActive = (index) => setActive(FEATURES[index].id);
+        featureBridge.setPinned = setPinned;
+        return () => {
+            featureBridge.setActive = null;
+            featureBridge.setPinned = null;
+        };
+    }, []);
+
+    // Pinned: a tab click jumps the page to that tab's slice of the pin, so scrolling and clicking never disagree.
+    const select = (index) => {
+        const st = featureBridge.trigger;
+        if (st) {
+            window.scrollTo(0, st.start + ((index + 0.5) / FEATURES.length) * (st.end - st.start));
+        } else {
+            setActive(FEATURES[index].id);
+        }
+    };
 
     const onKeyDown = (e) => {
         const idx = FEATURES.findIndex((f) => f.id === active);
-        if (e.key === 'ArrowRight') setActive(FEATURES[(idx + 1) % FEATURES.length].id);
-        if (e.key === 'ArrowLeft') setActive(FEATURES[(idx - 1 + FEATURES.length) % FEATURES.length].id);
+        if (e.key === 'ArrowRight') select((idx + 1) % FEATURES.length);
+        if (e.key === 'ArrowLeft') select((idx - 1 + FEATURES.length) % FEATURES.length);
     };
 
+    // Showcase transition: the outgoing panel drifts off to the side it came from and fades, while the new one slides
+    // a short way in from the other side. The circle's colour dissolves between the two. Distances are kept small.
+    useLayoutEffect(() => {
+        const gsap = featureBridge.gsap;
+        const from = FEATURES.findIndex((f) => f.id === previous.current);
+        const to = FEATURES.findIndex((f) => f.id === active);
+        previous.current = active;
+        const panel = document.getElementById(`panel-${active}`);
+        const outgoing = document.getElementById(`panel-${FEATURES[from].id}`);
+        if (!gsap || !panel || !outgoing || from === to) return undefined;
+
+        const dir = to > from ? 1 : -1;
+        const part = (name) => panel.querySelectorAll(`[data-f="${name}"]`);
+        const settle = () => {
+            gsap.set([panel, ...panel.querySelectorAll('[data-f]')], { clearProps: 'transform,opacity' });
+            gsap.set(outgoing, { clearProps: 'transform,opacity' });
+            outgoing.style.cssText = '';
+            outgoing.hidden = true;
+        };
+
+        // React has already hidden the old panel; keep it on screen, laid over the new one, while it leaves.
+        outgoing.hidden = false;
+        outgoing.style.cssText = 'position:absolute;top:0;left:0;width:100%;pointer-events:none';
+
+        const slide = (name, at, distance, extra = {}) =>
+            tl.fromTo(part(name), { x: distance * dir, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ...extra }, at);
+        const tl = gsap.timeline({ defaults: { ease: 'power2.out' }, onComplete: settle });
+        tl.to(outgoing, { x: -40 * dir, opacity: 0, duration: 0.3, ease: 'power1.in' }, 0);
+        tl.fromTo(part('circle'), { opacity: 0 }, { opacity: 1, duration: 0.6, ease: 'none' }, 0.1);
+        slide('phone', 0.12, 48);
+        slide('title', 0.26, 32);
+        slide('intro', 0.3, 32);
+        slide('point', 0.34, 32, { stagger: 0.06 });
+        slide('chip', 0.42, 32, { stagger: 0.06 });
+
+        return () => {
+            tl.kill();
+            settle();
+        };
+    }, [active]);
+
+    const activeIndex = FEATURES.findIndex((f) => f.id === active);
+
     return (
-        <section id="features" className="bg-lilac py-20 lg:py-28">
-            <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                <SectionHeading title={<>Everything for board prep, <span className="marker">in one app</span></>}>
-                    Built for CBSE and BSEB students. No video lectures to sit through. Just practice, marking and feedback.
-                </SectionHeading>
+        <section id="features" data-scrub="features" className="bg-lilac py-20 lg:flex lg:min-h-[100svh] lg:items-center lg:py-8">
+            <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
+                <div className="max-w-2xl">
+                    <h2 className="font-display lining-nums text-balance text-3xl font-bold leading-[1.1] text-ink sm:text-4xl lg:text-[2.6rem]">
+                        Everything for board prep, <span className="marker">in one app</span>
+                    </h2>
+                    {/* The pinned layout has to fit one screen, so the subtitle drops out on short displays. */}
+                    <p className="mt-4 text-base leading-relaxed text-ink/70 sm:text-lg lg:[@media(max-height:859px)]:hidden">
+                        Built for CBSE and BSEB students. No video lectures to sit through. Just practice, marking and feedback.
+                    </p>
+                </div>
 
                 <div
                     role="tablist"
                     aria-label="PrepOne features"
                     onKeyDown={onKeyDown}
-                    className="-mx-4 mt-10 flex gap-3 overflow-x-auto px-4 pb-3 pt-1 sm:mx-0 sm:flex-wrap sm:px-0"
+                    className="-mx-4 mt-8 flex gap-3 overflow-x-auto px-4 pb-3 pt-1 sm:mx-0 sm:flex-wrap sm:px-0 lg:mt-6"
                 >
-                    {FEATURES.map((f) => {
+                    {FEATURES.map((f, i) => {
                         const Icon = f.icon;
                         const selected = active === f.id;
                         return (
@@ -351,7 +381,7 @@ const FeaturesShowcase = () => {
                                 aria-selected={selected}
                                 aria-controls={`panel-${f.id}`}
                                 tabIndex={selected ? 0 : -1}
-                                onClick={() => setActive(f.id)}
+                                onClick={() => select(i)}
                                 className={`sticker-sm flex shrink-0 cursor-pointer items-center gap-2 px-4 py-2.5 text-sm font-extrabold text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand ${
                                     selected ? `${f.accent} translate-x-px translate-y-px` : 'bg-white hover:bg-butter'
                                 }`}
@@ -363,6 +393,16 @@ const FeaturesShowcase = () => {
                     })}
                 </div>
 
+                <div className={`mt-1 items-center gap-4 ${pinned ? 'hidden lg:flex' : 'hidden'}`} aria-hidden="true">
+                    <div className="h-2 flex-1 overflow-hidden rounded-full border-2 border-ink bg-white">
+                        <div data-scrub="features-bar" className="h-full origin-left bg-brand" style={{ transform: 'scaleX(0)' }} />
+                    </div>
+                    <span className="text-xs font-extrabold text-ink/70">
+                        {activeIndex + 1} / {FEATURES.length}{activeIndex < FEATURES.length - 1 ? ', keep scrolling' : ''}
+                    </span>
+                </div>
+
+                <div className="relative mt-8 lg:mt-5">
                 {FEATURES.map((f) => (
                     <div
                         key={f.id}
@@ -370,14 +410,14 @@ const FeaturesShowcase = () => {
                         role="tabpanel"
                         aria-labelledby={`tab-${f.id}`}
                         hidden={active !== f.id}
-                        className="mt-10 grid items-center gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-16"
+                        className="grid items-center gap-12 lg:grid-cols-[1fr_0.85fr] lg:gap-14"
                     >
                         <div>
-                            <h3 className="font-display lining-nums text-balance text-3xl font-bold leading-tight text-ink sm:text-4xl">{f.title}</h3>
-                            <p className="mt-4 text-base leading-relaxed text-ink/75">{f.intro}</p>
-                            <dl className="mt-7 space-y-3">
+                            <h3 data-f="title" className="font-display lining-nums text-balance text-3xl font-bold leading-tight text-ink sm:text-4xl">{f.title}</h3>
+                            <p data-f="intro" className="mt-4 text-base leading-relaxed text-ink/75 lg:mt-3">{f.intro}</p>
+                            <dl className="mt-7 space-y-3 lg:mt-5 lg:space-y-2.5">
                                 {f.points.map(([term, desc]) => (
-                                    <div key={term} className="sticker-sm flex gap-3 bg-white p-4">
+                                    <div key={term} data-f="point" className="sticker-sm flex gap-3 bg-white p-4 lg:p-3.5">
                                         <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-ink ${f.accent}`}>
                                             <Check className="h-3.5 w-3.5 text-ink" strokeWidth={3.5} aria-hidden="true" />
                                         </span>
@@ -390,21 +430,23 @@ const FeaturesShowcase = () => {
                             </dl>
                         </div>
 
-                        <div className="relative flex justify-center py-8">
+                        <div className="relative flex justify-center py-8 lg:py-2">
                             <span
                                 aria-hidden="true"
-                                className={`absolute left-1/2 top-1/2 h-[290px] w-[290px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-ink sm:h-[400px] sm:w-[400px] ${f.accent}`}
+                                data-f="circle"
+                                className={`absolute left-1/2 top-1/2 h-[290px] w-[290px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-ink sm:h-[400px] sm:w-[400px] lg:h-[min(400px,42svh)] lg:w-[min(400px,42svh)] ${f.accent}`}
                             />
-                            <div className="relative z-10 flex w-full max-w-sm justify-center">{f.visual}</div>
-                            <span className="sticker-sm absolute left-0 top-12 z-20 -rotate-6 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:left-2">
+                            <div data-f="phone" className="relative z-10 mx-auto w-full max-w-[260px] lg:max-w-[min(260px,24svh)]">{f.visual}</div>
+                            <span data-f="chip" className="sticker-sm absolute left-0 top-12 z-20 -rotate-6 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:left-2">
                                 {f.chips[0]}
                             </span>
-                            <span className="sticker-sm absolute bottom-12 right-0 z-20 rotate-3 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:right-2">
+                            <span data-f="chip" className="sticker-sm absolute bottom-12 right-0 z-20 rotate-3 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:right-2">
                                 {f.chips[1]}
                             </span>
                         </div>
                     </div>
                 ))}
+                </div>
             </div>
         </section>
     );
@@ -553,7 +595,7 @@ const COMPARE_ROWS = [
 ];
 
 const Compare = () => (
-    <section className="bg-butter py-20 lg:py-28">
+    <section className="overflow-x-clip bg-butter py-20 lg:py-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
             <SectionHeading title={<>Why students score <span className="marker">higher with PrepOne</span></>}>
                 Same syllabus, same hours. A different way of preparing.
@@ -860,14 +902,17 @@ function useScrollChoreography(rootRef) {
             mm.add(
                 {
                     motion: '(prefers-reduced-motion: no-preference)',
-                    desk: '(min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)'
+                    desk: '(min-width: 1024px) and (min-height: 640px) and (prefers-reduced-motion: no-preference)',
+                    // The pinned features section needs a screen tall enough to show a whole tab at once.
+                    tall: '(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)'
                 },
                 (context) => {
-                    const { motion, desk } = context.conditions;
+                    const { motion, desk, tall } = context.conditions;
                     if (!motion) return undefined;
 
                     const $ = (selector) => [...root.querySelectorAll(selector)];
                     root.classList.add('scrub-armed');
+                    featureBridge.gsap = gsap; // lets the features section animate its tab changes
 
                     // Hero: the red pen marks the answer as you scroll. Pinned on desktop, scrubbed as it crosses the screen on mobile.
                     const hero = $('[data-scrub="hero"]')[0];
@@ -899,6 +944,30 @@ function useScrollChoreography(rootRef) {
                         });
                     }
 
+                    // Features: on desktop the section pins and scrolling steps through the tabs; the section animates each change.
+                    const features = $('[data-scrub="features"]')[0];
+                    if (features && tall) {
+                        const count = FEATURES.length;
+                        let last = 0;
+                        featureBridge.trigger = ScrollTrigger.create({
+                            trigger: features,
+                            start: 'top top',
+                            end: `+=${count * 55}%`,
+                            pin: true,
+                            anticipatePin: 1,
+                            onUpdate: (self) => {
+                                const bar = features.querySelector('[data-scrub="features-bar"]');
+                                if (bar) bar.style.transform = `scaleX(${self.progress})`;
+                                const index = Math.min(count - 1, Math.floor(self.progress * count));
+                                if (index !== last) {
+                                    last = index;
+                                    featureBridge.setActive?.(index);
+                                }
+                            }
+                        });
+                        featureBridge.setPinned?.(true);
+                    }
+
                     // Before / after: the two cards slide in from opposite sides and meet.
                     [['slide-left', -140, -4], ['slide-right', 140, 4]].forEach(([name, x, rotate]) => {
                         $(`[data-scrub="${name}"]`).forEach((el) => {
@@ -928,7 +997,12 @@ function useScrollChoreography(rootRef) {
                         );
                     });
 
-                    return () => root.classList.remove('scrub-armed');
+                    return () => {
+                        root.classList.remove('scrub-armed');
+                        featureBridge.gsap = null;
+                        featureBridge.trigger = null;
+                        featureBridge.setPinned?.(false);
+                    };
                 },
                 root
             );
