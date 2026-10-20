@@ -4,6 +4,94 @@
 @theme {
   --font-body: 'Satoshi', sans-serif;
   --font-display: 'Boska', serif;
+  --font-hand: 'Kalam', 'Segoe Print', cursive;
+
+  /* PrepOne page: bright notebook palette */
+  --color-ink: #16193A;
+  --color-brand: #5046E5;
+  --color-brand-deep: #3D34C4;
+  --color-wash: #F4F7FF;
+  --color-rule: #CBD9F4;
+  --color-pen: #E5383B;
+  --color-mint: #0E9F6E;
+  --color-hilite: #FFE680;
+
+  /* Bright sticker palette */
+  --color-sun: #FFD23F;
+  --color-coral: #FF7A93;
+  --color-aqua: #5EE0C0;
+  --color-sky: #7CC8FF;
+  --color-grape: #B9A8FF;
+  --color-butter: #FFF4C6;
+  --color-blush: #FFE1E8;
+  --color-mintwash: #D9F7EE;
+  --color-skywash: #DDF0FF;
+  --color-lilac: #ECE9FF;
+}
+
+@font-face {
+  font-family: 'Kalam';
+  src: url('./assets/fonts/Kalam-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kalam';
+  src: url('./assets/fonts/Kalam-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PrepOne hero: a handwritten answer being marked */
+.answer-sheet {
+  background-color: #fff;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 35px,
+    var(--color-rule) 35px,
+    var(--color-rule) 36px
+  );
+}
+
+.answer-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 44px;
+  width: 2px;
+  background: #F4A6A8;
+}
+
+.pen-mark {
+  opacity: 0;
+  animation: pen-mark-in 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+.pen-draw {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: pen-draw 0.7s ease-out forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes pen-mark-in {
+  from { opacity: 0; transform: scale(1.8) rotate(-12deg); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes pen-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pen-mark { opacity: 1; animation: none; }
+  .pen-draw { stroke-dashoffset: 0; animation: none; }
 }
 @font-face {
   font-family: 'Satoshi';
@@ -79,4 +167,247 @@
     padding-bottom: 8px;
     border-bottom: 1px dashed #cbd5e1;
   }
+}
+
+/* Sticker cards: thick ink outline + hard offset shadow */
+.sticker {
+  border: 2px solid var(--color-ink);
+  border-radius: 1rem;
+  box-shadow: 4px 4px 0 0 var(--color-ink);
+  transition: translate 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.sticker:hover,
+button.sticker:hover {
+  translate: -2px -2px;
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+}
+
+/* Cards that GSAP animates lift with top/left, because GSAP owns transform/translate/rotate on them */
+.sticker-hover {
+  position: relative;
+  transition: top 0.15s ease, left 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sticker-hover:hover {
+  top: -2px;
+  left: -2px;
+  box-shadow: 6px 6px 0 0 var(--color-ink);
+}
+
+.sticker-sm {
+  border: 2px solid var(--color-ink);
+  border-radius: 0.75rem;
+  box-shadow: 3px 3px 0 0 var(--color-ink);
+}
+
+/* Highlighter stroke behind a phrase */
+.marker {
+  background: linear-gradient(transparent 58%, var(--color-sun) 58%, var(--color-sun) 92%, transparent 92%);
+  padding: 0 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.marker-light {
+  background: linear-gradient(transparent 58%, rgba(255, 210, 63, 0.9) 58%, rgba(255, 210, 63, 0.9) 92%, transparent 92%);
+  padding: 0 0.1em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* Graph-paper dots on the indigo bands */
+.graph-paper {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.2) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* Subject ticker */
+.marquee {
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee { overflow-x: auto; }
+  .marquee-track { animation: none; }
+  .sticker, .sticker-hover { transition: none; }
+}
+
+
+/* Scroll-scrubbed choreography (GSAP ScrollTrigger drives these once PrepOne.jsx arms the page) */
+.scrub-armed .marquee-track,
+.scrub-armed .pen-mark,
+.scrub-armed .pen-draw {
+  animation: none;
+}
+
+/* Highlighter width is driven by --w (tweened on scroll) */
+.marker {
+  background-repeat: no-repeat;
+  background-size: var(--w, 100%) 100%;
+}
+
+/* Subject cards pop in each time the board tab changes */
+.pop-in {
+  animation: reveal-pop 0.45s cubic-bezier(0.2, 1.25, 0.4, 1) backwards;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes reveal-pop {
+  from { opacity: 0; transform: translateY(32px) scale(0.94); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pop-in { animation: none; }
+}
+
+/* ---- CoachOne page: answer-sheet visual system ---- */
+.coachone .font-display {
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+/* Ruled sheet, like a marked answer copy.
+   .co-sheet is deep teal (CoachOne); .sheet-ink is near-black (footer). */
+.co-sheet,
+.sheet-ink {
+  position: relative;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 47px,
+    rgba(255, 255, 255, 0.055) 47px,
+    rgba(255, 255, 255, 0.055) 48px
+  );
+}
+.co-sheet { background-color: #053f43; }
+.sheet-ink {
+  background-color: #0b1413;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 47px,
+    rgba(255, 255, 255, 0.025) 47px,
+    rgba(255, 255, 255, 0.025) 48px
+  );
+}
+/* Handwriting, for marked answer sheets. */
+.co-hand { font-family: var(--font-hand); }
+
+/* Handwritten margin note. */
+.co-note {
+  font-family: var(--font-hand);
+  transform: rotate(-3deg);
+  line-height: 1.2;
+}
+
+/* ---- CoachOne page-load sequence (plays once) ---- */
+@keyframes co-word-up {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+@keyframes co-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes co-rise {
+  from { opacity: 0; transform: translateY(32px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes co-nav-in {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Headline: each word slides up out of its own mask. */
+.co-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.co-word > span {
+  display: inline-block;
+  animation: co-word-up 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--i, 0) * 80ms + 150ms);
+}
+.co-fade {
+  animation: co-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+.co-rise { animation: co-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both; }
+.co-nav-in { animation: co-nav-in 0.6s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .co-word > span,
+  .co-fade,
+  .co-rise,
+  .co-nav-in { animation: none; }
+}
+
+/* Red pen circle drawn around a word once its letters have finished revealing. */
+@keyframes co-pen-draw {
+  0%   { opacity: 0; stroke-dashoffset: 1; }
+  1%   { opacity: 1; stroke-dashoffset: 1; }
+  100% { opacity: 1; stroke-dashoffset: 0; }
+}
+.co-pen {
+  opacity: 0;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: co-pen-draw 0.9s ease-out 1.9s forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .co-pen { animation: none; opacity: 1; stroke-dashoffset: 0; }
+}
+
+/* Section that stays pinned while its text comes into focus as you scroll (see Philosophy in App.jsx). */
+.co-scroll-reveal { height: 230vh; }
+.co-scroll-reveal-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+@media (prefers-reduced-motion: reduce) {
+  .co-scroll-reveal { height: auto; }
+  .co-scroll-reveal-pin { position: static; height: auto; padding: 6rem 0; }
+}
+
+/* Hero background: the student progress curves draw themselves in. */
+@keyframes drawPath {
+  0%   { stroke-dashoffset: 3000; }
+  100% { stroke-dashoffset: 0; }
+}
+.animate-draw-path {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: drawPath 8s ease-in-out forwards;
+}
+.animate-draw-path-slow {
+  stroke-dasharray: 3000;
+  stroke-dashoffset: 3000;
+  animation: drawPath 12s ease-in-out forwards 1s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-draw-path,
+  .animate-draw-path-slow { animation: none; stroke-dashoffset: 0; }
 }

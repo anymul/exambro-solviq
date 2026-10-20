@@ -1,227 +1,171 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
-    CheckCircle2, Calendar, ArrowRight, BrainCircuit,
-    PieChart, FileText, Send, ChevronDown,
-    Cpu, Sparkles, Layers, AlertTriangle,
-    Check, CreditCard, School, GitBranch, Award, Activity,
-    CheckCheck, Download, Clock, Zap, Play,
-    Smartphone, Target, X, ShieldCheck, Minus,
-    Globe, Users, Star, Search, BookOpen, Calculator, DollarSign, TrendingUp
+    CheckCircle2,
+    Calendar,
+    ArrowRight,
+    BrainCircuit,
+    Sparkles,
+    ArrowLeft,
+    PieChart,
+    FileText,
+    Send,
+    ChevronDown,
+    Check,
+    CreditCard,
+    GitBranch,
+    Target,
+    Minus,
+    Globe,
+    Users,
+    Star,
+    Search,
+    TrendingUp
 } from 'lucide-react';
 import Navbar from './componenets/Navbar';
-import LetterReveal from './componenets/LetterReveal';
 import Footer from './componenets/Footer';
-import FadeIn from './componenets/FadeIn';
 import SEO from './componenets/SEO';
 import { 
     buildCoachOneSaasSchema, 
     buildFaqSchema, 
     buildBreadcrumbSchema 
 } from './componenets/Schema';
-import { InlineMath, BlockMath, LatexText } from './componenets/Latex';
-import InstituteCodeValidator from './componenets/InstituteCodeValidator';
+import { LatexText } from './componenets/Latex';
 import BackendStatusBadge from './componenets/BackendStatusBadge';
+import insightsOverviewImg from './assets/coachone/insights-prerequisite-overview.webp';
+import tracerImg from './assets/coachone/insights-prerequisite-tracer.webp';
+import testPaperImg from './assets/coachone/test-paper-marking-scheme.webp';
+import dashboardHomeImg from './assets/coachone/dashboard-home.webp';
+import feeManagementImg from './assets/coachone/fee-management.webp';
+import reviewBoosterImg from './assets/coachone/google-review-booster.webp';
+import micrositeImg from './assets/coachone/microsite-preview.webp';
+import aiStudioImg from './assets/coachone/ai-question-studio.webp';
+import { AppScreenshot, DemoLink, SectionHead } from './componenets/coachone/ui';
+import { trackCta, BTN_ON_TEAL } from './componenets/coachone/tokens';
 
-// --- PROLOGUE: THE HERO VISION ---
-const Hero = ({ onExploreClick }) => (
-    <section className="relative min-h-[100vh] bg-[#111210] pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-            <div className="absolute top-0 left-0 w-[800px] h-[800px] bg-[#01696f] rounded-full mix-blend-multiply filter blur-[120px] opacity-30 animate-pulse"></div>
-        </div>
+// Marks a card whose figures are an example, not read from a live account.
+const SampleTag = () => (
+    <div className="text-[11px] font-semibold text-gray-500 px-1 mb-2">
+        Sample with illustrative data
+    </div>
+);
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl text-white font-bold leading-tight mb-8 max-w-5xl mx-auto">
-                <LetterReveal
-                    text=" The Intelligence Layer Every"
-                    delay={100}
-                /><br className="hidden md:block" />
-                <span className="text-teal-400">
-                    <LetterReveal
-                        text="Coaching Institute Needs"
-                        delay={700}
-                    />
-                </span>
-            </h1>
-            <FadeIn delay={1000} direction='up'>
-                <p className="font-body text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                    Automate test evaluation, generate batch-wise predictive analytics, and send branded reports to parents instantly. Scale your quality, not your admin work.
+// --- HERO: AN ANSWER SHEET, WITH THE REAL PRODUCT ON IT ---
+const HERO_WORDS = "Your teachers teach. CoachOne checks the copies.".split(' ');
+
+const Hero = () => (
+    <section className="co-sheet text-white overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-14 lg:gap-10 items-center">
+            <div className="lg:col-span-5">
+                <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-[1.04]">
+                    {HERO_WORDS.map((word, i) => (
+                        <React.Fragment key={i}>
+                            <span className="co-word"><span style={{ '--i': i }}>{word}</span></span>{' '}
+                        </React.Fragment>
+                    ))}
+                </h1>
+                <p className="font-body text-lg text-teal-50/90 mt-6 max-w-md leading-relaxed co-fade" style={{ '--d': '650ms' }}>
+                    It reads handwritten answer sheets and awards step marks, shows where each batch loses marks, and sends every parent a WhatsApp report the same evening.
                 </p>
-            </FadeIn>
-            <FadeIn delay={1200} direction='up'>
-                <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                    <Link to="/book-demo" className="w-full sm:w-auto bg-[#01696f] hover:bg-[#015257] text-white px-8 py-4 rounded-xl flex items-center justify-center transition-all shadow-[0_0_20px_rgba(1,105,111,0.4)] hover:-translate-y-1 font-bold text-lg">
+                <div className="mt-8 flex flex-col sm:flex-row gap-3 co-fade" style={{ '--d': '800ms' }}>
+                    <DemoLink location="hero" className={BTN_ON_TEAL}>
                         <Calendar className="w-5 h-5 mr-3" />
-                        Book a Demo
-                    </Link>
-                    <button onClick={onExploreClick} className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl flex items-center justify-center transition-all backdrop-blur-md hover:-translate-y-1 font-bold text-lg">
-                        Explore Features
-                    </button>
+                        Book a 20-minute demo
+                    </DemoLink>
+                    <a
+                        href="https://coachone.solviq.in"
+                        onClick={() => trackCta('hero_dashboard')}
+                        className="text-white border border-white/35 hover:bg-white/10 px-6 py-4 rounded-xl inline-flex items-center justify-center whitespace-nowrap transition-colors font-bold text-base focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                    >
+                        Go to dashboard
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                    </a>
                 </div>
-            </FadeIn>
-        </div>
-    </section>
-);
-
-// --- CHAPTER 1: THE REALITY OF COACHING ---
-const SilentBreakdownSection = () => (
-    <section className="bg-[#f7f6f2] py-24 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-                <div className="text-xs font-semibold text-[#01696f] uppercase tracking-wider mb-3">
-                    The Hidden Reality of Running Batches
-                </div>
-                <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-6 leading-tight">
-                    Why checking tests takes away all your teaching time.
-                </h2>
-                <p className="font-body text-gray-600 text-lg leading-relaxed">
-                    You started your coaching to teach students and help them succeed. But as your batches grow, checking hundreds of answer copies by hand drains all your energy and weekends.
+                <p className="mt-4 text-sm text-teal-100/70 co-fade" style={{ '--d': '950ms' }}>
+                    A live walkthrough with your subjects and batch size. No sales pressure.
                 </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
-                {/* Vignette 1 */}
-                <div className="bg-white p-8 rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-                    <div>
-                        <div className="w-12 h-12 rounded-2xl bg-red-50 text-red-600 flex items-center justify-center font-bold text-lg mb-6">
-                            01
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-3">Late Night Copy Checking</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                            Teachers spend entire weekends checking 200+ answer copies by hand. After checking 40 papers, fatigue sets in: step-marking becomes hurried, and teachers don't have time to write helpful feedback.
-                        </p>
-                    </div>
-                    <div className="bg-red-50 p-3 rounded-xl text-xs font-bold text-red-700 border border-red-100">
-                        Result: 15+ teacher hours lost every week on manual checking.
-                    </div>
-                </div>
-
-                {/* Vignette 2 */}
-                <div className="bg-white p-8 rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-                    <div>
-                        <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg mb-6">
-                            02
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-3">Total Marks Don't Show Real Mistakes</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                            A student scores 52/100. The teacher says "Study the chapter again." But nobody has the time to see that the student knew all formulas, and only lost marks in small calculation or sign mistakes.
-                        </p>
-                    </div>
-                    <div className="bg-amber-50 p-3 rounded-xl text-xs font-bold text-amber-800 border border-amber-100">
-                        Result: Student marks stay stuck even after teaching again.
-                    </div>
-                </div>
-
-                {/* Vignette 3 */}
-                <div className="bg-white p-8 rounded-[2rem] border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between">
-                    <div>
-                        <div className="w-12 h-12 rounded-2xl bg-teal-50 text-[#01696f] flex items-center justify-center font-bold text-lg mb-6">
-                            03
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-3">Parents Waiting Weeks for Results</h3>
-                        <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                            Parents pay hard-earned fees and wait weeks to know how their child is performing. When marks are delayed, parents worry, ask questions during PTMs, and lose confidence in the coaching.
-                        </p>
-                    </div>
-                    <div className="bg-teal-50 p-3 rounded-xl text-xs font-bold text-[#01696f] border border-teal-100">
-                        Result: Unhappy parents and students leaving the coaching.
-                    </div>
-                </div>
+            <div className="lg:col-span-7 relative co-rise">
+                <AppScreenshot
+                    src={dashboardHomeImg}
+                    alt="CoachOne dashboard for an institute showing collected fees, pending fees, active students, running batches, and alerts"
+                    width={2000}
+                    height={1250}
+                    priority
+                />
             </div>
         </div>
     </section>
 );
 
-// --- CHAPTER 2: COMPLETE EXAM CYCLE IN 1 DAY ---
-const WeeklyStorySection = () => {
-    const steps = [
+// --- FACTS: ONLY THINGS THE PRODUCT VERIFIABLY DOES OR COSTS ---
+const FactStrip = () => {
+    const facts = [
+        { value: "₹999 / month", label: "Starter plan for up to 75 students" },
+        { value: "₹1.50 per page", label: "AI evaluation, billed only for answer pages checked" },
+        { value: "1 lakh+ questions", label: "Verified MCQ and subjective bank, included in every plan" },
+        { value: "One batch code", label: "Students join your batch on the PrepOne app" }
+    ];
+    return (
+        <section className="bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <dl className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-7">
+                    {facts.map((f) => (
+                        <div key={f.value} className="border-l-4 border-[#01696f] pl-4">
+                            <dt className="font-display text-2xl text-[#032b2e]">{f.value}</dt>
+                            <dd className="text-sm text-gray-600 mt-1 leading-snug">{f.label}</dd>
+                        </div>
+                    ))}
+                </dl>
+            </div>
+        </section>
+    );
+};
+
+// --- WHAT CHANGES: MARKED PAPER, TODAY VS. WITH COACHONE ---
+const ChangeSection = () => {
+    const rows = [
         {
-            number: "01",
-            time: "Morning 09:00 AM",
-            actor: "Teacher / Institute",
-            title: "Build & Release Tests",
-            description: "Pick questions from 50,000+ CBSE & state board questions or add custom problems. Export print-ready papers with your coaching watermark in under 5 minutes.",
-            highlight: "Ready in 5 minutes",
-            icon: <FileText className="w-5 h-5 text-[#01696f]" />
+            today: "Teachers spend weekends checking 200+ answer copies. After the first 40, marking gets hurried and feedback stops.",
+            now: "Students upload photos of their answer sheets. CoachOne reads the handwriting and awards step marks against your rubric. Teachers review and adjust."
         },
         {
-            number: "02",
-            time: "Afternoon 02:00 PM",
-            actor: "Students",
-            title: "Students Attempt & Submit",
-            description: "Students write answers on plain paper and upload photos of their handwritten sheets via the app. Teachers never have to collect, count, or carry physical bundles.",
-            highlight: "Zero paper collection",
-            icon: <Smartphone className="w-5 h-5 text-[#01696f]" />
+            today: "A student scores 52/100 and nobody has time to find out why.",
+            now: "Every test shows which step lost marks, which questions the whole batch got wrong, and which earlier-class topics are weak."
         },
         {
-            number: "03",
-            time: "Evening 04:00 PM",
-            actor: "Evaluation Engine",
-            title: "Step-Wise Copy Checking",
-            description: "The engine reads student handwriting, awards authentic step marks for formulas and derivations against board rubrics, and flags sign mistakes.",
-            highlight: "Fair step-marking",
-            icon: <CheckCircle2 className="w-5 h-5 text-[#01696f]" />
+            today: "Parents wait weeks for results and bring their questions to the PTM.",
+            now: "A report card with marks, rank and weak topics goes to each parent on WhatsApp the same evening."
         },
         {
-            number: "04",
-            time: "Night 07:00 PM",
-            actor: "Parents & Faculty",
-            title: "WhatsApp Reports Dispatched",
-            description: "Individual performance cards, batch ranks, and topic weakness breakdowns are sent straight to parents on WhatsApp, the exact same evening.",
-            highlight: "Same-day parent updates",
-            icon: <Send className="w-5 h-5 text-[#01696f]" />
+            today: "Fee registers, and phone calls to parents who haven't paid.",
+            now: "A defaulter list with one-click WhatsApp reminders, UPI collection and printed receipts."
         }
     ];
-
     return (
-        <section className="py-24 bg-white border-b border-gray-100">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center max-w-3xl mx-auto mb-16">
-                    <div className="text-xs font-semibold text-[#01696f] uppercase tracking-wider mb-3">
-                        Complete Exam Process in 1 Day
+        <section className="bg-[#eef6f5] py-20 lg:py-28">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <SectionHead title="What changes when copy checking stops eating your week" />
+
+                <div className="mt-12 grid md:grid-cols-2 rounded-2xl overflow-hidden border border-[#cfe3e1] shadow-sm">
+                    <div className="hidden md:flex items-center bg-white px-7 py-4 border-b border-[#cfe3e1] font-bold text-[#d8432f]">
+                        <span className="co-note text-2xl mr-3 inline-block">&#x2717;</span> Today
                     </div>
-                    <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-6 leading-tight">
-                        From creating the test to sending results: all done in one day.
-                    </h2>
-                    <p className="font-body text-gray-600 text-lg leading-relaxed">
-                        No weekend pile of uncorrected answer sheets. You publish the test, students upload their copies, and results reach parents the same evening.
-                    </p>
-                </div>
-
-                {/* 4 Clean Step Cards */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {steps.map((step, i) => (
-                        <div 
-                            key={i} 
-                            className="bg-[#fcfbf9] p-7 rounded-2xl border border-gray-200 flex flex-col justify-between hover:border-teal-400 hover:bg-white hover:shadow-md transition-all"
-                        >
-                            <div>
-                                {/* Top Step Number & Time Tag */}
-                                <div className="flex items-center justify-between mb-5">
-                                    <span className="w-10 h-10 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center font-bold text-sm text-[#01696f]">
-                                        {step.number}
-                                    </span>
-                                    <span className="text-[11px] font-semibold text-gray-600 bg-white px-2.5 py-1 rounded-md border border-gray-200">
-                                        {step.time}
-                                    </span>
-                                </div>
-
-                                <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-1">
-                                    {step.actor}
-                                </div>
-                                <h3 className="font-display text-xl font-bold text-[#0F172A] mb-3">
-                                    {step.title}
-                                </h3>
-                                <p className="text-sm text-gray-600 leading-relaxed mb-6">
-                                    {step.description}
-                                </p>
+                    <div className="hidden md:flex items-center bg-[#01696f] px-7 py-4 font-bold text-white border-b border-white/15">
+                        <span className="co-note text-2xl mr-3 text-[#ffd84d] inline-block">&#x2713;</span> With CoachOne
+                    </div>
+                    {rows.map((r, i) => (
+                        <React.Fragment key={i}>
+                            <div className="bg-white px-7 py-6 md:py-7 border-b border-[#e3eeed] md:border-b-[#e3eeed] text-gray-600 leading-relaxed">
+                                <span className="md:hidden block text-xs font-bold text-[#d8432f] mb-1">Today</span>
+                                {r.today}
                             </div>
-
-                            <div className="pt-4 border-t border-gray-200/70 flex items-center text-xs font-bold text-[#01696f]">
-                                <Check className="w-4 h-4 mr-1.5 text-teal-600 flex-shrink-0" />
-                                <span>{step.highlight}</span>
+                            <div className="bg-[#01696f] px-7 py-6 md:py-7 border-b border-white/15 text-white font-medium leading-relaxed">
+                                <span className="md:hidden block text-xs font-bold text-[#ffd84d] mb-1">With CoachOne</span>
+                                {r.now}
                             </div>
-                        </div>
+                        </React.Fragment>
                     ))}
                 </div>
             </div>
@@ -229,933 +173,416 @@ const WeeklyStorySection = () => {
     );
 };
 
-// --- CHAPTER 3: COACHING DASHBOARD PREVIEW ---
+// --- PRODUCT TOUR: REAL SCREENS, ONE AT A TIME ---
+const EvaluationSample = () => (
+    <div className="rounded-xl border border-[#cfe3e1] bg-white p-5 space-y-3 text-xs shadow-sm max-w-2xl">
+        <div className="flex justify-between items-center pb-2.5 border-b border-gray-200">
+            <span className="font-bold text-gray-900">Student: Aarav Verma &bull; Q4 Lens Maker Derivation</span>
+            <span className="text-[#01696f] bg-teal-50 border border-teal-200 px-2 py-0.5 rounded font-bold">5 Marks Question</span>
+        </div>
+        {[
+            ["1. Formula for Surface 1 (1.5M)", "+1.5 / 1.5", false],
+            ["2. Working for Surface 2 (1.5M)", "+1.5 / 1.5", false],
+            ["3. Equation Addition & Focal Length (1.5M)", "+1.5 / 1.5", false],
+            ["4. Sign Convention on Curvature Radius (0.5M)", "0.0 / 0.5 (Deducted 0.5M)", true]
+        ].map(([step, mark, lost]) => (
+            <div key={step} className={`flex justify-between items-center p-2.5 rounded-lg border ${lost ? 'bg-red-50 border-red-200' : 'bg-white border-gray-200'}`}>
+                <span className={`font-medium ${lost ? 'text-red-900' : 'text-gray-800'}`}>{step}</span>
+                <span className={`font-bold ${lost ? 'text-[#d8432f]' : 'text-[#01696f]'}`}>{mark}</span>
+            </div>
+        ))}
+        <div className="pt-3 border-t border-gray-200 flex justify-between items-center">
+            <span className="text-gray-500">Total awarded: <strong className="text-xl text-gray-900 ml-1">4.5 / 5.0</strong></span>
+            <span className="bg-[#01696f] text-white font-bold px-3 py-1.5 rounded-lg flex items-center">
+                <Check className="w-3.5 h-3.5 mr-1" /> Verified by faculty
+            </span>
+        </div>
+    </div>
+);
+
+// A parent's phone: the report arrives as a normal WhatsApp message with the PDF attached.
+const WhatsAppSample = () => (
+    <div className="w-full max-w-sm mx-auto rounded-2xl overflow-hidden border border-black/10 shadow-md bg-[#efeae2]" role="img" aria-label="Example WhatsApp message from a coaching institute to a parent, with a PDF report card attached">
+        <div className="bg-[#008069] text-white px-3 py-2.5 flex items-center gap-3">
+            <ArrowLeft className="w-5 h-5 flex-shrink-0" />
+            <span className="w-9 h-9 rounded-full bg-[#01696f] ring-1 ring-white/40 flex items-center justify-center font-bold text-sm flex-shrink-0">YC</span>
+            <div className="leading-tight min-w-0">
+                <div className="font-semibold text-[15px] truncate">Your Coaching Academy</div>
+                <div className="text-xs text-white/80">Business account</div>
+            </div>
+        </div>
+
+        <div className="px-3 pt-3 pb-5 space-y-1.5">
+            <div className="mx-auto w-fit rounded-md bg-white text-[#54656f] text-[11px] font-medium px-2.5 py-1 shadow-sm mb-2">TODAY</div>
+
+            <div className="max-w-[88%] rounded-lg rounded-tl-none bg-white shadow-sm p-1.5">
+                <div className="flex items-center gap-2.5 rounded-md bg-[#f5f6f6] p-2.5">
+                    <span className="w-9 h-10 rounded bg-[#e53935] text-white text-[10px] font-bold flex items-end justify-center pb-1 flex-shrink-0">PDF</span>
+                    <div className="min-w-0">
+                        <div className="text-[13px] text-[#111b21] truncate">Aarav_Sharma_Report_Card.pdf</div>
+                        <div className="text-[11px] text-[#667781]">PDF document</div>
+                    </div>
+                </div>
+                <p className="text-[14px] leading-snug text-[#111b21] px-1.5 pt-2 pb-0.5">
+                    Dear Parent, Aarav Sharma scored 68 / 70 (97.1%) in Physics Full Mock Test #4. Rank #3 in the batch. The chapter-wise diagnostic is attached.
+                </p>
+                <div className="text-[11px] text-[#667781] text-right px-1.5">6:15 pm</div>
+            </div>
+
+            <div className="max-w-[88%] rounded-lg bg-white shadow-sm px-2.5 pt-1.5 pb-1">
+                <p className="text-[14px] leading-snug text-[#111b21]">
+                    Faculty note: Strong conceptual understanding. 1 remedial worksheet assigned on the PrepOne app for Class 11 SHM formulas.
+                </p>
+                <div className="text-[11px] text-[#667781] text-right">6:15 pm</div>
+            </div>
+        </div>
+    </div>
+);
+
+const TOUR_TABS = [
+    {
+        id: 'telemetry',
+        label: 'Mistake reports',
+        icon: PieChart,
+        title: 'Catch where the entire batch loses marks before board exams.',
+        desc: 'Instead of generic test totals, see exactly which formula step, calculation mistake, or Class 11 gap caused marks to drop.',
+        bullets: [
+            ['Pinpoint common traps', 'Flags questions where over 50% of the class made the same mistake.'],
+            ['Class 11 foundation alerts', 'Traces Class 12 failures back to weak prerequisite concepts.'],
+            ['1-click remedial practice', 'Generates targeted revision worksheets for weak students.']
+        ],
+        link: { to: '/student-analytics', text: 'See the analytics feature' },
+        image: { src: insightsOverviewImg, w: 1800, h: 1188, alt: 'CoachOne Batch & Student Insights dashboard showing prerequisite foundation health and the root-cause tracer for a Class 12 batch' }
+    },
+    {
+        id: 'evaluation',
+        label: 'Copy checking',
+        icon: BrainCircuit,
+        title: 'Fair step-marking on handwritten answer sheets in seconds.',
+        desc: 'The evaluation engine reads cursive handwriting, awards partial credit according to board rubrics, and lets teachers review everything on one screen.',
+        bullets: [
+            ['Official board rubrics', 'Awards partial marks for formula recall, substitutions, and units.'],
+            ['Handles real handwriting', 'Evaluates messy handwriting, derivations, and math symbols.'],
+            ['Teacher in full control', 'Review, adjust marks, or add comments with a single click.']
+        ],
+        link: { to: '/ai-evaluation', text: 'See how paper checking works' },
+        sample: <EvaluationSample />
+    },
+    {
+        id: 'studio',
+        label: 'Test paper studio',
+        icon: FileText,
+        title: 'Build custom, print-ready test papers in under 5 minutes.',
+        desc: 'Pick from 1 lakh+ verified CBSE, Bihar Board, JEE, and NEET questions, MCQ and subjective, or paste your own. Every plan includes the full bank. Generate balanced question papers with watermarks instantly.',
+        bullets: [
+            ['1 lakh+ verified questions', 'MCQ and subjective, chapter-wise for CBSE, state boards, JEE Mains, and NEET. In every plan.'],
+            ['Full LaTeX equation support', 'Formatted formulas, diagrams, and official solutions.'],
+            ['Institute-branded PDFs', 'Export with your center logo and custom header.']
+        ],
+        link: { to: '/test-management', text: 'Explore the test paper studio' },
+        image: { src: testPaperImg, w: 1800, h: 1125, alt: 'CoachOne test library preview of a Class 12 Physics unit test with the marking scheme and solutions tab open and a Download PDF button' }
+    },
+    {
+        id: 'aistudio',
+        label: 'AI question studio',
+        icon: Sparkles,
+        title: 'Turn your PDF or notes into quizzes.',
+        desc: 'Upload a PDF, text file or your own notes, choose the class, subject and chapter, and pick the question types. Review what CoachOne generates, then save it to your question bank or assign it as a test.',
+        bullets: [
+            ['Works from your material', 'Upload a PDF, TXT or MD file up to 15 MB, or paste your notes.'],
+            ['Board-style question types', 'MCQ, assertion-reason, very short, short answer, long answer and case study questions, each with marks.'],
+            ['You approve every question', 'Keep the good ones, discard the rest, and assign the set as a test.'],
+            ['Growth plan and above', 'Included with the Growth, Scale and Enterprise plans.']
+        ],
+        link: { to: '/test-management', text: 'See the test studio' },
+        image: { src: aiStudioImg, w: 2000, h: 1260, alt: 'CoachOne AI Question Studio with options to upload a PDF or paste text, choose class, subject and chapter, and select question types such as MCQ, short answer and case study' }
+    },
+    {
+        id: 'operations',
+        label: 'Fees & attendance',
+        icon: CreditCard,
+        title: 'Stop chasing fee defaulters and managing attendance registers.',
+        desc: 'Automate recurring parent reminders with UPI payment links, track student attendance, and manage multiple batches effortlessly.',
+        bullets: [
+            ['WhatsApp fee reminders', 'Direct payment links sent to parents with 1 click.'],
+            ['Attendance alerts', 'Notify parents when a student is absent.'],
+            ['Coaching website included', 'Branded website to capture online admission enquiries.']
+        ],
+        link: { to: '/institute-operations', text: 'See the center management tools' },
+        image: { src: feeManagementImg, w: 1800, h: 1125, alt: 'CoachOne Fee Management screen showing monthly collection progress, recent transactions, pending payments and payment methods' }
+    },
+    {
+        id: 'whatsapp',
+        label: 'WhatsApp reports',
+        icon: Send,
+        title: 'Keep parents informed after every single test.',
+        desc: "Send branded report cards with marks, rank, and topic weakness breakdowns straight to parents' phones the same evening.",
+        bullets: [
+            ['Instant WhatsApp delivery', 'No printing paper report cards or waiting for PTMs.'],
+            ['White-labeled PDFs', 'Show your coaching logo, faculty feedback, and batch rank.'],
+            ['Higher retention', 'Parents see continuous academic care, reducing student drop-offs.']
+        ],
+        link: { to: '/student-analytics', text: 'See the parent communication tools' },
+        sample: <WhatsAppSample />
+    }
+];
+
 const DashboardDemo = ({ demoRef }) => {
-    const [activeTab, setActiveTab] = useState('telemetry');
+    const [activeId, setActiveId] = useState('telemetry');
+    const tab = TOUR_TABS.find((t) => t.id === activeId);
 
     return (
-        <section ref={demoRef} className="bg-[#f8fafc] py-24 text-gray-900 relative border-y border-gray-200/80">
+        <section ref={demoRef} className="bg-white py-20 lg:py-28 scroll-mt-16">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                             {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-12">
-                    <div className="text-xs font-semibold text-[#01696f] uppercase tracking-wider mb-3">
-                        Inside the Platform
-                    </div>
-                    <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-4 leading-tight">
-                        See how your center runs with CoachOne.
-                    </h2>
-                    <p className="font-body text-gray-600 text-base md:text-lg leading-relaxed">
-                        Check answer copies, build custom question papers, spot class mistake patterns, and automate parent updates in one unified dashboard.
-                    </p>
-                </div>
+                <SectionHead title="See how your center runs with CoachOne">
+                    Check answer copies, build question papers, spot mistake patterns and message parents from one dashboard. These are screens from the live product.
+                </SectionHead>
 
-                {/* Tab Navigation */}
-                <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-10 bg-gray-100/90 p-1.5 rounded-xl border border-gray-200 shadow-inner max-w-4xl mx-auto">
-                    {[
-                        { id: 'telemetry', label: 'Mistake Reports', icon: <PieChart className="w-4 h-4" /> },
-                        { id: 'evaluation', label: 'Copy Checking', icon: <BrainCircuit className="w-4 h-4" /> },
-                        { id: 'studio', label: 'Test Paper Studio', icon: <FileText className="w-4 h-4" /> },
-                        { id: 'operations', label: 'Fees & Attendance', icon: <CreditCard className="w-4 h-4" /> },
-                        { id: 'whatsapp', label: 'WhatsApp Reports', icon: <Send className="w-4 h-4" /> }
-                    ].map(tab => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`flex items-center space-x-2 px-4 py-2.5 rounded-lg font-semibold text-xs sm:text-sm transition-all ${
-                                activeTab === tab.id
-                                    ? 'bg-white text-[#01696f] shadow-sm border border-gray-200/80'
-                                    : 'text-gray-600 hover:text-gray-900 hover:bg-white/60'
-                            }`}
-                        >
-                            {tab.icon}
-                            <span>{tab.label}</span>
-                        </button>
-                    ))}
-                </div>
-
-                {/* Main Content Box */}
-                <div className="bg-white border border-gray-200 rounded-2xl p-6 md:p-10 shadow-lg">
-                    
-                    {/* TAB 1: MISTAKE REPORTS */}
-                    {activeTab === 'telemetry' && (
-                        <div className="grid lg:grid-cols-12 gap-8 items-center">
-                            {/* Left: Operational Benefit */}
-                            <div className="lg:col-span-5 space-y-5">
-                                <div className="text-xs font-semibold text-[#01696f] uppercase tracking-wider">
-                                    Mistake Analysis
-                                </div>
-                                <h3 className="font-display text-2xl md:text-3xl font-bold text-[#0F172A] leading-snug">
-                                    Catch where the entire batch loses marks before board exams.
-                                </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">
-                                    Instead of generic test totals, see exactly which formula step, calculation mistake, or Class 11 gap caused marks to drop.
-                                </p>
-                                <ul className="space-y-3 text-sm text-gray-700">
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Pinpoint common traps:</strong> Flags questions where over 50% of the class made the same mistake.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Class 11 foundation alerts:</strong> Traces Class 12 failures back to weak prerequisite concepts.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>1-click remedial practice:</strong> Generates targeted revision worksheets for weak students.</span>
-                                    </li>
-                                </ul>
-                                <div className="pt-2">
-                                    <Link to="/student-analytics" className="inline-flex items-center text-xs font-bold text-[#01696f] hover:text-[#015257]">
-                                        See Detailed Analytics Feature <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* Right: UI Mock & Screenshot Placeholder Frame */}
-                            <div className="lg:col-span-7 space-y-4">
-                                {/* Product Screenshot Frame Placeholder */}
-                                <div className="relative rounded-xl border border-gray-200 bg-gray-900 overflow-hidden shadow-md group">
-                                    <div className="flex items-center justify-between px-3.5 py-2 bg-gray-800/90 border-b border-gray-700/60 text-[11px] text-gray-400">
-                                        <div className="flex items-center space-x-1.5">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                            <span className="ml-2 text-gray-300">coachone.app/telemetry/batch-diagnostic</span>
-                                        </div>
-                                        <span className="text-teal-400 font-medium">Actual UI Preview</span>
-                                    </div>
-                                    <div className="p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[220px] flex flex-col justify-center items-center text-center relative">
-                                        <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-3">
-                                            <PieChart className="w-6 h-6" />
-                                        </div>
-                                        <p className="text-sm font-semibold text-gray-200">
-                                            [ High-Res Screenshot: Batch Misconception Heatmap ]
-                                        </p>
-                                        <p className="text-xs text-gray-400 max-w-sm mt-1">
-                                            Visual chapter matrix highlighting high-frequency student errors and foundational prerequisite gaps.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Clean Preview Card */}
-                                <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-5 space-y-3.5">
-                                    <div className="flex justify-between items-center pb-2.5 border-b border-gray-200 text-xs">
-                                        <span className="font-bold text-gray-900">Class 12 Batch • Physics Mock Test #4</span>
-                                        <span className="text-[#01696f] bg-teal-50 border border-teal-200 px-2 py-0.5 rounded text-[11px] font-bold">48 Students Evaluated</span>
-                                    </div>
-
-                                    <div className="space-y-2.5">
-                                        <div className="bg-white border border-amber-300 rounded-lg p-3.5 shadow-sm">
-                                            <div className="flex justify-between items-center text-xs mb-1">
-                                                <span className="text-amber-800 font-bold flex items-center">
-                                                    <AlertTriangle className="w-3.5 h-3.5 mr-1.5 text-amber-600" /> Top Batch Trap (64% of class)
-                                                </span>
-                                                <span className="text-gray-500 font-medium text-[11px]">Q.14 (Electromagnetism)</span>
-                                            </div>
-                                            <p className="text-xs text-gray-700 mb-2 leading-relaxed">
-                                                <strong>Sign Mistake:</strong> Students recalled the formula correctly, but forgot the negative sign in Faraday-Lenz law.
-                                            </p>
-                                            <span className="text-[11px] text-[#01696f] font-semibold bg-teal-50 px-2 py-0.5 rounded inline-block border border-teal-200">
-                                                ✓ 10-minute revision worksheet prepared
-                                            </span>
-                                        </div>
-
-                                        <div className="bg-white border border-purple-200 rounded-lg p-3 shadow-sm">
-                                            <div className="flex justify-between items-center text-xs mb-1">
-                                                <span className="text-purple-900 font-bold flex items-center">
-                                                    <GitBranch className="w-3.5 h-3.5 mr-1.5 text-purple-600" /> Prerequisite Gap Detected
-                                                </span>
-                                                <span className="text-purple-700 bg-purple-50 px-2 py-0.5 rounded text-[10px] font-bold border border-purple-200">Class 12 → Class 11</span>
-                                            </div>
-                                            <p className="text-xs text-gray-700 leading-relaxed">
-                                                LC oscillation errors traced to <strong>Class 11 Simple Harmonic Motion differential equations</strong>.
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-2.5 border-t border-gray-200 flex justify-between items-center text-xs text-gray-500">
-                                        <span>Class Average: <strong className="text-gray-900">74.2%</strong></span>
-                                        <span className="text-emerald-700 font-bold flex items-center">
-                                            <Check className="w-3.5 h-3.5 mr-1 text-emerald-600" /> Practice sets assigned on student app
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                <div className="mt-12 grid lg:grid-cols-12 gap-8 lg:gap-12">
+                    {/* Left: tabs + the active tab's explanation */}
+                    <div className="lg:col-span-4 min-w-0">
+                        <div role="tablist" aria-label="CoachOne features" className="flex lg:flex-col gap-2 overflow-x-auto pb-2 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0">
+                            {TOUR_TABS.map((t) => {
+                                const Icon = t.icon;
+                                const active = t.id === activeId;
+                                return (
+                                    <button
+                                        key={t.id}
+                                        role="tab"
+                                        aria-selected={active}
+                                        onClick={() => setActiveId(t.id)}
+                                        className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm whitespace-nowrap text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#01696f] ${
+                                            active
+                                                ? 'bg-[#01696f] text-white shadow-md'
+                                                : 'bg-[#eef6f5] text-[#032b2e] hover:bg-[#dcecea]'
+                                        }`}
+                                    >
+                                        <Icon className="w-4 h-4 flex-shrink-0" />
+                                        {t.label}
+                                    </button>
+                                );
+                            })}
                         </div>
-                    )}
 
-                    {/* TAB 2: COPY CHECKING */}
-                    {activeTab === 'evaluation' && (
-                        <div className="grid lg:grid-cols-12 gap-8 items-center">
-                            {/* Left: Operational Benefit */}
-                            <div className="lg:col-span-5 space-y-5">
-                                <div className="text-xs font-semibold text-[#01696f] uppercase tracking-wider">
-                                    AI Handwritten Evaluation
-                                </div>
-                                <h3 className="font-display text-2xl md:text-3xl font-bold text-[#0F172A] leading-snug">
-                                    Fair step-marking on handwritten answer sheets in seconds.
-                                </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">
-                                    The evaluation engine reads cursive handwriting, awards partial credit according to official board rubrics, and lets teachers review everything on one screen.
-                                </p>
-                                <ul className="space-y-3 text-sm text-gray-700">
-                                    <li className="flex items-start">
+                        <div className="mt-8" role="tabpanel">
+                            <h3 className="font-display text-2xl text-[#032b2e] leading-snug">{tab.title}</h3>
+                            <p className="mt-3 text-gray-600 leading-relaxed">{tab.desc}</p>
+                            <ul className="mt-5 space-y-3 text-sm text-gray-700">
+                                {tab.bullets.map(([head, body]) => (
+                                    <li key={head} className="flex items-start">
                                         <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Official board rubrics:</strong> Awards partial marks for formula recall, substitutions, and units.</span>
+                                        <span><strong>{head}:</strong> {body}</span>
                                     </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>96.4% handwriting accuracy:</strong> Evaluates messy handwriting, derivations, and math symbols.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Teacher in full control:</strong> Review, adjust marks, or add comments with a single click.</span>
-                                    </li>
-                                </ul>
-                                <div className="pt-2">
-                                    <Link to="/ai-evaluation" className="inline-flex items-center text-xs font-bold text-[#01696f] hover:text-[#015257]">
-                                        See How Paper Checking Works <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* Right: UI Mock & Screenshot Placeholder Frame */}
-                            <div className="lg:col-span-7 space-y-4">
-                                {/* Product Screenshot Frame Placeholder */}
-                                <div className="relative rounded-xl border border-gray-200 bg-gray-900 overflow-hidden shadow-md group">
-                                    <div className="flex items-center justify-between px-3.5 py-2 bg-gray-800/90 border-b border-gray-700/60 text-[11px] text-gray-400">
-                                        <div className="flex items-center space-x-1.5">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                            <span className="ml-2 text-gray-300">coachone.app/grading/split-view</span>
-                                        </div>
-                                        <span className="text-teal-400 font-medium">Actual UI Preview</span>
-                                    </div>
-                                    <div className="p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[220px] flex flex-col justify-center items-center text-center relative">
-                                        <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-3">
-                                            <BrainCircuit className="w-6 h-6" />
-                                        </div>
-                                        <p className="text-sm font-semibold text-gray-200">
-                                            [ High-Res Screenshot: Scanned Handwritten Copy with AI Step Marking ]
-                                        </p>
-                                        <p className="text-xs text-gray-400 max-w-sm mt-1">
-                                            Side-by-side view of student's physical handwriting with red-ink step-by-step rubrics and teacher verification controls.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Step Breakdown Card */}
-                                <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-5 space-y-3.5">
-                                    <div className="flex justify-between items-center pb-2.5 border-b border-gray-200 text-xs">
-                                        <span className="font-bold text-gray-900">Student: Aarav Verma • Q4 Lens Maker Derivation</span>
-                                        <span className="text-[#01696f] bg-teal-50 border border-teal-200 px-2 py-0.5 rounded text-[11px] font-bold">5 Marks Question</span>
-                                    </div>
-
-                                    <div className="space-y-2 text-xs">
-                                        <div className="flex justify-between items-center p-2.5 bg-white rounded-lg border border-gray-200 shadow-sm">
-                                            <span className="text-gray-800 font-medium">1. Formula for Surface 1 (1.5M)</span>
-                                            <span className="font-bold text-emerald-700">+1.5 / 1.5</span>
-                                        </div>
-                                        <div className="flex justify-between items-center p-2.5 bg-white rounded-lg border border-gray-200 shadow-sm">
-                                            <span className="text-gray-800 font-medium">2. Working for Surface 2 (1.5M)</span>
-                                            <span className="font-bold text-emerald-700">+1.5 / 1.5</span>
-                                        </div>
-                                        <div className="flex justify-between items-center p-2.5 bg-white rounded-lg border border-gray-200 shadow-sm">
-                                            <span className="text-gray-800 font-medium">3. Equation Addition &amp; Focal Length (1.5M)</span>
-                                            <span className="font-bold text-emerald-700">+1.5 / 1.5</span>
-                                        </div>
-                                        <div className="flex justify-between items-center p-2.5 bg-amber-50 rounded-lg border border-amber-300 shadow-sm">
-                                            <span className="text-amber-900 font-medium">4. Sign Convention on Curvature Radius (0.5M)</span>
-                                            <span className="font-bold text-amber-700">0.0 / 0.5 (Deducted 0.5M)</span>
-                                        </div>
-                                    </div>
-
-                                    <div className="pt-3 border-t border-gray-200 flex justify-between items-center">
-                                        <span className="text-xs text-gray-500">Total Awarded: <strong className="text-xl text-gray-900 ml-1 font-bold">4.5 / 5.0</strong></span>
-                                        <span className="text-xs bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg flex items-center shadow-sm">
-                                            <Check className="w-3.5 h-3.5 mr-1" /> Verified by Faculty
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* TAB 3: TEST PAPER STUDIO */}
-                    {activeTab === 'studio' && (
-                        <div className="grid lg:grid-cols-12 gap-8 items-center">
-                            {/* Left: Operational Benefit */}
-                            <div className="lg:col-span-5 space-y-5">
-                                <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider">
-                                    Academic Test Studio
-                                </div>
-                                <h3 className="font-display text-2xl md:text-3xl font-bold text-[#0F172A] leading-snug">
-                                    Build custom, print-ready test papers in under 5 minutes.
-                                </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">
-                                    Pick from 50,000+ verified CBSE, Bihar Board, JEE, and NEET questions, or paste your own. Generate balanced question papers with watermarks instantly.
-                                </p>
-                                <ul className="space-y-3 text-sm text-gray-700">
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>50,000+ Question Bank:</strong> Chapter-wise CBSE, State Boards, JEE Mains, and NEET.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Full LaTeX equation support:</strong> Formatted formulas, diagrams, and official solutions.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Institute watermarked PDFs:</strong> Export with your center logo and custom header.</span>
-                                    </li>
-                                </ul>
-                                <div className="pt-2">
-                                    <Link to="/test-management" className="inline-flex items-center text-xs font-bold text-[#01696f] hover:text-[#015257]">
-                                        Explore Test Paper Studio <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* Right: UI Mock & Screenshot Placeholder Frame */}
-                            <div className="lg:col-span-7 space-y-4">
-                                {/* Product Screenshot Frame Placeholder */}
-                                <div className="relative rounded-xl border border-gray-200 bg-gray-900 overflow-hidden shadow-md group">
-                                    <div className="flex items-center justify-between px-3.5 py-2 bg-gray-800/90 border-b border-gray-700/60 text-[11px] text-gray-400 font-medium">
-                                        <div className="flex items-center space-x-1.5">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                            <span className="ml-2 text-gray-300">coachone.app/test-generator/blueprint</span>
-                                        </div>
-                                        <span className="text-teal-400">Actual UI Preview</span>
-                                    </div>
-                                    <div className="p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[220px] flex flex-col justify-center items-center text-center relative">
-                                        <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-3">
-                                            <FileText className="w-6 h-6" />
-                                        </div>
-                                        <p className="text-sm font-semibold text-gray-200">
-                                            [ High-Res Screenshot: LaTeX Paper Builder &amp; Watermarked PDF Preview ]
-                                        </p>
-                                        <p className="text-xs text-gray-400 max-w-sm mt-1">
-                                            Intuitive question paper editor with syllabus balance sliders, equation preview, and one-click PDF print export.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Clean Test Blueprint Card */}
-                                <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-5 space-y-3.5">
-                                    <div className="flex justify-between items-center pb-2.5 border-b border-gray-200 text-xs">
-                                        <div>
-                                            <div className="font-bold text-gray-900">Class 12 Physics • Board Blueprint Test</div>
-                                            <div className="text-gray-500 text-[11px] font-medium">70 Marks • 33 Questions Total</div>
-                                        </div>
-                                        <span className="text-[#01696f] bg-teal-50 border border-teal-200 px-2 py-0.5 rounded text-[11px] font-bold">
-                                            Ready to Print
-                                        </span>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center text-xs">
-                                        <div className="bg-white border border-gray-200 p-2.5 rounded-lg shadow-sm">
-                                            <div className="text-gray-500 text-[10px] font-medium">Section A</div>
-                                            <div className="font-bold text-gray-900 mt-0.5">16 MCQs (16M)</div>
-                                        </div>
-                                        <div className="bg-white border border-gray-200 p-2.5 rounded-lg shadow-sm">
-                                            <div className="text-gray-500 text-[10px] font-medium">Section B</div>
-                                            <div className="font-bold text-gray-900 mt-0.5">5 Short (10M)</div>
-                                        </div>
-                                        <div className="bg-white border border-gray-200 p-2.5 rounded-lg shadow-sm">
-                                            <div className="text-gray-500 text-[10px] font-medium">Section C</div>
-                                            <div className="font-bold text-gray-900 mt-0.5">7 Short (21M)</div>
-                                        </div>
-                                        <div className="bg-white border border-gray-200 p-2.5 rounded-lg shadow-sm">
-                                            <div className="text-gray-500 text-[10px] font-medium">Section D/E</div>
-                                            <div className="font-bold text-gray-900 mt-0.5">5 Long (23M)</div>
-                                        </div>
-                                    </div>
-
-                                    <div className="bg-white border border-gray-200 rounded-lg p-3 text-xs text-gray-700 shadow-sm">
-                                        <div className="font-bold text-gray-900 mb-1">Sample Question (3 Marks):</div>
-                                        <p className="text-gray-600 leading-relaxed text-[11px]">
-                                            Calculate the resonant frequency and quality factor (Q) of a series LCR circuit with L = 2.0 H, C = 32 µF, and R = 10 Ω.
-                                        </p>
-                                    </div>
-
-                                    <div className="pt-2.5 border-t border-gray-200 flex justify-between items-center text-xs">
-                                        <span className="text-gray-500">Marking key &amp; solutions included</span>
-                                        <span className="text-[#01696f] font-semibold flex items-center">
-                                            <Download className="w-3.5 h-3.5 mr-1" /> Watermarked PDF Ready
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* TAB 4: FEES & ATTENDANCE */}
-                    {activeTab === 'operations' && (
-                        <div className="grid lg:grid-cols-12 gap-8 items-center">
-                            {/* Left: Operational Benefit */}
-                            <div className="lg:col-span-5 space-y-5">
-                                <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider">
-                                    Fees &amp; Center Operations
-                                </div>
-                                <h3 className="font-display text-2xl md:text-3xl font-bold text-[#0F172A] leading-snug">
-                                    Stop chasing fee defaulters and managing attendance registers.
-                                </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">
-                                    Automate recurring parent reminders with UPI payment links, track student attendance, and manage multiple batches effortlessly.
-                                </p>
-                                <ul className="space-y-3 text-sm text-gray-700">
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>WhatsApp fee reminders:</strong> Direct payment links sent to parents with 1 click.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Attendance auto-alerts:</strong> Immediate notification to parents if a student is absent.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Coaching website included:</strong> Branded website to capture online admission enquiries.</span>
-                                    </li>
-                                </ul>
-                                <div className="pt-2">
-                                    <Link to="/institute-operations" className="inline-flex items-center text-xs font-bold text-[#01696f] hover:text-[#015257]">
-                                        See Center Management Tools <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* Right: UI Mock & Screenshot Placeholder Frame */}
-                            <div className="lg:col-span-7 space-y-4">
-                                {/* Product Screenshot Frame Placeholder */}
-                                <div className="relative rounded-xl border border-gray-200 bg-gray-900 overflow-hidden shadow-md group">
-                                    <div className="flex items-center justify-between px-3.5 py-2 bg-gray-800/90 border-b border-gray-700/60 text-[11px] text-gray-400 font-medium">
-                                        <div className="flex items-center space-x-1.5">
-                                             <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                             <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                                             <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                             <span className="ml-2 text-gray-300">coachone.app/billing/fee-collection</span>
-                                        </div>
-                                        <span className="text-teal-400">Actual UI Preview</span>
-                                    </div>
-                                    <div className="p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[220px] flex flex-col justify-center items-center text-center relative">
-                                        <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-3">
-                                            <CreditCard className="w-6 h-6" />
-                                        </div>
-                                        <p className="text-sm font-semibold text-gray-200">
-                                            [ High-Res Screenshot: Smart Fee Management &amp; UPI Reconciliation ]
-                                        </p>
-                                        <p className="text-xs text-gray-400 max-w-sm mt-1">
-                                            Live collection ledger with one-click WhatsApp payment reminders and automated digital receipts.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                {/* Clean Operations Cards */}
-                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                    <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-4 shadow-sm">
-                                        <span className="text-xs text-gray-500 block mb-1 font-medium">Monthly Collected</span>
-                                        <span className="text-2xl font-bold text-gray-900">₹4,85,000</span>
-                                        <div className="text-xs text-emerald-700 mt-2 font-bold flex items-center">
-                                            <Check className="w-3.5 h-3.5 mr-1 text-emerald-600" /> 92% on time
-                                        </div>
-                                    </div>
-                                    <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-4 shadow-sm">
-                                        <span className="text-xs text-gray-500 block mb-1 font-medium">Pending Fees</span>
-                                        <span className="text-2xl font-bold text-amber-700">8 Students</span>
-                                        <div className="text-xs text-amber-800 mt-2 font-medium">
-                                            Reminders queued
-                                        </div>
-                                    </div>
-                                    <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-4 shadow-sm">
-                                        <span className="text-xs text-gray-500 block mb-1 font-medium">Today's Attendance</span>
-                                        <span className="text-2xl font-bold text-[#01696f]">96.8%</span>
-                                        <div className="text-xs text-teal-800 mt-2 font-medium">
-                                            4 absent alerted
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-4 flex justify-between items-center shadow-sm">
-                                    <div>
-                                        <div className="text-sm font-bold text-gray-900">Institute Admission Website</div>
-                                        <div className="text-xs text-gray-500">Capturing local student enquiries on your custom domain</div>
-                                    </div>
-                                    <span className="text-xs bg-[#01696f] text-white font-bold px-3 py-1.5 rounded-lg flex items-center shadow-sm">
-                                        <Check className="w-3.5 h-3.5 mr-1" /> Active
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                    {/* TAB 5: WHATSAPP REPORTS */}
-                    {activeTab === 'whatsapp' && (
-                        <div className="grid lg:grid-cols-12 gap-8 items-center">
-                            {/* Left: Operational Benefit */}
-                            <div className="lg:col-span-5 space-y-5">
-                                <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider">
-                                    Parent Communication
-                                </div>
-                                <h3 className="font-display text-2xl md:text-3xl font-bold text-[#0F172A] leading-snug">
-                                    Keep parents informed after every single test.
-                                </h3>
-                                <p className="text-gray-600 text-sm leading-relaxed">
-                                    Send branded report cards with marks, rank, and topic weakness breakdowns straight to parents' phones the same evening.
-                                </p>
-                                <ul className="space-y-3 text-sm text-gray-700">
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Instant WhatsApp delivery:</strong> No printing paper report cards or waiting for PTMs.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>White-labeled PDFs:</strong> Highlight your coaching logo, faculty feedback, and batch rank.</span>
-                                    </li>
-                                    <li className="flex items-start">
-                                        <CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 mt-0.5 flex-shrink-0" />
-                                        <span><strong>Higher retention:</strong> Parents see continuous academic care, reducing student drop-offs.</span>
-                                    </li>
-                                </ul>
-                                <div className="pt-2">
-                                    <Link to="/student-analytics" className="inline-flex items-center text-xs font-bold text-[#01696f] hover:text-[#015257]">
-                                        See Parent Communication Tools <ArrowRight className="w-3.5 h-3.5 ml-1.5" />
-                                    </Link>
-                                </div>
-                            </div>
-
-                            {/* Right: Clean WhatsApp Message Card & Placeholder */}
-                            <div className="lg:col-span-7 space-y-4">
-                                {/* Product Screenshot Frame Placeholder */}
-                                <div className="relative rounded-xl border border-gray-200 bg-gray-900 overflow-hidden shadow-md group">
-                                    <div className="flex items-center justify-between px-3.5 py-2 bg-gray-800/90 border-b border-gray-700/60 text-[11px] text-gray-400 font-medium">
-                                        <div className="flex items-center space-x-1.5">
-                                            <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                                            <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                            <span className="ml-2 text-gray-300">WhatsApp Official Business API Engine</span>
-                                        </div>
-                                        <span className="text-teal-400">Actual Message Output</span>
-                                    </div>
-                                    <div className="p-6 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[200px] flex flex-col justify-center items-center text-center relative">
-                                        <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400 mb-3">
-                                            <Send className="w-6 h-6" />
-                                        </div>
-                                        <p className="text-sm font-semibold text-gray-200">
-                                            [ High-Res Screenshot: WhatsApp Parent Notification &amp; Visual Report Card ]
-                                        </p>
-                                        <p className="text-xs text-gray-400 max-w-sm mt-1">
-                                            Automated parent delivery interface showcasing personalized score summary, PDF link, and teacher notes.
-                                        </p>
-                                    </div>
-                                </div>
-
-                                <div className="bg-gray-50/90 border border-gray-200 rounded-xl p-5 shadow-sm space-y-3 text-xs font-sans">
-                                    <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm space-y-2.5">
-                                        <div className="flex justify-between items-center border-b border-gray-100 pb-2">
-                                            <span className="font-bold text-[#01696f] text-sm">Your Coaching Academy</span>
-                                            <span className="text-gray-400 text-[11px]">Today, 06:15 PM</span>
-                                        </div>
-                                        <p className="text-gray-800 leading-relaxed">
-                                            Dear Parent, <strong>Aarav Sharma</strong> scored <strong>68 / 70 (97.1%)</strong> in Physics Full Mock Test #4.
-                                        </p>
-                                        <div className="p-2.5 bg-gray-50 rounded-lg border border-gray-200 flex justify-between items-center">
-                                            <div>
-                                                <div className="font-bold text-gray-900 text-xs">Aarav_Sharma_Report_Card.pdf</div>
-                                                <div className="text-[11px] text-gray-500 mt-0.5">Score: 68/70 • Rank #3 in Batch • Chapter Diagnostic</div>
-                                            </div>
-                                            <span className="bg-[#01696f] text-white px-3 py-1 rounded-md text-xs font-bold shadow-sm">
-                                                Download PDF
-                                            </span>
-                                        </div>
-                                        <p className="text-gray-600 italic text-[11px] bg-gray-50 p-2 rounded border border-gray-100">
-                                            Faculty Note: "Strong conceptual understanding. 1 remedial worksheet assigned on PrepOne app for Class 11 SHM formulas."
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
-                </div>
-            </div>
-        </section>
-    );
-};
-
-// --- CHAPTER 4: 5 CORE PLATFORM PILLARS ---
-const FeatureGrid = () => {
-    const pillars = [
-        {
-            icon: <School className="w-8 h-8 text-[#01696f]" />,
-            pillarNum: "Pillar 01",
-            title: "Institute Management",
-            link: "/institute-operations",
-            desc: "Everything you need to run daily operations: student records, batch schedules, attendance tracking with auto-alerts, fee registers, and payment receipts."
-        },
-        {
-            icon: <FileText className="w-8 h-8 text-[#01696f]" />,
-            pillarNum: "Pillar 02",
-            title: "Assessment Suite",
-            link: "/test-management",
-            desc: "Create subjective board papers, MCQ tests, and DPPs in minutes. Choose from 50,000+ verified questions or add your own, with your institute's custom watermarked PDFs."
-        },
-        {
-            icon: <BrainCircuit className="w-8 h-8 text-[#01696f]" />,
-            pillarNum: "Pillar 03",
-            title: "Academic Insights & AI Evaluation",
-            link: "/student-analytics",
-            desc: "AI reads handwritten answer sheets and awards step marks. Get batch-level heatmaps, mistake pattern detection, and student weakness diagnostics across chapters."
-        },
-        {
-            icon: <Globe className="w-8 h-8 text-[#01696f]" />,
-            pillarNum: "Pillar 04",
-            title: "Admissions & Institute Growth",
-            link: "/book-demo",
-            desc: "Grow your coaching reputation with a branded institute microsite, admission leads CRM pipeline, automated Google 5-star review booster, and local search visibility."
-        },
-        {
-            icon: <Send className="w-8 h-8 text-[#01696f]" />,
-            pillarNum: "Pillar 05",
-            title: "Smart Automation",
-            link: "/student-analytics",
-            desc: "Automate routine communications: 1-click WhatsApp report cards to parents, test schedule alerts, attendance notifications, and fee payment reminders."
-        }
-    ];
-
-    return (
-        <section className="bg-[#F8F9FC] py-24">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16 max-w-3xl mx-auto">
-                    <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-3">
-                        The 5 Core Pillars
-                    </div>
-                    <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] leading-tight">
-                        Everything you need to run and grow your coaching institute.
-                    </h2>
-                    <p className="font-body text-gray-600 text-base md:text-lg mt-4 leading-relaxed">
-                        Replace fragmented tools, late-night copy checking, and paper registers with one unified, dependable system.
-                    </p>
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {pillars.map((p, i) => (
-                        <div key={i} className={`bg-white p-8 rounded-2xl shadow-sm border border-gray-200 hover:border-teal-300 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between ${i === 4 ? 'md:col-span-2 lg:col-span-1' : ''}`}>
-                            <div>
-                                <div className="flex items-center justify-between mb-6">
-                                    <div className="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center group-hover:bg-[#01696f] transition-colors">
-                                        {React.cloneElement(p.icon, { className: 'w-7 h-7 text-[#01696f] group-hover:text-white transition-colors' })}
-                                    </div>
-                                    <span className="text-[11px] font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded border border-teal-200/60 uppercase tracking-wider">
-                                        {p.pillarNum}
-                                    </span>
-                                </div>
-                                <h3 className="font-bold text-xl text-[#0F172A] mb-3">{p.title}</h3>
-                                <p className="font-body text-[#64748B] leading-relaxed text-sm mb-6">{p.desc}</p>
-                            </div>
-                            <Link to={p.link} className="inline-flex items-center text-sm font-bold text-[#01696f] group-hover:text-[#015257] transition-colors pt-4 border-t border-gray-100">
-                                Explore {p.title} <ArrowRight className="w-4 h-4 ml-1.5 transform group-hover:translate-x-1 transition-transform" />
+                                ))}
+                            </ul>
+                            <Link to={tab.link.to} className="mt-6 inline-flex items-center text-sm font-bold text-[#01696f] hover:text-[#015257]">
+                                {tab.link.text} <ArrowRight className="w-4 h-4 ml-1.5" />
                             </Link>
                         </div>
-                    ))}
+                    </div>
+
+                    {/* Right: the screen */}
+                    <div className="lg:col-span-8 min-w-0">
+                        {tab.image ? (
+                            <AppScreenshot
+                                src={tab.image.src}
+                                alt={tab.image.alt}
+                                width={tab.image.w}
+                                height={tab.image.h}
+                            />
+                        ) : (
+                            <div className="rounded-2xl bg-[#eef6f5] border border-[#cfe3e1] p-6 md:p-8">
+                                <SampleTag />
+                                {tab.sample}
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </section>
     );
 };
 
-// --- CHAPTER 5: DETAILED MISTAKE ANALYSIS ---
+// --- ONE DAY, START TO FINISH: A REAL SEQUENCE, SO IT GETS A TIMELINE ---
+const WeeklyStorySection = () => {
+    const steps = [
+        { time: "9:00 AM", who: "Teacher", title: "Build and release the test", text: "Pick questions from the 1 lakh+ verified bank or add your own. Export a print-ready paper with your institute watermark in under 5 minutes." },
+        { time: "2:00 PM", who: "Students", title: "Write and upload", text: "Students write on plain paper and upload photos of their sheets in the app. Nobody collects, counts or carries bundles." },
+        { time: "4:00 PM", who: "CoachOne", title: "Step-wise checking", text: "The engine reads the handwriting, awards step marks for formulas and derivations against the rubric, and flags sign mistakes." },
+        { time: "7:00 PM", who: "Parents", title: "Reports on WhatsApp", text: "Each parent gets the score, batch rank and weak topics on WhatsApp the same evening." }
+    ];
+    return (
+        <section className="bg-[#eef6f5] py-20 lg:py-28">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <SectionHead title="From creating the test to informing parents, in one day">
+                    No weekend pile of unchecked answer sheets. You publish the test, students upload their copies, and results reach parents by night.
+                </SectionHead>
+
+                <ol className="mt-14 grid md:grid-cols-4 gap-y-10 md:gap-x-8 relative">
+                    <div className="hidden md:block absolute top-[11px] left-0 right-0 h-0.5 bg-[#01696f]/30" aria-hidden="true"></div>
+                    {steps.map((s) => (
+                        <li key={s.time} className="relative">
+                            <div className="flex items-center gap-3 mb-5">
+                                <span className="relative z-10 w-6 h-6 rounded-full bg-[#01696f] ring-4 ring-[#eef6f5]"></span>
+                                <span className="font-display text-xl text-[#01696f] bg-[#eef6f5] pr-3 relative z-10">{s.time}</span>
+                            </div>
+                            <div className="text-xs font-bold text-gray-500 mb-1">{s.who}</div>
+                            <h3 className="font-bold text-lg text-[#032b2e] mb-2">{s.title}</h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">{s.text}</p>
+                        </li>
+                    ))}
+                </ol>
+            </div>
+        </section>
+    );
+};
+
+// --- REPEATED DEMO PROMPT AT DECISION POINTS ---
+const DemoBand = ({ location, title, note }) => (
+    <section className="bg-[#01696f]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-9 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+                <p className="font-display text-2xl md:text-3xl text-white">{title}</p>
+                <p className="text-teal-50/85 mt-1">{note}</p>
+            </div>
+            <DemoLink location={location} className={`${BTN_ON_TEAL} flex-shrink-0`}>
+                <Calendar className="w-5 h-5 mr-3" />
+                Book a 20-minute demo
+            </DemoLink>
+        </div>
+    </section>
+);
+
+// --- STICKY MOBILE CTA ---
+const StickyDemoBar = () => {
+    const [show, setShow] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => {
+            const max = document.documentElement.scrollHeight - window.innerHeight;
+            setShow(window.scrollY > 700 && window.scrollY < max - 900);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    return (
+        <div
+            aria-hidden={!show}
+            className={`md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur border-t border-gray-200 px-4 py-3 transition-transform duration-300 ${show ? 'translate-y-0' : 'translate-y-full'}`}
+        >
+            <DemoLink location="sticky_mobile" tabIndex={show ? 0 : -1} className="w-full bg-[#01696f] text-white py-3.5 rounded-xl flex items-center justify-center font-bold">
+                <Calendar className="w-5 h-5 mr-2.5" />
+                Book a 20-minute demo
+            </DemoLink>
+        </div>
+    );
+};
+
+// --- THE DIFFERENTIATOR: WHY STUDENTS LOSE MARKS ---
 const TelemetrySpotlight = () => (
-    <section className="bg-white py-24 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <div>
-                    <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-3">
-                        Detailed Mistake Analysis
-                    </div>
-                    <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-6 leading-tight">
-                        Don't just give total marks. <br />
-                        <span className="text-[#01696f]">Understand why students lose marks.</span>
-                    </h2>
-                    <p className="font-body text-gray-600 text-base md:text-lg leading-relaxed mb-8">
-                        Simple test results only show right or wrong. CoachOne shows teachers the real reason behind student mistakes, whether it was calculation errors, wrong formulas, or weak basics from previous classes.
-                    </p>
+    <section className="co-sheet text-white py-20 lg:py-28 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+            <div className="lg:col-span-5">
+                <h2 className="font-display text-3xl md:text-5xl leading-[1.08]">
+                    Don't just give total marks. Show why students lose them.
+                </h2>
+                <p className="mt-5 text-lg text-teal-50/85 leading-relaxed">
+                    A total only tells you right or wrong. CoachOne shows the reason: a calculation slip, a wrong formula, or a weak base from an earlier class.
+                </p>
 
-                    <div className="space-y-6">
-                        <div className="flex items-start">
-                            <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0 mr-4 mt-1 font-bold">
-                                <Target className="w-5 h-5 text-amber-600" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900 text-lg">Why Students Pick Wrong Options</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">Classifies MCQ mistakes into clear categories: plus/minus sign confusion, wrong formula applied, or calculation traps.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start">
-                            <div className="w-10 h-10 rounded-xl bg-teal-50 text-[#01696f] flex items-center justify-center flex-shrink-0 mr-4 mt-1 font-bold">
-                                <FileText className="w-5 h-5 text-[#01696f]" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900 text-lg">Step-by-Step Board Marking</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">Follows exact board marking rules. Gives step marks for correct formula, substitution, and final answer so students know where marks were deducted.</p>
-                            </div>
-                        </div>
-
-                        <div className="flex items-start">
-                            <div className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center flex-shrink-0 mr-4 mt-1 font-bold">
-                                <GitBranch className="w-5 h-5 text-purple-600" />
-                            </div>
-                            <div>
-                                <h4 className="font-bold text-gray-900 text-lg">Find Weak Basics From Earlier Classes</h4>
-                                <p className="text-sm text-gray-600 leading-relaxed">
-                                    <LatexText text="Finds if a Class 12 struggle is caused by weak Class 11 fundamentals (e.g. \(\text{LC Oscillations} \implies \text{Simple Harmonic Motion}\)) and creates quick revision practice." />
-                                </p>
-                            </div>
+                <div className="mt-9 space-y-7">
+                    <div className="flex items-start gap-4">
+                        <Target className="w-6 h-6 text-[#ffd84d] flex-shrink-0 mt-1" />
+                        <div>
+                            <h3 className="font-bold text-lg">Why students pick wrong options</h3>
+                            <p className="text-sm text-teal-50/80 leading-relaxed mt-1">Sorts MCQ mistakes into clear types: plus/minus sign confusion, wrong formula applied, or calculation traps.</p>
                         </div>
                     </div>
-
-                    <div className="mt-10">
-                        <Link to="/student-analytics" className="inline-flex items-center bg-[#01696f] hover:bg-[#015257] text-white px-6 py-3.5 rounded-xl font-bold transition-all shadow-md">
-                            See Student Analysis Guide <ArrowRight className="w-4 h-4 ml-2" />
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Right Visual Card with Screenshot Frame */}
-                <div className="space-y-4">
-                    {/* UI Screenshot Placeholder */}
-                    <div className="relative rounded-2xl border border-gray-200 bg-gray-900 overflow-hidden shadow-lg group">
-                        <div className="flex items-center justify-between px-4 py-2.5 bg-gray-800/95 border-b border-gray-700 text-xs text-gray-400 font-medium">
-                            <div className="flex items-center space-x-1.5">
-                                <div className="w-2.5 h-2.5 rounded-full bg-red-500/80"></div>
-                                <div className="w-2.5 h-2.5 rounded-full bg-amber-500/80"></div>
-                                <div className="w-2.5 h-2.5 rounded-full bg-green-500/80"></div>
-                                <span className="ml-2 text-gray-300">coachone.app/insights/concept-lineage</span>
-                            </div>
-                            <span className="text-teal-400 font-semibold">Diagnostic Engine</span>
+                    <div className="flex items-start gap-4">
+                        <FileText className="w-6 h-6 text-[#ffd84d] flex-shrink-0 mt-1" />
+                        <div>
+                            <h3 className="font-bold text-lg">Step-by-step board marking</h3>
+                            <p className="text-sm text-teal-50/80 leading-relaxed mt-1">Follows board marking rules and gives step marks for formula, substitution and final answer, so students know where marks were lost.</p>
                         </div>
-                        <div className="p-8 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white min-h-[220px] flex flex-col justify-center items-center text-center">
-                            <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-3">
-                                <GitBranch className="w-6 h-6" />
-                            </div>
-                            <p className="text-sm font-semibold text-gray-200">
-                                [ High-Res Screenshot: Prerequisite Lineage Graph &amp; Misconception Heatmap ]
-                            </p>
-                            <p className="text-xs text-gray-400 max-w-sm mt-1 leading-relaxed">
-                                Visual concept dependency tree connecting board questions to foundational class 11 prerequisites.
+                    </div>
+                    <div className="flex items-start gap-4">
+                        <GitBranch className="w-6 h-6 text-[#ffd84d] flex-shrink-0 mt-1" />
+                        <div>
+                            <h3 className="font-bold text-lg">Weak basics from earlier classes</h3>
+                            <p className="text-sm text-teal-50/80 leading-relaxed mt-1">
+                                <LatexText text="Finds when a Class 12 struggle comes from weak Class 11 fundamentals (e.g. \(\text{LC Oscillations} \implies \text{Simple Harmonic Motion}\)) and creates quick revision practice." />
                             </p>
                         </div>
                     </div>
-
-                    <div className="bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-md text-gray-900 relative">
-                        <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
-                            <div>
-                                <span className="text-xs font-bold text-[#01696f] uppercase tracking-wider">FINDING WEAK BASICS</span>
-                                <h4 className="font-bold text-xl text-[#0F172A]">Class 11 &amp; 12 Concept Link</h4>
-                            </div>
-                            <span className="text-xs bg-purple-50 text-purple-700 px-2.5 py-1 rounded-md border border-purple-200 font-bold">Physics Cl 12</span>
-                        </div>
-
-                        {/* Interactive Diagram UI */}
-                        <div className="space-y-4">
-                            <div className="bg-rose-50/70 p-4 rounded-xl border border-rose-200 shadow-sm">
-                                <div className="flex justify-between text-xs font-bold text-rose-700 mb-1">
-                                    <span>CURRENT CLASS 12 CHAPTER</span>
-                                    <span>46% Batch Avg</span>
-                                </div>
-                                <div className="text-base font-bold text-gray-900">Class 12: Electromagnetic Induction &amp; LC Oscillations</div>
-                                <p className="text-xs text-gray-600 mt-1">Many students losing marks in formula derivation and resonance calculation.</p>
-                            </div>
-
-                            <div className="flex justify-center my-1">
-                                <div className="w-0.5 h-6 bg-purple-300"></div>
-                            </div>
-
-                            <div className="bg-purple-50/70 p-4 rounded-xl border border-purple-200 shadow-sm">
-                                <div className="flex justify-between text-xs font-bold text-purple-800 mb-1">
-                                    <span>REASON: WEAK CLASS 11 BASE</span>
-                                    <span>42% Foundation Deficit</span>
-                                </div>
-                                <div className="text-base font-bold text-gray-900">Class 11: Simple Harmonic Motion (Oscillations)</div>
-                                <p className="text-xs text-gray-600 mt-1">Students are weak in Class 11 basic concepts needed for this topic.</p>
-                            </div>
-
-                            <div className="bg-teal-50 p-4 rounded-xl border border-teal-200 flex items-center justify-between">
-                                <div>
-                                    <span className="text-[11px] font-bold text-[#01696f] uppercase block">Quick Action for Teachers</span>
-                                    <span className="text-xs text-gray-700">Ready: 10-Minute Revision Test on Basics</span>
-                                </div>
-                                <button className="bg-[#01696f] hover:bg-[#015257] text-white text-xs font-bold px-3.5 py-2 rounded-lg transition-colors shadow-sm">
-                                    Send to Students
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+
+                <Link to="/student-analytics" className={`${BTN_ON_TEAL} mt-10`}>
+                    See the student analysis guide <ArrowRight className="w-4 h-4 ml-2" />
+                </Link>
+            </div>
+
+            <div className="lg:col-span-7 relative">
+                <div className="hidden lg:block absolute -top-12 right-4 text-[#ffd84d] z-20 text-right">
+                    <span className="co-note text-xl inline-block">A Class 12 chapter traced to the Class 11 topic behind it</span>
+                </div>
+                <AppScreenshot
+                    src={tracerImg}
+                    alt="CoachOne prerequisite root-cause tracer tracing a Class 12 Physics chapter back to weak Class 11 foundation topics with a 10-minute refresher action"
+                    width={1800}
+                    height={1159}
+                />
             </div>
         </div>
     </section>
 );
 
-// --- ADMISSIONS & INSTITUTE GROWTH SUITE (WRITEUP SECTION 8) ---
-const GrowthSuiteSection = () => (
-    <section className="bg-white py-24 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-                <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-3">
-                    Admissions &amp; Institute Growth
+// --- ADMISSIONS & GROWTH ---
+const GrowthSuiteSection = () => {
+    const items = [
+        { icon: Globe, title: "Institute microsite", text: "A clean, mobile-ready website with faculty profiles, topper ranks and fee structures, without paying a web developer." },
+        { icon: Users, title: "Admissions pipeline", text: "Track every enquiry from New to Contacted, Demo Class, Follow-up and Admitted, with staff assignment." },
+        { icon: Star, title: "Google reviews booster", text: "Ask happy parents for a Google review on WhatsApp. Unhappy ones write to you privately instead." },
+        { icon: Search, title: "Local search presence", text: "Built so parents searching \"Class 10 tuition near me\" can find your institute." }
+    ];
+    return (
+        <section className="bg-white py-20 lg:py-28">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <SectionHead title="Fill your batches, not just run them">
+                    CoachOne also gives your academy a website that takes demo-class requests, an enquiry tracker, and a way to collect genuine Google reviews.
+                </SectionHead>
+
+                <div className="mt-12 grid md:grid-cols-2 gap-6 items-start">
+                    <AppScreenshot
+                        src={micrositeImg}
+                        alt="An institute website built with CoachOne Microsite Studio, with an admissions badge, a book-a-demo-class form and WhatsApp button"
+                        width={1075}
+                        height={767}
+                    />
+                    <AppScreenshot
+                        src={reviewBoosterImg}
+                        alt="CoachOne Google Review Booster showing a 4.3 parent rating, star breakdown and the ask-for-reviews WhatsApp flow"
+                        width={1800}
+                        height={1045}
+                    />
                 </div>
-                <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-4 leading-tight">
-                    Tools to build your coaching brand and grow new admissions.
-                </h2>
-                <p className="font-body text-gray-600 text-base md:text-lg leading-relaxed">
-                    CoachOne does not just manage your classroom tests. It equips your academy with modern digital infrastructure to attract enquiries, manage prospective student leads, and collect authentic Google reviews.
-                </p>
+
+                <ul className="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
+                    {items.map(({ icon: Icon, title, text }) => (
+                        <li key={title}>
+                            <span className="w-10 h-10 rounded-lg bg-[#eef6f5] text-[#01696f] flex items-center justify-center mb-3">
+                                <Icon className="w-5 h-5" />
+                            </span>
+                            <h3 className="font-bold text-[#032b2e]">{title}</h3>
+                            <p className="text-sm text-gray-600 leading-relaxed mt-1">{text}</p>
+                        </li>
+                    ))}
+                </ul>
             </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {/* Growth Card 1: Microsite */}
-                <div className="bg-[#f7f6f2] p-7 rounded-2xl border border-gray-200/80 flex flex-col justify-between hover:shadow-lg transition-shadow">
-                    <div>
-                        <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#01696f] flex items-center justify-center font-bold text-lg mb-5 border border-teal-100">
-                            <Globe className="w-6 h-6" />
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-2">Institute Microsite</h3>
-                        <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                            Get a clean, mobile-optimized website for your coaching center. Display faculty profiles, past topper ranks, course fee structures, and photo galleries without paying a web developer.
-                        </p>
-                    </div>
-                    <div className="pt-3 border-t border-gray-200 text-xs font-bold text-[#01696f] flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5 text-teal-600" /> Ready in 10 minutes
-                    </div>
-                </div>
-
-                {/* Growth Card 2: Admission Leads CRM */}
-                <div className="bg-[#f7f6f2] p-7 rounded-2xl border border-gray-200/80 flex flex-col justify-between hover:shadow-lg transition-shadow">
-                    <div>
-                        <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#01696f] flex items-center justify-center font-bold text-lg mb-5 border border-teal-100">
-                            <Users className="w-6 h-6" />
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-2">Admissions Pipeline</h3>
-                        <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                            Never lose an enquiry in notebook registers. Track incoming student leads across stages: <span className="font-semibold text-gray-800">New &rarr; Contacted &rarr; Demo Class &rarr; Follow-up &rarr; Admitted</span> with staff assignment.
-                        </p>
-                    </div>
-                    <div className="pt-3 border-t border-gray-200 text-xs font-bold text-[#01696f] flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5 text-teal-600" /> Built-in lead tracking
-                    </div>
-                </div>
-
-                {/* Growth Card 3: Google Reviews Booster */}
-                <div className="bg-[#f7f6f2] p-7 rounded-2xl border border-gray-200/80 flex flex-col justify-between hover:shadow-lg transition-shadow">
-                    <div>
-                        <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-bold text-lg mb-5 border border-amber-100">
-                            <Star className="w-6 h-6" />
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-2">Google Reviews Booster</h3>
-                        <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                            Automatically prompt happy parents and students to leave 5-star ratings on your Google Business Profile right after great test performance or positive milestones.
-                        </p>
-                    </div>
-                    <div className="pt-3 border-t border-gray-200 text-xs font-bold text-amber-700 flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5 text-amber-600" /> Strengthen local trust
-                    </div>
-                </div>
-
-                {/* Growth Card 4: Local SEO Discovery */}
-                <div className="bg-[#f7f6f2] p-7 rounded-2xl border border-gray-200/80 flex flex-col justify-between hover:shadow-lg transition-shadow">
-                    <div>
-                        <div className="w-12 h-12 rounded-xl bg-teal-50 text-[#01696f] flex items-center justify-center font-bold text-lg mb-5 border border-teal-100">
-                            <Search className="w-6 h-6" />
-                        </div>
-                        <h3 className="font-bold text-gray-900 text-xl mb-2">Local Search Presence</h3>
-                        <p className="text-xs text-gray-600 leading-relaxed mb-4">
-                            Optimized structure for parents searching nearby: <em>"Best Class 10 tuition in my locality"</em> or <em>"NEET dropper batch near me"</em>. Clean meta descriptions and fast loading.
-                        </p>
-                    </div>
-                    <div className="pt-3 border-t border-gray-200 text-xs font-bold text-[#01696f] flex items-center gap-1">
-                        <Check className="w-3.5 h-3.5 text-teal-600" /> Organic local discovery
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-);
-
-// --- CHAPTER 6: THE TRANSFORMATION IN NUMBERS (BEFORE VS AFTER) ---
-const TransformationSection = () => (
-    <section className="bg-[#f7f6f2] py-24 border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-                <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-3">
-                    Clear Comparison
-                </div>
-                <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-4 leading-tight">
-                    Before CoachOne vs. With CoachOne
-                </h2>
-                <p className="font-body text-gray-600 text-base md:text-lg leading-relaxed">
-                    See how much time teachers save and how smoothly your coaching runs with CoachOne.
-                </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                {/* Traditional Coaching */}
-                <div className="bg-white p-8 rounded-2xl border border-red-200 shadow-sm relative overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-red-400"></div>
-                    <div className="text-xs font-bold text-red-700 uppercase tracking-wider mb-6">
-                        Without CoachOne (Traditional Setup)
-                    </div>
-                    <ul className="space-y-4 text-sm text-gray-700">
-                        <li className="flex items-start">
-                            <span className="w-5 h-5 rounded bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs mr-3 flex-shrink-0 mt-0.5"><X className="w-3.5 h-3.5" /></span>
-                            <span><strong>Hours wasted each week</strong> searching for questions and formatting test papers.</span>
-                        </li>
-                        <li className="flex items-start">
-                            <span className="w-5 h-5 rounded bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs mr-3 flex-shrink-0 mt-0.5"><X className="w-3.5 h-3.5" /></span>
-                            <span><strong>1 to 2 weeks delay</strong> in checking copies; students have already moved to next chapters.</span>
-                        </li>
-                        <li className="flex items-start">
-                            <span className="w-5 h-5 rounded bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs mr-3 flex-shrink-0 mt-0.5"><X className="w-3.5 h-3.5" /></span>
-                            <span><strong>Total marks only</strong> (e.g. 52/100). No clear report showing which exact topics need practice.</span>
-                        </li>
-                        <li className="flex items-start">
-                            <span className="w-5 h-5 rounded bg-red-100 text-red-600 flex items-center justify-center font-bold text-xs mr-3 flex-shrink-0 mt-0.5"><X className="w-3.5 h-3.5" /></span>
-                            <span><strong>Manual fee registers</strong>, missed payment tracking, and uncomfortable phone calls to parents.</span>
-                        </li>
-                    </ul>
-                </div>
-
-                {/* With CoachOne */}
-                <div className="bg-white p-8 rounded-2xl border-2 border-[#01696f] shadow-lg text-gray-900 relative overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-[#01696f]"></div>
-                    <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-6">
-                        With CoachOne Platform
-                    </div>
-                    <ul className="space-y-4 text-sm text-gray-700">
-                        <li className="flex items-start">
-                            <CheckCircle2 className="w-5 h-5 text-[#01696f] mr-3 flex-shrink-0 mt-0.5" />
-                            <span><strong>5-minute test maker</strong> with 50,000+ questions and your coaching branding.</span>
-                        </li>
-                        <li className="flex items-start">
-                            <CheckCircle2 className="w-5 h-5 text-[#01696f] mr-3 flex-shrink-0 mt-0.5" />
-                            <span><strong>Same-day AI copy checking</strong> with step marks; zero paper sorting or manual scanning for teachers.</span>
-                        </li>
-                        <li className="flex items-start">
-                            <CheckCircle2 className="w-5 h-5 text-[#01696f] mr-3 flex-shrink-0 mt-0.5" />
-                            <span><strong>Detailed mistake analysis</strong>: formula errors, calculation traps, and weak fundamentals.</span>
-                        </li>
-                        <li className="flex items-start">
-                            <CheckCircle2 className="w-5 h-5 text-[#01696f] mr-3 flex-shrink-0 mt-0.5" />
-                            <span><strong>Automated WhatsApp reports</strong>, fee receipts, and daily attendance notices for parents.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-);
+        </section>
+    );
+};
 
 // --- ROI & COST COMPARISON CALCULATOR ---
 const ROICalculatorSection = () => {
@@ -1520,10 +947,10 @@ const Pricing = () => {
                                 Up to 75 Students • 5 Batches
                             </div>
                             <ul className="space-y-3 mb-8 text-xs text-gray-700">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Up to <strong>75 Students</strong></li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Up to <strong>5 Batches</strong> &amp; 2 Admins</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <strong>Unlimited MCQ Tests &amp; DPP</strong></li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> AI Evaluation: <strong>₹1.50 / page</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span>Up to <strong>75 Students</strong></span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span>Up to <strong>5 Batches</strong> &amp; 2 Admins</span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span><strong>Unlimited MCQ Tests &amp; DPP</strong></span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span>AI Evaluation: <strong>₹1.50 / page</strong></span></li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Student &amp; Batch Management</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Student Portal &amp; Attendance</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Institute Microsite &amp; Leads</li>
@@ -1553,14 +980,14 @@ const Pricing = () => {
                                 Up to 200 Students • 15 Batches
                             </div>
                             <ul className="space-y-3 mb-8 text-xs text-gray-700">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> Up to <strong>200 Students</strong></li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> Up to <strong>15 Batches</strong> &amp; 5 Admins</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> <strong>WhatsApp Parent Reports</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> <span>Up to <strong>200 Students</strong></span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> <span>Up to <strong>15 Batches</strong> &amp; 5 Admins</span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> <span><strong>WhatsApp Parent Reports</strong></span></li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> Chapter &amp; Topic Mistake Analysis</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> At-risk Student Detection</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> AI Test Generation &amp; Practice</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> Lead CRM &amp; Local SEO Booster</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> AI Evaluation: <strong>₹1.50 / page</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-[#01696f] mr-2.5 flex-shrink-0" /> <span>AI Evaluation: <strong>₹1.50 / page</strong></span></li>
                             </ul>
                         </div>
                         <Link to="/book-demo" className="w-full bg-[#01696f] hover:bg-[#015257] text-white py-3 rounded-xl font-bold text-xs text-center transition-all shadow-md">
@@ -1583,14 +1010,14 @@ const Pricing = () => {
                                 Up to 500 Students • Unlimited Batches
                             </div>
                             <ul className="space-y-3 mb-8 text-xs text-gray-700">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Up to <strong>500 Students</strong></li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <strong>Unlimited Batches</strong> &amp; 15 Admins</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <strong>Custom Branding &amp; Multi-Branch</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span>Up to <strong>500 Students</strong></span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span><strong>Unlimited Batches</strong> &amp; 15 Admins</span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span><strong>Custom Branding &amp; Multi-Branch</strong></span></li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Advanced+ Analytics &amp; Insights</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Automated Performance Insights</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Dedicated Onboarding</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> Priority Support &amp; Limited API</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> AI Evaluation: <strong>₹1.50 / page</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-teal-600 mr-2.5 flex-shrink-0" /> <span>AI Evaluation: <strong>₹1.50 / page</strong></span></li>
                             </ul>
                         </div>
                         <Link to="/book-demo" className="w-full bg-gray-100 hover:bg-gray-200 text-gray-900 py-3 rounded-xl font-bold text-xs text-center transition-colors">
@@ -1613,14 +1040,14 @@ const Pricing = () => {
                                 500+ Students • Unlimited Scale
                             </div>
                             <ul className="space-y-3 mb-8 text-xs text-gray-700">
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <strong>500+ Students</strong></li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <strong>Unlimited Batches &amp; Custom Admins</strong></li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <strong>Full API Access</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <span><strong>500+ Students</strong></span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <span><strong>Unlimited Batches &amp; Custom Admins</strong></span></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <span><strong>Full API Access</strong></span></li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> Custom Branding &amp; Multi-Branch</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> Dedicated Account Manager</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> 24/7 Dedicated Support</li>
                                 <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> Dedicated Onboarding</li>
-                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> AI Evaluation: <strong>₹1.50 / page</strong></li>
+                                <li className="flex items-center"><CheckCircle2 className="w-4 h-4 text-purple-600 mr-2.5 flex-shrink-0" /> <span>AI Evaluation: <strong>₹1.50 / page</strong></span></li>
                             </ul>
                         </div>
                         <Link to="/book-demo" className="w-full bg-[#0F172A] hover:bg-black text-white py-3 rounded-xl font-bold text-xs text-center transition-colors">
@@ -1629,46 +1056,58 @@ const Pricing = () => {
                     </div>
                 </div>
 
-                {/* Practical Math Example & Page Definition Box (Writeup Section 12) */}
-                <div className="max-w-5xl mx-auto mb-20 bg-white rounded-2xl p-7 sm:p-9 border border-gray-200 shadow-md">
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-gray-100">
-                        <div>
-                            <span className="text-xs font-bold text-[#01696f] uppercase tracking-wider">
-                                Realistic Cost Breakdown
-                            </span>
-                            <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mt-2">
-                                How monthly pricing actually works: A real example
+                {/* Worked example: what a 300-student academy pays in a month */}
+                <div className="max-w-5xl mx-auto mb-20 grid md:grid-cols-12 gap-5 items-stretch">
+                    <div className="md:col-span-5 co-sheet rounded-2xl p-7 sm:p-9 text-white overflow-hidden shadow-xl shadow-[#032b2e]/20">
+                        <div className="relative z-10 pl-3">
+                            <h3 className="font-display text-2xl sm:text-3xl leading-tight">
+                                What a 300-student academy pays in a month
                             </h3>
-                        </div>
-                        <div className="text-xs text-gray-500 bg-gray-50 p-3 rounded-xl border border-gray-200/60 max-w-sm">
-                            <strong className="text-gray-900 block mb-0.5">What is an "Evaluated Page"?</strong>
-                            1 evaluated page = 1 student handwritten answer-sheet page processed by CoachOne. Blank pages and question sheets are never charged.
+                            <dl className="mt-8 space-y-5">
+                                <div>
+                                    <dt className="font-display text-3xl">300 students</dt>
+                                    <dd className="text-sm text-teal-50/80">enrolled across your batches</dd>
+                                </div>
+                                <div>
+                                    <dt className="font-display text-3xl">2 subjective tests</dt>
+                                    <dd className="text-sm text-teal-50/80">per student, every month</dd>
+                                </div>
+                                <div>
+                                    <dt className="font-display text-3xl">8 handwritten pages</dt>
+                                    <dd className="text-sm text-teal-50/80">in each answer paper</dd>
+                                </div>
+                            </dl>
+                            <p className="mt-8 text-sm text-teal-50/80 leading-relaxed border-t border-white/15 pt-5">
+                                <strong className="text-white">What is an evaluated page?</strong> One page of a student's handwritten answer sheet that CoachOne processes. Blank pages and question sheets are never charged.
+                            </p>
                         </div>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 pt-6">
-                        <div className="bg-[#f7f6f2] p-5 rounded-2xl border border-gray-200">
-                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Example Academy</div>
-                            <div className="text-2xl font-bold text-gray-900 mb-2">300 Students</div>
-                            <p className="text-xs text-gray-600 leading-relaxed">
-                                Runs 2 subjective tests per month. Each student writes an 8-page handwritten answer paper.
-                            </p>
-                        </div>
+                    <div className="md:col-span-7 bg-white rounded-2xl border border-gray-200 shadow-md p-7 sm:p-9 flex flex-col">
+                        <div className="text-sm font-bold text-[#01696f]">Monthly bill</div>
 
-                        <div className="bg-[#f7f6f2] p-5 rounded-2xl border border-gray-200">
-                            <div className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Evaluation Volume</div>
-                            <div className="text-2xl font-bold text-[#01696f] mb-2">4,800 Pages</div>
-                            <p className="text-xs text-gray-600 leading-relaxed">
-                                300 students × 2 tests × 8 pages = 4,800 pages. At ₹1.50/page = <strong>₹7,200</strong> evaluation cost.
-                            </p>
-                        </div>
+                        <dl className="mt-5 divide-y divide-gray-100">
+                            {[
+                                { name: 'Scale plan', detail: 'Covers up to 500 students', amount: '₹4,499' },
+                                { name: 'AI evaluation', detail: '300 × 2 tests × 8 pages = 4,800 pages, at ₹1.50 each', amount: '₹7,200' },
+                                { name: 'MCQ tests and DPPs', detail: 'Unlimited, no evaluation fee', amount: '₹0' }
+                            ].map((row) => (
+                                <div key={row.name} className="flex items-baseline justify-between gap-4 py-4">
+                                    <div>
+                                        <dt className="font-bold text-[#032b2e]">{row.name}</dt>
+                                        <dd className="text-sm text-gray-500 mt-0.5">{row.detail}</dd>
+                                    </div>
+                                    <div className="font-display text-xl text-[#032b2e] whitespace-nowrap">{row.amount}</div>
+                                </div>
+                            ))}
+                        </dl>
 
-                        <div className="bg-teal-950 text-white p-5 rounded-2xl border border-teal-800">
-                            <div className="text-xs font-bold text-teal-400 uppercase tracking-wider mb-1">Total Monthly Investment</div>
-                            <div className="text-2xl font-bold text-white mb-2">₹11,699 <span className="text-xs text-gray-300 font-normal">/ mo</span></div>
-                            <p className="text-xs text-teal-100/80 leading-relaxed">
-                                ₹4,499 (Scale Plan) + ₹7,200 (AI checking) = <strong>₹11,699/mo</strong> total for 300 students (under ₹39/student/month all inclusive).
-                            </p>
+                        <div className="mt-auto pt-5 border-t-2 border-dashed border-[#01696f]/40">
+                            <div className="flex items-end justify-between gap-4">
+                                <div className="font-bold text-[#032b2e]">Total per month</div>
+                                <div className="font-display text-4xl sm:text-5xl text-[#01696f] leading-none">₹11,699</div>
+                            </div>
+                            <p className="mt-3 text-sm text-gray-600 text-right">About ₹39 per student per month, everything included.</p>
                         </div>
                     </div>
                 </div>
@@ -1784,9 +1223,9 @@ const Pricing = () => {
                 <div className="mt-14 bg-white rounded-2xl p-6 border border-gray-200 max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
                     <div>
                         <h4 className="font-bold text-gray-900 text-base">Need help choosing the right plan for your institute?</h4>
-                        <p className="text-gray-600 text-xs mt-0.5">Talk to our team for a personalized 15-minute walkthrough of CoachOne.</p>
+                        <p className="text-gray-600 text-xs mt-0.5">Talk to our team for a personalized 20-minute walkthrough of CoachOne.</p>
                     </div>
-                    <Link to="/book-demo" className="bg-[#0F172A] hover:bg-black text-white text-xs font-bold px-5 py-3 rounded-xl whitespace-nowrap transition-colors flex items-center gap-1.5">
+                    <Link to="/book-demo" onClick={() => trackCta('pricing')} className="bg-[#0F172A] hover:bg-black text-white text-xs font-bold px-5 py-3 rounded-xl whitespace-nowrap transition-colors flex items-center gap-1.5">
                         <Calendar className="w-4 h-4" /> Book a Demo
                     </Link>
                 </div>
@@ -1879,28 +1318,22 @@ const FAQ = () => {
 
 // --- EPILOGUE: THE NEXT CHAPTER (FINAL CTA) ---
 const BottomCTA = () => (
-    <section className="bg-gradient-to-br from-[#01696f] via-[#01585d] to-[#014044] py-24 relative overflow-hidden text-white">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-            <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-white/5 rounded-full filter blur-[120px]"></div>
-        </div>
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <div className="text-xs font-bold text-teal-300 uppercase tracking-widest mb-4">
-                The Next Chapter for Your Institute
+    <section className="co-sheet text-white py-20 lg:py-28 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-8">
+                <h2 className="font-display text-4xl md:text-6xl leading-[1.05]">
+                    See CoachOne on your own question papers.
+                </h2>
+                <p className="mt-6 text-lg text-teal-50/90 leading-relaxed max-w-2xl">
+                    In 20 minutes we run a real handwritten answer sheet through the evaluation, show the batch report it produces, and quote a price for your student count. Prefer to test first? Ask us for a free pilot with your own batch papers.
+                </p>
             </div>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Ready to write your academy's topper story?
-            </h2>
-            <p className="font-body text-lg md:text-xl text-teal-50 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Join hundreds of coaching institutes across India using CoachOne to eliminate mark leakage, empower faculty, and delight parents.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <Link to="/book-demo" className="w-full sm:w-auto bg-white text-[#01696f] hover:bg-teal-50 px-8 py-4 rounded-xl flex items-center justify-center transition-all shadow-xl hover:-translate-y-0.5 font-bold text-lg">
-                    <Calendar className="w-5 h-5 mr-3 text-[#01696f]" />
-                    Book a 20-Min Personalized Demo
-                </Link>
-                <Link to="/test-management" className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/25 px-8 py-4 rounded-xl flex items-center justify-center transition-all font-bold text-lg">
-                    Explore Test Studio
-                </Link>
+            <div className="lg:col-span-4 lg:text-right">
+                <DemoLink location="final" className={`${BTN_ON_TEAL} text-lg`}>
+                    <Calendar className="w-5 h-5 mr-3" />
+                    Book a 20-minute demo
+                </DemoLink>
+                <p className="mt-4 text-sm text-teal-100/75">We reply within 24 hours.</p>
             </div>
         </div>
     </section>
@@ -1909,15 +1342,11 @@ const BottomCTA = () => (
 export default function CoachOne() {
     const demoRef = useRef(null);
 
-    const scrollToDemo = () => {
-        demoRef.current?.scrollIntoView({ behavior: 'smooth' });
-    };
-
     return (
         <div className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
             <SEO
                 title="CoachOne | All-in-One Software for Coaching Institutes & Academies"
-                description="Complete software for coaching institutes. AI handwritten copy checking with step marks, test paper generator with 50,000+ questions, student mistake analysis, and automated WhatsApp parent report cards."
+                description="Complete software for coaching institutes. AI handwritten copy checking with step marks, test paper generator with a 1 lakh+ verified question bank, student mistake analysis, and automated WhatsApp parent report cards."
                 keywords="coaching institute software, AI copy checking, test paper generator, CBSE step marking software, coaching CRM, parent WhatsApp report cards, coaching ERP India"
                 canonicalUrl="https://solviq.in/coachone"
                 schema={[
@@ -1930,34 +1359,25 @@ export default function CoachOne() {
                 ]}
             />
             <Navbar />
-            <Hero onExploreClick={scrollToDemo} />
-            <SilentBreakdownSection />
-            <WeeklyStorySection />
-            <DashboardDemo demoRef={demoRef} />
-            <FeatureGrid />
-            <TelemetrySpotlight />
-            <GrowthSuiteSection />
-            <section className="py-24 bg-[#f8fafc] border-y border-gray-200">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="text-center max-w-3xl mx-auto mb-14">
-                        <div className="text-xs font-bold text-[#01696f] uppercase tracking-wider mb-3">
-                            Student &amp; Center Sync
-                        </div>
-                        <h2 className="font-display text-4xl md:text-5xl font-bold text-[#0F172A] mb-4 leading-tight">
-                            Try Institute Batch Code
-                        </h2>
-                        <p className="font-body text-base md:text-lg text-gray-600 leading-relaxed">
-                            See how students enter your coaching institute code on their PrepOne app to automatically get tests, practice questions, and study material.
-                        </p>
-                    </div>
-                    <InstituteCodeValidator />
-                </div>
-            </section>
-            <TransformationSection />
-            <ROICalculatorSection />
-            <Pricing />
-            <FAQ />
-            <BottomCTA />
+            <main className="coachone">
+                <Hero />
+                <FactStrip />
+                <ChangeSection />
+                <DashboardDemo demoRef={demoRef} />
+                <WeeklyStorySection />
+                <DemoBand
+                    location="after_tour"
+                    title="Want to see this on your own question papers?"
+                    note="A live walkthrough with your subjects, board and batch size."
+                />
+                <TelemetrySpotlight />
+                <GrowthSuiteSection />
+                <ROICalculatorSection />
+                <Pricing />
+                <FAQ />
+                <BottomCTA />
+            </main>
+            <StickyDemoBar />
             <BackendStatusBadge />
             <Footer />
         </div>

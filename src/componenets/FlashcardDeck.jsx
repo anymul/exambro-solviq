@@ -40,135 +40,119 @@ export default function FlashcardDeck() {
   };
 
   return (
-    <div className="bg-[#F8F9FC] rounded-[2.5rem] p-6 md:p-10 border border-gray-200 shadow-lg text-[#0F172A]">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-6 border-b border-gray-200 mb-8">
+    <div className="sticker bg-white p-6 text-ink md:p-10">
+      <div className="mb-8 flex flex-col items-start justify-between gap-4 border-b-2 border-dashed border-rule pb-6 sm:flex-row sm:items-center">
         <div>
-          <div className="inline-flex items-center space-x-2 bg-amber-50 border border-amber-200 px-3 py-1 rounded-md text-xs font-bold text-[#B45309] mb-2">
-            <RotateCw className="w-3.5 h-3.5" /> <span>Active Recall & Spaced Repetition (SRS)</span>
+          <div className="sticker-sm mb-3 inline-flex -rotate-1 items-center gap-2 bg-coral px-3 py-1 text-xs font-extrabold text-ink">
+            <RotateCw className="h-3.5 w-3.5" /> <span>Active Recall & Spaced Repetition (SRS)</span>
           </div>
-          <h3 className="text-2xl font-bold text-[#0F172A]">Interactive Memory Deck</h3>
+          <h3 className="text-2xl font-extrabold text-ink">Interactive Memory Deck</h3>
         </div>
 
         <div className="flex items-center gap-3">
           <div className="text-right">
-            <p className="text-[10px] uppercase font-bold text-gray-500 tracking-wider">Memory Health</p>
-            <p className="text-base font-bold text-[#5046E5]">{memoryHealth}% Retention</p>
+            <p className="text-[10px] font-extrabold uppercase tracking-wider text-ink/60">Memory Health</p>
+            <p className="text-base font-extrabold text-brand">{memoryHealth}% Retention</p>
           </div>
-          <div className="w-10 h-10 rounded-full border-4 border-[#5046E5] flex items-center justify-center font-bold text-xs bg-white text-[#5046E5]">
+          <div className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink bg-sun text-xs font-extrabold text-ink">
             {currentIndex + 1}/{cards.length || 3}
           </div>
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 items-stretch">
+      <div className="grid items-stretch gap-8 lg:grid-cols-[1.2fr_0.8fr]">
         {/* Flashcard 3D Flip Container */}
         <div
           onClick={() => setIsFlipped(!isFlipped)}
-          className="cursor-pointer min-h-[340px] select-none [perspective:1000px] group"
+          className="group min-h-[340px] cursor-pointer select-none [perspective:1000px]"
         >
           <div
-            className={`relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] ${
+            className={`relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d] ${
               isFlipped ? '[transform:rotateY(180deg)]' : ''
             }`}
           >
             {/* Front Side */}
-            <div className="absolute inset-0 bg-white rounded-3xl p-6 sm:p-8 border-2 border-dashed border-[#C7D2FE] group-hover:border-[#5046E5] transition-colors shadow-md flex flex-col justify-between [backface-visibility:hidden]">
+            <div className="sticker absolute inset-0 flex flex-col justify-between bg-butter p-6 [backface-visibility:hidden] sm:p-8">
               <div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#5046E5]">{currentCard.topic}</span>
-                  <span className="text-xs text-gray-400 font-medium group-hover:text-[#5046E5] transition-colors">Tap to flip ↻</span>
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-widest text-brand">{currentCard.topic}</span>
+                  <span className="text-xs font-bold text-ink/60">Tap to flip ↻</span>
                 </div>
 
                 <div className="py-6 text-center">
-                  <h4 className="text-xl font-bold text-[#0F172A] mb-4">{currentCard.title}</h4>
-                  <div className="p-4 bg-[#F8F9FC] rounded-2xl border border-gray-100 text-base text-indigo-950 inline-block shadow-sm">
+                  <h4 className="mb-4 text-xl font-extrabold text-ink">{currentCard.title}</h4>
+                  <div className="inline-block max-w-full overflow-x-auto rounded-xl border-2 border-ink bg-white p-4 text-base text-ink">
                     <BlockMath math={currentCard.formula} />
                   </div>
-                  <p className="text-xs text-gray-500 mt-4">Tap to reveal memory notes & examiner traps</p>
+                  <p className="mt-4 text-xs text-ink/65">Tap to reveal memory notes & examiner traps</p>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
+              <div className="flex items-center justify-between border-t-2 border-dashed border-ink/30 pt-4 text-xs text-ink/60">
                 <span>SRS Algorithm: SuperMemo-2</span>
-                <span className="text-[#5046E5] font-semibold">Review Interval: {currentCard.nextReviewDays} Days</span>
+                <span className="font-extrabold text-brand">Review Interval: {currentCard.nextReviewDays} Days</span>
               </div>
             </div>
 
             {/* Back Side */}
-            <div className="absolute inset-0 bg-white rounded-3xl p-6 sm:p-8 border-2 border-[#5046E5] shadow-lg flex flex-col justify-between [transform:rotateY(180deg)] [backface-visibility:hidden]">
+            <div className="sticker absolute inset-0 flex flex-col justify-between bg-white p-6 [backface-visibility:hidden] [transform:rotateY(180deg)] sm:p-8">
               <div>
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#5046E5]">Examiner Trap Notes</span>
-                  <span className="text-xs text-gray-400 font-medium group-hover:text-[#5046E5] transition-colors">Tap to flip back ↻</span>
+                <div className="mb-4 flex items-center justify-between">
+                  <span className="text-xs font-extrabold uppercase tracking-widest text-brand">Examiner Trap Notes</span>
+                  <span className="text-xs font-bold text-ink/60">Tap to flip back ↻</span>
                 </div>
 
-                <div className="py-2 space-y-4">
+                <div className="space-y-4 py-2">
                   <div>
-                    <h4 className="text-base font-bold text-[#0F172A] mb-1">Key Revision Synthesis:</h4>
-                    <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">{currentCard.note}</p>
+                    <h4 className="mb-1 text-base font-extrabold text-ink">Key Revision Synthesis:</h4>
+                    <p className="text-xs leading-relaxed text-ink/80 sm:text-sm">{currentCard.note}</p>
                   </div>
-                  <div className="p-3.5 bg-red-50/80 border border-red-200 rounded-xl text-xs text-red-900 leading-relaxed font-medium">
-                    <strong className="text-red-700 block mb-0.5">⚠️ Examiner Deduction Trap:</strong>
+                  <div className="rounded-lg border-2 border-ink bg-blush p-3.5 text-xs font-medium leading-relaxed text-ink">
+                    <strong className="mb-0.5 block text-pen">Examiner Deduction Trap:</strong>
                     {currentCard.trap}
                   </div>
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-gray-100 flex justify-between items-center text-xs text-gray-400">
-                <span className="text-emerald-700 font-semibold">Active Recall Prompt</span>
-                <span className="text-gray-500">Rate difficulty on right panel →</span>
+              <div className="flex items-center justify-between border-t-2 border-dashed border-ink/30 pt-4 text-xs text-ink/60">
+                <span className="font-extrabold text-mint">Active Recall Prompt</span>
+                <span>Rate difficulty on right panel →</span>
               </div>
             </div>
           </div>
         </div>
 
         {/* Rating & SRS Controls */}
-        <div className="bg-[#0F172A] text-white rounded-3xl p-6 md:p-8 flex flex-col justify-between shadow-xl">
+        <div className="sticker flex flex-col justify-between bg-brand p-6 text-white md:p-8">
           <div>
-            <span className="text-xs uppercase tracking-widest text-gray-400 font-bold">Spaced Recall Rating</span>
-            <h4 className="text-lg font-bold text-white mt-1 mb-3">How well did you remember this?</h4>
-            <p className="text-xs text-gray-300 leading-relaxed mb-6">
+            <span className="text-xs font-extrabold uppercase tracking-widest text-white/75">Spaced Recall Rating</span>
+            <h4 className="mb-3 mt-1 text-lg font-extrabold text-white">How well did you remember this?</h4>
+            <p className="mb-6 text-xs leading-relaxed text-white/90">
               Rating your recall recalibrates your next review date using spaced repetition, preventing the Ebbinghaus forgetting curve.
             </p>
 
-            <div className="grid grid-cols-2 gap-2.5 mb-6">
-              <button
-                onClick={() => handleRate('1 Day', -10, 'Again')}
-                className="p-3 bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 rounded-xl text-left transition-colors"
-              >
-                <p className="text-xs font-bold text-red-300">Again</p>
-                <p className="text-[10px] text-gray-400">Review in 1d</p>
-              </button>
-
-              <button
-                onClick={() => handleRate('3 Days', -2, 'Hard')}
-                className="p-3 bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/40 rounded-xl text-left transition-colors"
-              >
-                <p className="text-xs font-bold text-amber-300">Hard</p>
-                <p className="text-[10px] text-gray-400">Review in 3d</p>
-              </button>
-
-              <button
-                onClick={() => handleRate('6 Days', 6, 'Good')}
-                className="p-3 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/40 rounded-xl text-left transition-colors"
-              >
-                <p className="text-xs font-bold text-blue-300">Good</p>
-                <p className="text-[10px] text-gray-400">Review in 6d</p>
-              </button>
-
-              <button
-                onClick={() => handleRate('14 Days', 12, 'Easy')}
-                className="p-3 bg-green-500/20 hover:bg-green-500/30 border border-green-500/40 rounded-xl text-left transition-colors"
-              >
-                <p className="text-xs font-bold text-green-300">Easy</p>
-                <p className="text-[10px] text-gray-400">Review in 14d</p>
-              </button>
+            <div className="mb-6 grid grid-cols-2 gap-2.5">
+              {[
+                ['1 Day', -10, 'Again', 'Review in 1d', 'bg-coral'],
+                ['3 Days', -2, 'Hard', 'Review in 3d', 'bg-sun'],
+                ['6 Days', 6, 'Good', 'Review in 6d', 'bg-sky'],
+                ['14 Days', 12, 'Easy', 'Review in 14d', 'bg-aqua']
+              ].map(([interval, delta, label, hint, bg]) => (
+                <button
+                  key={label}
+                  onClick={() => handleRate(interval, delta, label)}
+                  className={`sticker-sm cursor-pointer p-3 text-left text-ink transition-[translate] hover:-translate-x-px hover:-translate-y-px focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${bg}`}
+                >
+                  <p className="text-xs font-extrabold">{label}</p>
+                  <p className="text-[10px] font-medium text-ink/70">{hint}</p>
+                </button>
+              ))}
             </div>
           </div>
 
           {recentRating && (
-            <div className="p-3 bg-white/5 border border-white/10 rounded-xl text-xs text-green-400 font-semibold text-center flex items-center justify-center gap-1.5">
-              <Check className="w-3.5 h-3.5" /> {recentRating}
+            <div className="flex items-center justify-center gap-1.5 rounded-lg border-2 border-white/40 bg-white/10 p-3 text-center text-xs font-extrabold text-white">
+              <Check className="h-3.5 w-3.5 text-sun" /> {recentRating}
             </div>
           )}
         </div>

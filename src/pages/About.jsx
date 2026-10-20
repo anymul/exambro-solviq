@@ -1,279 +1,436 @@
-import { useState, useEffect, useRef } from 'react';
-import { Target, BrainCircuit, Rocket, MapPin, Users, Lightbulb, Code } from 'lucide-react';
+import { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Target, BrainCircuit, Rocket, MapPin, Users, Lightbulb, ArrowRight, BookOpen, GraduationCap } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
-import Footer from '../componenets/Footer'; 
-import founder from '../assets/founder.png'; 
+import Footer from '../componenets/Footer';
+import anmol from '../assets/anmol.webp';
+import abhinav from '../assets/abhinav.webp';
 import growth from '../assets/growth.png';
 import SEO from '../componenets/SEO';
+import { DownloadLink } from '../componenets/prepone/ui';
+import { DemoLink } from '../componenets/coachone/ui';
+import { BTN_ON_TEAL, BTN_GHOST_ON_TEAL } from '../componenets/coachone/tokens';
 import { SOLVIQ_ORGANIZATION_SCHEMA, buildBreadcrumbSchema } from '../componenets/Schema';
 
-// --- CUSTOM HOOKS ---
-const Reveal = ({ children, delay = 0, className = "", threshold = 0.1 }) => {
-  const ref = useRef(null);
-  const [isVisible, setIsVisible] = useState(false);
-
+// Scroll-scrubbed choreography (GSAP ScrollTrigger), used only where it adds impact: key text coming from faded to
+// full as you read it, the learning loop building step by step, and the timeline drawing itself. Opacity is the only
+// thing that moves, apart from the two drawn lines. Every tween's progress is bound to the scroll position,
+// so scrolling back rewinds it. It runs in the browser after hydration and never with reduced motion,
+// so the server-rendered page stays fully visible without it.
+function useScrollChoreography(rootRef) {
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold, rootMargin: "0px 0px -50px 0px" }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [threshold]);
+    const root = rootRef.current;
+    if (!root) return undefined;
 
-  return (
-    <div
-      ref={ref}
-      className={`transition-all duration-1000 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'} ${className}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      {children}
+    let cancelled = false;
+    let teardown = null;
+
+    Promise.all([import('gsap'), import('gsap/ScrollTrigger')]).then(([{ gsap }, { ScrollTrigger }]) => {
+      if (cancelled) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          motion: '(prefers-reduced-motion: no-preference)',
+          desk: '(min-width: 1024px) and (min-height: 760px) and (prefers-reduced-motion: no-preference)'
+        },
+        (context) => {
+          const { motion, desk } = context.conditions;
+          if (!motion) return undefined;
+
+          const $ = (name) => [...root.querySelectorAll(`[data-scrub="${name}"]`)];
+          const restores = [];
+
+          // High-impact text: each word comes from faded to full as the scroll passes it. Words are split in the
+          // browser only, so the server-rendered text stays whole, and the original nodes are put back on cleanup.
+          $('words').forEach((el) => {
+            const original = [...el.childNodes];
+            const words = el.textContent.trim().split(/\s+/);
+            el.textContent = '';
+            const spans = words.map((word, i) => {
+              const span = document.createElement('span');
+              span.textContent = word;
+              el.appendChild(span);
+              if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+              return span;
+            });
+            restores.push(() => {
+              el.textContent = '';
+              original.forEach((node) => el.appendChild(node));
+            });
+            gsap.fromTo(
+              spans,
+              { opacity: 0.16 },
+              { opacity: 1, ease: 'none', duration: 0.2, stagger: { each: 0.06 }, scrollTrigger: { trigger: el, start: 'top 88%', end: 'bottom 50%', scrub: true } }
+            );
+          });
+
+          // Faded to full for a single block, nothing else moves.
+          const fade = (el, start = 'top 90%', end = 'top 62%') =>
+            gsap.fromTo(el, { opacity: 0.15 }, { opacity: 1, ease: 'none', scrollTrigger: { trigger: el, start, end, scrub: true } });
+
+          // The learning loop: pinned on desktop, the five steps come up one by one and the red pen circles step three.
+          const loop = $('loop')[0];
+          const cards = $('loop-card');
+          const pen = $('loop-pen')[0];
+          const line = $('loop-line')[0];
+          const note = $('loop-note')[0];
+          if (loop && cards.length) {
+            if (desk) {
+              const tl = gsap.timeline({
+                defaults: { ease: 'none' },
+                scrollTrigger: { trigger: loop, start: 'top top', end: '+=150%', pin: true, scrub: 0.6, anticipatePin: 1 }
+              });
+              tl.fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.82 }, 0.04);
+              cards.forEach((card, i) => {
+                tl.fromTo(card, { opacity: 0.12 }, { opacity: 1, duration: 0.1 }, 0.04 + i * 0.155);
+              });
+              tl.fromTo(pen, { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.12 }, 0.4);
+              tl.fromTo(note, { opacity: 0.12 }, { opacity: 1, duration: 0.1 }, 0.84);
+              tl.to({}, { duration: 0.06 }, 0.94);
+            } else {
+              cards.forEach((card) => fade(card));
+              gsap.fromTo(pen, { strokeDashoffset: 1 }, { strokeDashoffset: 0, ease: 'none', scrollTrigger: { trigger: pen.closest('li'), start: 'top 70%', end: 'top 40%', scrub: 0.5 } });
+              fade(note);
+            }
+          }
+
+          // Timeline: the line draws down the page and each milestone comes from faded to full as it is reached.
+          const roadLine = $('road-line')[0];
+          const road = $('road')[0];
+          if (roadLine && road) {
+            gsap.fromTo(roadLine, { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: road, start: 'top 70%', end: 'bottom 65%', scrub: true } });
+          }
+          $('road-item').forEach((el) => fade(el, 'top 90%', 'top 65%'));
+          $('road-node').forEach((el) => fade(el, 'top 90%', 'top 70%'));
+
+          return () => restores.forEach((restore) => restore());
+        },
+        root
+      );
+
+      const refresh = () => ScrollTrigger.refresh();
+      window.addEventListener('load', refresh);
+      if (document.fonts?.ready) document.fonts.ready.then(refresh);
+
+      teardown = () => {
+        window.removeEventListener('load', refresh);
+        mm.revert();
+      };
+    });
+
+    return () => {
+      cancelled = true;
+      if (teardown) teardown();
+    };
+  }, [rootRef]);
+}
+
+const Hero = () => (
+  <section className="co-sheet text-white overflow-hidden pt-28 pb-20 lg:pt-40 lg:pb-28">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <p className="co-note text-xl text-[#ffd84d] mb-3 inline-block co-fade">About SolvIQ</p>
+      <h1 className="font-display text-5xl md:text-7xl leading-[1.04] co-fade" style={{ '--d': '100ms' }}>
+        Students work hard. Almost no one tells them what to fix.
+      </h1>
+      <p className="font-body text-lg md:text-xl text-teal-50/90 mt-8 max-w-2xl leading-relaxed co-fade" style={{ '--d': '250ms' }}>
+        SolvIQ builds PrepOne for students and CoachOne for coaching institutes. Both close the loop between practice and feedback, the part of learning that classrooms rarely have time for.
+      </p>
     </div>
-  );
-};
+  </section>
+);
 
-// --- COMPONENTS ---
+const Story = () => (
+  <section className="bg-white py-20 lg:py-28">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div className="lg:col-span-6">
+          <figure>
+            <div className="overflow-hidden rounded-xl border border-[#053f43]/15 shadow-xl shadow-[#032b2e]/20 aspect-[4/3]">
+              <img
+                src={growth}
+                alt="Illustration of a student reading beside a growth arrow rising across the map of India"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <figcaption className="mt-4 flex items-center gap-2 text-sm font-bold text-[#032b2e]">
+              <MapPin className="w-4 h-4 text-[#01696f]" /> Started in Bihar. Built for India.
+            </figcaption>
+          </figure>
+        </div>
 
-const Hero = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoaded(true), 50);
-    return () => clearTimeout(timer);
-  }, []);
-
-  return (
-    <section className="relative bg-[#111210] pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        {/* Subtle grid background */}
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDM5LjVoNDBWMHptMzkuNSAwVjBoLjV2NDB6IiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIi8+PC9zdmc+')]"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#4F46E5] rounded-full mix-blend-multiply filter blur-[150px] opacity-20 animate-pulse"></div>
-      </div>
-      
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div className={`transition-all duration-1000 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          <div className="inline-flex items-center space-x-2 bg-white/5 border border-white/10 rounded-full px-4 py-1.5 mb-8 backdrop-blur-sm">
-            <span className="font-body text-sm text-gray-300 tracking-wide uppercase font-bold">Our Story</span>
+        <div className="lg:col-span-6">
+          <h2 data-scrub="words" className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] mb-6">
+            It started with students who did everything right.
+          </h2>
+          <div className="space-y-5 text-gray-600 text-base md:text-lg leading-relaxed">
+            <p>
+              We are two friends from Bihar who met at IIT Gandhinagar. Around us we kept seeing students who attended school, went to coaching, took extra tuition, and still came out of exams with marks that did not match their effort.
+            </p>
+            <p>
+              They were not short of teaching. What they lacked was a learning loop: practise, find out exactly what went wrong, fix it, and try again. A coaching class of a hundred cannot give each student that kind of one-to-one attention, however good the teacher is.
+            </p>
+            <p>
+              So we started SolvIQ to build it: tools that check a student's actual work, explain where the marks went, and say what to practise next. We began in Bihar, and we are building for all of India.
+            </p>
           </div>
         </div>
-        
-        <h1 className={`font-display text-5xl md:text-7xl text-white font-bold leading-tight mb-8 transition-all duration-1000 delay-150 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          We don't just teach.
-          <br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#818CF8] to-[#FCD34D]">We engineer outcomes.</span>
-        </h1>
-        
-        <p className={`font-body text-lg md:text-xl text-gray-400 mb-10 leading-relaxed transition-all duration-1000 delay-300 transform ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          SolvIQ India Pvt Ltd is an educational technology company building the intelligence layer for student evaluation and institute management. 
-        </p>
-      </div>
-    </section>
-  );
-};
-
-const TheOrigin = () => (
-  <section className="bg-white py-24 border-b border-gray-100">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-16 items-center">
-        
-        <Reveal>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-tr from-[#EEF2FF] to-[#f7f6f2] rounded-[3rem] transform -rotate-3 z-0"></div>
-            <img 
-              src={growth} 
-              alt="SolvIQ Journey and Growth from IIT Gandhinagar" 
-              className="relative z-10 rounded-[2rem] shadow-xl border border-gray-100 object-cover aspect-[4/3]"
-            />
-            {/* Location Tag */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 z-20 flex items-center space-x-3">
-              <div className="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center">
-                <MapPin className="w-5 h-5 text-[#4F46E5]" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 font-bold uppercase">Born in</p>
-                <p className="font-display font-bold text-[#0F172A]">IIT Gandhinagar</p>
-              </div>
-            </div>
-          </div>
-        </Reveal>
-
-        <Reveal delay={200}>
-          <div>
-            <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-6">From Siwan to the entire nation.</h2>
-            <div className="space-y-6 text-gray-600 font-body text-lg leading-relaxed">
-              <p>
-                The seed for SolvIQ was planted by observing a stark reality in Siwan, Bihar: students possessed immense drive and worked incredibly hard, but lacked the precise, data-driven feedback needed to convert that hard work into top-tier results. Preparation felt like a gamble.
-              </p>
-              <p>
-                Founded from the dorms of IIT Gandhinagar, SolvIQ was built on an engineering mindset. We realized that if we could analyze subjective answers the way an examiner does, we could pinpoint the exact micro-concepts costing students their marks. 
-              </p>
-              <p>
-                Today, what started as a solution for the Bihar Board is evolving rapidly. We are actively stepping into the CBSE ecosystem, expanding our AI models to serve millions of students and thousands of coaching institutes across the country.
-              </p>
-            </div>
-          </div>
-        </Reveal>
-
       </div>
     </div>
   </section>
 );
 
-const CoreValues = () => {
-  const values = [
-    {
-      icon: <BrainCircuit className="w-6 h-6 text-[#4F46E5]" />,
-      title: "AI as a tool, not a crutch.",
-      desc: "We don't use AI to write answers for students. We use it to evaluate them, providing the rigorous, personalized feedback that human teachers want to give but lack the time for."
-    },
-    {
-      icon: <Target className="w-6 h-6 text-[#F59E0B]" />,
-      title: "Precision over volume.",
-      desc: "Solving 1,000 random questions is inefficient. We focus on identifying the 50 specific questions a student needs to solve to fix their unique conceptual gaps."
-    },
-    {
-      icon: <Users className="w-6 h-6 text-[#01696f]" />,
-      title: "Empowering the ecosystem.",
-      desc: "We don't bypass teachers. CoachOne equips coaching institutes with the infrastructure they need to scale their quality of education seamlessly."
-    }
-  ];
+const LOOP = [
+  ['Learn', 'Study the concept, from a teacher, a book or a video.'],
+  ['Practise', 'Apply it straight away on real exam-style questions.'],
+  ['Make mistakes', 'Find the exact points where the answer goes wrong.', true],
+  ['Understand and retry', 'Read the feedback, fix the gap and attempt it again.'],
+  ['Test and track', 'Sit a full test and watch the score move over time.']
+];
 
-  return (
-    <section className="bg-[#f7f6f2] py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="text-center mb-16">
-          <h2 className="font-display text-4xl font-bold text-[#0F172A] mb-4">Our Core Philosophy</h2>
-          <p className="font-body text-xl text-gray-600 max-w-2xl mx-auto">The principles that dictate how we write our code and build our products.</p>
-        </Reveal>
+const TheLoop = () => (
+  <section data-scrub="loop" className="bg-[#eef6f5] py-20 lg:py-0 lg:min-h-[100svh] lg:flex lg:items-center">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <h2 data-scrub="words" className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] max-w-3xl">
+        Studying is not the same as being exam-ready
+      </h2>
+      <p data-scrub="words" className="mt-5 text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
+        Hours of videos and textbooks can create a false sense of security. To prepare properly, a student needs to know what they can solve, where they are weak, why they keep getting a concept wrong, and what to practise next. Today the middle of this loop is missing.
+      </p>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {values.map((val, i) => (
-            <Reveal key={i} delay={i * 150}>
-              <div className="bg-white p-8 rounded-[2rem] shadow-sm border border-gray-100 h-full hover:shadow-lg transition-shadow">
-                <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center mb-6">
-                  {val.icon}
-                </div>
-                <h3 className="font-display text-xl font-bold text-[#0F172A] mb-3">{val.title}</h3>
-                <p className="font-body text-gray-600 leading-relaxed">{val.desc}</p>
-              </div>
-            </Reveal>
-          ))}
+      <div data-scrub="loop-line" className="hidden lg:block mt-12 h-1 rounded-full bg-[#01696f] origin-left" aria-hidden="true"></div>
+      <ol className="mt-5 lg:mt-5 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        {LOOP.map(([title, text, key], i) => (
+          <li
+            key={title}
+            data-scrub="loop-card"
+            className={`rounded-2xl p-6 bg-white ${key ? 'border-2 border-[#d8432f]' : 'border border-[#cfe3e1]'}`}
+          >
+            <span className={`w-9 h-9 rounded-full font-bold flex items-center justify-center mb-4 text-white ${key ? 'bg-[#d8432f]' : 'bg-[#01696f]'}`}>
+              {i + 1}
+            </span>
+            <h3 className={`font-bold text-lg mb-2 ${key ? 'text-[#d8432f]' : 'text-[#032b2e]'}`}>
+              {key ? (
+                <span className="relative inline-block px-1">
+                  {title}
+                  <svg className="absolute -inset-x-2 -inset-y-1.5 h-[calc(100%+12px)] w-[calc(100%+16px)] pointer-events-none" viewBox="0 0 120 40" preserveAspectRatio="none" aria-hidden="true">
+                    <ellipse data-scrub="loop-pen" cx="60" cy="20" rx="57" ry="17" fill="none" stroke="#d8432f" strokeWidth="2.5" strokeLinecap="round" pathLength="1" strokeDasharray="1" strokeDashoffset="0" />
+                  </svg>
+                </span>
+              ) : title}
+            </h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{text}</p>
+          </li>
+        ))}
+      </ol>
+      <p data-scrub="loop-note" className="mt-8 text-sm md:text-base text-[#032b2e] font-semibold">
+        PrepOne and CoachOne exist to make steps three and four happen for every student, not only the ones a teacher has time for.
+      </p>
+    </div>
+  </section>
+);
+
+const Products = () => (
+  <section className="bg-white py-20 lg:py-28 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] max-w-3xl">Two products, one loop</h2>
+
+      <div className="mt-12 grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="rounded-2xl bg-[#5046E5] text-white p-8 sm:p-10 flex flex-col">
+          <p className="text-sm font-bold text-white/80">For students</p>
+          <h3 className="font-display text-3xl mt-1">PrepOne</h3>
+          <p className="mt-4 text-white/90 leading-relaxed flex-grow">
+            Write a board answer on paper and click a photo. PrepOne reads it, gives step marks against the board scheme, and picks the next topics to practise from where you lost marks.
+          </p>
+          <Link to="/prepone" className="mt-8 inline-flex items-center font-bold underline decoration-[#ffd84d] decoration-2 underline-offset-4 hover:text-[#ffd84d]">
+            See PrepOne <ArrowRight className="w-4 h-4 ml-1.5" />
+          </Link>
+        </div>
+        <div className="rounded-2xl bg-[#01696f] text-white p-8 sm:p-10 flex flex-col">
+          <p className="text-sm font-bold text-teal-50/80">For coaching institutes</p>
+          <h3 className="font-display text-3xl mt-1">CoachOne</h3>
+          <p className="mt-4 text-teal-50/90 leading-relaxed flex-grow">
+            Gives teachers what one-to-one care needs but a full batch makes impossible: handwritten copies checked step by step, mistake patterns for each batch, and a WhatsApp report for every parent.
+          </p>
+          <Link to="/coachone" className="mt-8 inline-flex items-center font-bold underline decoration-[#ffd84d] decoration-2 underline-offset-4 hover:text-[#ffd84d]">
+            See CoachOne <ArrowRight className="w-4 h-4 ml-1.5" />
+          </Link>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
+
+const BELIEFS = [
+  {
+    icon: BrainCircuit,
+    title: 'AI checks work. It does not write it.',
+    desc: 'We use AI to evaluate what a student has written, and give the detailed feedback teachers want to give but cannot find the hours for. We do not use it to hand students answers.'
+  },
+  {
+    icon: Target,
+    title: 'Precision over volume.',
+    desc: "Solving a thousand random questions is slow. We aim to find the few that fix a particular student's particular gap."
+  },
+  {
+    icon: Users,
+    title: 'Teachers stay in charge.',
+    desc: 'CoachOne supports teachers, it does not replace them. Every mark can be reviewed and changed before it reaches a student or parent.'
+  }
+];
+
+const Beliefs = () => (
+  <section className="bg-[#eef6f5] py-20 lg:py-28 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] max-w-3xl">What we hold ourselves to</h2>
+
+      <ul className="mt-12 grid md:grid-cols-3 gap-x-8 gap-y-10">
+        {BELIEFS.map(({ icon: Icon, title, desc }) => (
+          <li key={title}>
+            <span className="w-10 h-10 rounded-lg bg-white text-[#01696f] flex items-center justify-center mb-4 border border-[#cfe3e1]">
+              <Icon className="w-5 h-5" />
+            </span>
+            <h3 className="font-bold text-lg text-[#032b2e] mb-2">{title}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+);
+
+const FOUNDERS = [
+  {
+    name: 'Anmol Kumar',
+    role: 'Co-founder & CEO',
+    photo: anmol,
+    alt: 'Anmol Kumar, co-founder and CEO of SolvIQ',
+    bio: [
+      'Anmol is an IIT Gandhinagar alumnus in Mechanical Engineering who saw first-hand the gap between raw effort and measurable results in the Indian education system.',
+      'With a background in full-stack development and AI engineering, Anmol leads the product and the technology behind SolvIQ: evaluation that is instant, fair and tells a student what to do next.'
+    ],
+    link: 'https://www.linkedin.com/in/anmolkumariitgn/'
+  },
+  {
+    name: 'Abhinav Kumar',
+    role: 'Co-founder, Operations',
+    photo: abhinav,
+    alt: 'Abhinav Kumar, co-founder of SolvIQ',
+    bio: [
+      'Abhinav is an IIT Gandhinagar alumnus in Chemical Engineering. The problem that pulled Abhinav in is the root of it: students who never get a chance to fix their fundamentals, and so keep losing marks on things they should already know.',
+      'Abhinav loves solving that kind of problem with technology, and runs operations at SolvIQ, from working with institutes to making sure what we build works for the students and teachers who use it.'
+    ]
+  }
+];
 
 const FounderSection = () => (
-  <section className="bg-white py-24 border-t border-gray-100">
+  <section className="bg-white py-20 lg:py-28 overflow-hidden">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Reveal className="bg-[#0F172A] rounded-[3rem] overflow-hidden shadow-2xl flex flex-col md:flex-row">
-        
-        <div className="md:w-5/12 bg-gray-800 relative min-h-[450px] md:min-h-full">
-          {/* Placeholder for founder image */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent z-10 md:hidden"></div>
-          <img 
-            src={founder} 
-            alt="Founder" 
-            className="absolute inset-0 w-full h-full object-cover opacity-80"
-          />
-        </div>
-        
-        <div className="md:w-7/12 p-10 md:p-16 flex flex-col justify-center relative z-20 bg-[#0F172A]">
-          <div className="inline-flex items-center space-x-2 bg-white/10 border border-white/10 rounded-full px-3 py-1 mb-6 w-max">
-            <Code className="w-4 h-4 text-indigo-400" />
-            <span className="font-body text-xs text-gray-300 font-bold uppercase tracking-wider">Leadership</span>
-          </div>
-          
-          <h3 className="font-display text-3xl md:text-4xl font-bold text-white mb-2">Anmol Kumar</h3>
-          <p className="text-indigo-400 font-bold font-body mb-6">Founder & CEO</p>
-          
-          <div className="space-y-4 text-gray-400 font-body leading-relaxed mb-8">
-            <p>
-              As a Mechanical Engineering student at IIT Gandhinagar, Anmol experienced firsthand the gap between raw effort and measurable outcomes in the Indian education system. 
-            </p>
-            <p>
-              Combining his technical background in full-stack development and AI engineering, he founded SolvIQ to build the robust infrastructure needed to make subjective evaluation instant, accurate, and actionable.
-            </p>
-          </div>
+      <h2 className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] max-w-3xl">The people behind SolvIQ</h2>
+      <p className="mt-5 text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
+        Two IIT Gandhinagar alumni from Bihar, who met on campus and kept coming back to the same problem.
+      </p>
 
-          <div className="flex space-x-4">
-             <a href="https://www.linkedin.com/in/anmolkumariitgn/" className="text-white hover:text-indigo-400 transition-colors text-sm font-bold flex items-center">LinkedIn Profile &rarr;</a>
-          </div>
-        </div>
-
-      </Reveal>
+      <div className="mt-12 divide-y-2 divide-dashed divide-[#cfe3e1]">
+        {FOUNDERS.map((f) => (
+          <article key={f.name} className="py-10 first:pt-0 last:pb-0 grid sm:grid-cols-[10rem_1fr] gap-6 sm:gap-10 items-start">
+            <img
+              src={f.photo}
+              alt={f.alt}
+              loading="lazy"
+              className="w-32 sm:w-full aspect-[4/5] object-cover object-[center_15%] rounded-xl border border-[#053f43]/15 shadow-lg shadow-[#032b2e]/15"
+            />
+            <div>
+              <h3 className="font-display text-3xl text-[#032b2e] leading-tight">{f.name}</h3>
+              <p className="text-[#01696f] font-bold mt-1 mb-4">{f.role}</p>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                {f.bio.map((para) => <p key={para}>{para}</p>)}
+              </div>
+              {f.link && (
+                <a href={f.link} className="mt-5 inline-flex items-center text-sm font-bold text-[#01696f] hover:text-[#015257]">
+                  LinkedIn profile <ArrowRight className="w-4 h-4 ml-1.5" />
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 );
 
+const MILESTONES = [
+  { date: 'Aug 2025', icon: Lightbulb, title: 'The idea', text: 'Two friends from Bihar start working on the missing learning loop: practice, feedback and a clear next step for every student.' },
+  { date: 'Jan 2026', icon: Rocket, title: 'PrepOne launches', text: 'The student app goes live on Android, with handwritten answers marked step by step.' },
+  { date: 'Apr 2026', icon: BookOpen, title: 'Bihar Board coverage', text: 'Questions, marking schemes and practice for the BSEB syllabus.' },
+  { date: 'Aug 2026', icon: GraduationCap, title: 'Full CBSE coverage', text: 'Every major CBSE subject, with the same step-wise marking.' },
+  { date: 'Nov 2026', icon: Users, title: 'CoachOne launch', text: 'Copy checking, batch insights, fees and parent reports for coaching institutes.' },
+  { date: 'Next', icon: MapPin, title: 'The rest of India', text: 'More boards, more subjects and more states, taking the same loop from Bihar to every Tier-2 and Tier-3 town.', next: true }
+];
+
 const Roadmap = () => (
-  <section className="bg-[#111210] py-24 relative overflow-hidden">
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <Reveal className="text-center mb-16">
-        <h2 className="font-display text-4xl font-bold text-white mb-4">The Road Ahead</h2>
-        <p className="font-body text-xl text-gray-400">Where we are and where we're going.</p>
-      </Reveal>
+  <section className="bg-[#eef6f5] py-20 lg:py-28 overflow-x-clip">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-12 gap-12 lg:gap-16">
+      <div className="lg:col-span-4">
+        <div className="lg:sticky lg:top-24">
+          <h2 className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e]">From Bihar to the rest of India</h2>
+          <p className="mt-5 text-base md:text-lg text-gray-600 leading-relaxed">
+            One idea, one state at a time. This is how we are taking it from a conversation at IIT Gandhinagar to students across the country.
+          </p>
+        </div>
+      </div>
 
-      <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-white/20 before:to-transparent">
-        
-        {/* Milestone 1 */}
-        <Reveal delay={100} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#111210] bg-[#4F46E5] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-             <Rocket className="w-4 h-4" />
-          </div>
-          <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="font-display font-bold text-white text-xl">PrepOne Launch</h4>
-              <span className="text-xs font-bold text-indigo-400 bg-indigo-400/10 px-2 py-1 rounded">Live</span>
+      <ol data-scrub="road" className="lg:col-span-8 relative">
+        <div className="absolute left-[19px] top-2 bottom-2 w-0.5 bg-[#01696f]/15" aria-hidden="true"></div>
+        <div data-scrub="road-line" className="absolute left-[19px] top-2 bottom-2 w-0.5 bg-[#01696f] origin-top" aria-hidden="true"></div>
+        {MILESTONES.map(({ date, icon: Icon, title, text, next }) => (
+          <li key={title} className="relative pl-14 pb-10 last:pb-0">
+            <span
+              data-scrub="road-node"
+              className={`absolute left-0 top-0 w-10 h-10 rounded-full flex items-center justify-center ring-4 ring-[#eef6f5] ${next ? 'bg-[#ffd84d] text-[#032b2e]' : 'bg-[#01696f] text-white'}`}
+            >
+              <Icon className="w-4 h-4" />
+            </span>
+            <div data-scrub="road-item" className={`rounded-2xl bg-white p-6 ${next ? 'border-2 border-dashed border-[#01696f]/50' : 'border border-[#cfe3e1]'}`}>
+              <p className="co-note text-xl text-[#01696f] mb-2 inline-block">{date}</p>
+              <h3 className="font-bold text-lg text-[#032b2e] mb-1.5">{title}</h3>
+              <p className="text-sm md:text-base text-gray-600 leading-relaxed">{text}</p>
             </div>
-            <p className="text-gray-400 text-sm">Deploying our subjective AI evaluation engine for the Bihar Board, allowing students to check their handwritten answers instantly.</p>
-          </div>
-        </Reveal>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+);
 
-        {/* Milestone 2 */}
-        <Reveal delay={300} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#111210] bg-[#01696f] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-             <Users className="w-4 h-4" />
-          </div>
-          <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm">
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="font-display font-bold text-white text-xl">CoachOne Release</h4>
-              <span className="text-xs font-bold text-teal-400 bg-teal-400/10 px-2 py-1 rounded">Live</span>
-            </div>
-            <p className="text-gray-400 text-sm">Providing B2B infrastructure for coaching institutes to manage batch analytics and automate mass test checking.</p>
-          </div>
-        </Reveal>
-
-        {/* Milestone 3 */}
-        <Reveal delay={500} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-          <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-[#111210] bg-gray-700 text-gray-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-             <Lightbulb className="w-4 h-4" />
-          </div>
-          <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-white/5 border border-white/10 p-6 rounded-2xl backdrop-blur-sm opacity-60">
-            <div className="flex items-center justify-between mb-2">
-              <h4 className="font-display font-bold text-white text-xl">CBSE Expansion</h4>
-              <span className="text-xs font-bold text-amber-400 bg-amber-400/10 px-2 py-1 rounded">In Progress</span>
-            </div>
-            <p className="text-gray-400 text-sm">Scaling our data sets and NLP models to fully support the CBSE curriculum across all major subjects.</p>
-          </div>
-        </Reveal>
-
+const Closing = () => (
+  <section className="co-sheet text-white py-20 lg:py-28 overflow-hidden">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-12 gap-10 items-center">
+      <div className="lg:col-span-7">
+        <h2 data-scrub="words" className="font-display text-4xl md:text-6xl leading-[1.05]">Every student deserves to know where they stand.</h2>
+        <p data-scrub="words" className="mt-6 text-lg text-teal-50/90 leading-relaxed max-w-2xl">
+          Whether you are preparing for boards or running a coaching institute, we would like to help you close the loop.
+        </p>
+      </div>
+      <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col gap-3 lg:items-end">
+        <DownloadLink placement="about" className={BTN_ON_TEAL}>I am a student: get PrepOne</DownloadLink>
+        <DemoLink location="about" className={BTN_GHOST_ON_TEAL}>I run an institute: book a demo</DemoLink>
       </div>
     </div>
   </section>
 );
 
 export default function About() {
+  const rootRef = useRef(null);
+  useScrollChoreography(rootRef);
+
   return (
-    <div className="min-h-screen bg-white font-body selection:bg-[#4F46E5] selection:text-white">
+    <div ref={rootRef} className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
       <SEO
-        title="About SolvIQ India | Transforming Education with AI"
-        description="Learn about SolvIQ's mission to revolutionize educational assessment and analytics through cutting-edge AI technology for CBSE and state board exams."
+        title="About SolvIQ | PrepOne and CoachOne, Learning Feedback for Bihar and India"
+        description="SolvIQ builds PrepOne for students and CoachOne for coaching institutes, closing the practice and feedback loop that large classes cannot give. Started in Bihar, built for India."
         keywords="About SolvIQ, SolvIQ India, IIT Gandhinagar EdTech, AI exam prep India, Anmol Kumar SolvIQ"
         canonicalUrl="https://solviq.in/about"
         schema={[
@@ -296,11 +453,16 @@ export default function About() {
         ]}
       />
       <Navbar />
-      <Hero />
-      <TheOrigin />
-      <CoreValues />
-      <FounderSection />
-      <Roadmap />
+      <main className="coachone">
+        <Hero />
+        <Story />
+        <TheLoop />
+        <Products />
+        <Beliefs />
+        <FounderSection />
+        <Roadmap />
+        <Closing />
+      </main>
       <Footer />
     </div>
   );

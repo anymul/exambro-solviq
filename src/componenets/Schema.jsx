@@ -19,13 +19,21 @@ export const SOLVIQ_ORGANIZATION_SCHEMA = {
   },
   "image": "https://solviq.in/social-banner.jpg",
   "description": "SolvIQ builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable for CBSE, Bihar Board students and coaching institutes.",
-  "founder": {
-    "@type": "Person",
-    "name": "Anmol Kumar",
-    "jobTitle": "Founder & CEO",
-    "alumniOf": "IIT Gandhinagar",
-    "sameAs": "https://www.linkedin.com/in/anmolkumariitgn/"
-  },
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Anmol Kumar",
+      "jobTitle": "Co-founder & CEO",
+      "alumniOf": "IIT Gandhinagar",
+      "sameAs": "https://www.linkedin.com/in/anmolkumariitgn/"
+    },
+    {
+      "@type": "Person",
+      "name": "Abhinav Kumar",
+      "jobTitle": "Co-founder, Operations",
+      "alumniOf": "IIT Gandhinagar"
+    }
+  ],
   "foundingLocation": {
     "@type": "Place",
     "name": "IIT Gandhinagar, Gujarat, India"
@@ -159,7 +167,7 @@ export function buildCoachOneSaasSchema() {
     "operatingSystem": "Web (SaaS)",
     "url": "https://solviq.in/coachone",
     "image": "https://solviq.in/social-banner.jpg",
-    "description": "CoachOne is an all-in-one software platform for coaching institutes in India. Integrates student management, AI handwritten copy checking with authentic step-marking, 50k+ question test maker, student mistake diagnostics, and automated WhatsApp parent reports.",
+    "description": "CoachOne is an all-in-one software platform for coaching institutes in India. Integrates student management, AI handwritten copy checking with authentic step-marking, 1 lakh+ verified question test maker (MCQ and subjective), student mistake diagnostics, and automated WhatsApp parent reports.",
     "author": SOLVIQ_ORGANIZATION_SCHEMA,
     "offers": [
       {
