@@ -17,7 +17,8 @@ import RevisionNotes from './pages/Revision.jsx';
 import ArticlePage from './pages/ArticlePage.jsx';
 import TermsOfService from './pages/Terms.jsx';
 import PrivacyPolicy from './pages/Privacy.jsx';
-import DownloadRedirect from './pages/DownloadRedirect.jsx';
+import Workshops from './pages/Workshops.jsx';
+import WorkshopRegister from './pages/WorkshopRegister.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function AppRoutes() {
@@ -48,7 +49,8 @@ export default function AppRoutes() {
       <Route path="/prepone/pyqs" element={<PYQsMarketingPage />} />
       <Route path="/prepone/ai-evaluation-students" element={<AutoScoreAI />} />
       <Route path="/prepone/revision-notes" element={<RevisionNotes />} />
-      <Route path="/prepone/download" element={<DownloadRedirect />} />
+      <Route path="/workshops" element={<Workshops />} />
+      <Route path="/workshops/register" element={<WorkshopRegister />} />
 
       {/* Dynamic Programmatic Articles */}
       <Route path="/study-material/:slug" element={<ArticlePage />} />

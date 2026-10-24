@@ -5,9 +5,35 @@ import { primaryButton } from './tokens';
 // Shared design system for the PrepOne marketing pages (/prepone and /prepone/*):
 // sticker cards, tracked install links, hero and closing-CTA bands, the marked answer sheet and phone frames.
 
-// Every install button goes through the tracked download page so website and ad installs are attributed.
-const DOWNLOAD_PATH = '/prepone/download';
+// Install buttons go straight to Google Play. The referrer carries the utm_* tags, so Play Console attributes website and ad installs.
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.solviq.prepone';
+const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'];
 
+function newClickId() {
+    try {
+        return crypto.randomUUID().replace(/-/g, '').slice(0, 24);
+    } catch {
+        return Math.random().toString(36).slice(2, 14) + Date.now().toString(36);
+    }
+}
+
+const playUrl = (referrer) => `${PLAY_STORE_URL}&referrer=${encodeURIComponent(referrer.toString())}`;
+
+// Beacon to nginx (/t) plus GA. The page unloads on the Play hand-off, so sendBeacon/keepalive is required.
+function trackPlayClick(data) {
+    const url = `/t?${new URLSearchParams({ e: 'site_play_click', v: 'site', ...data })}`;
+    try {
+        const sent = typeof navigator.sendBeacon === 'function' && navigator.sendBeacon(url);
+        if (!sent) fetch(url, { method: 'POST', keepalive: true }).catch(() => {});
+    } catch {
+        // tracking must never block the install link
+    }
+    try {
+        window.gtag?.('event', 'prepone_dl_site_play_click', data);
+    } catch {
+        // gtag may be blocked
+    }
+}
 
 export function DownloadLink({ placement, className = primaryButton, children }) {
     const defaults = new URLSearchParams({
@@ -19,18 +45,22 @@ export function DownloadLink({ placement, className = primaryButton, children })
     // A visitor who arrived from an ad keeps the ad's own campaign tags instead of being relabelled "website".
     const onClick = (e) => {
         const incoming = new URLSearchParams(window.location.search);
-        if (![...incoming].length) return;
-        const merged = new URLSearchParams(defaults);
+        const referrer = new URLSearchParams(defaults);
         if (incoming.has('fbclid') && !incoming.has('utm_source')) {
-            merged.set('utm_source', 'meta');
-            merged.set('utm_medium', 'paid');
+            referrer.set('utm_source', 'meta');
+            referrer.set('utm_medium', 'paid');
         }
-        incoming.forEach((value, key) => merged.set(key, value));
-        e.currentTarget.search = merged.toString();
+        UTM_KEYS.forEach((key) => {
+            if (incoming.get(key)) referrer.set(key, incoming.get(key).slice(0, 100));
+        });
+        const clickId = newClickId();
+        referrer.set('click_id', clickId);
+        e.currentTarget.href = playUrl(referrer);
+        trackPlayClick({ cid: clickId, pos: placement, page: window.location.pathname, camp: referrer.get('utm_campaign') || '' });
     };
 
     return (
-        <a href={`${DOWNLOAD_PATH}?${defaults}`} onClick={onClick} className={className}>
+        <a href={playUrl(defaults)} onClick={onClick} rel="noopener" className={className}>
             {children}
         </a>
     );

@@ -31,7 +31,7 @@ const staticRoutes = [
   '/prepone/pyqs',
   '/prepone/ai-evaluation-students',
   '/prepone/revision-notes',
-  '/prepone/download',
+  '/workshops',
   '/terms-of-service',
   '/privacy-policy'
 ];
@@ -59,6 +59,7 @@ const sitemapRoutes = [
   { url: 'https://solviq.in/prepone/pyqs', priority: '0.8', changefreq: 'weekly' },
   { url: 'https://solviq.in/prepone/ai-evaluation-students', priority: '0.8', changefreq: 'weekly' },
   { url: 'https://solviq.in/prepone/revision-notes', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://solviq.in/workshops', priority: '0.8', changefreq: 'weekly' },
   { url: 'https://solviq.in/terms-of-service', priority: '0.3', changefreq: 'yearly' },
   { url: 'https://solviq.in/privacy-policy', priority: '0.3', changefreq: 'yearly' },
   ...blogs.map(b => ({

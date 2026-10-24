@@ -52,6 +52,7 @@ export default function Footer() {
                 { name: 'Previous year questions', to: '/prepone/pyqs' },
                 { name: 'Board mock tests', to: '/prepone/mock-tests' },
                 { name: 'Revision notes', to: '/prepone/revision-notes' },
+                { name: 'Board Pe Charcha workshops', to: '/workshops' },
                 { name: 'Study material and blog', to: '/blog' }
             ]
         },
@@ -59,7 +60,7 @@ export default function Footer() {
             title: 'Company',
             links: [
                 { name: 'About us', to: '/about' },
-                { name: 'Download the app', to: '/prepone/download' },
+                { name: 'Download the app', to: '/prepone/download', hardLink: true },
                 { name: 'Privacy policy', to: '/privacy-policy' },
                 { name: 'Terms of service', to: '/terms-of-service' }
             ]
@@ -128,7 +129,9 @@ export default function Footer() {
                             <ul>
                                 {col.links.map((link) => (
                                     <li key={link.to}>
-                                        <Link to={link.to} className={linkClass}>{link.name}</Link>
+                                        {link.hardLink
+                                            ? <a href={link.to} className={linkClass}>{link.name}</a>
+                                            : <Link to={link.to} className={linkClass}>{link.name}</Link>}
                                     </li>
                                 ))}
                             </ul>

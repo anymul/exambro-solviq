@@ -12,7 +12,7 @@ const COACHONE_PATHS = ['/coachone', '/test-management', '/ai-evaluation', '/stu
 const DASHBOARD_URL = 'https://coachone.solviq.in';
 
 const detectProduct = (pathname) => {
-    if (pathname.startsWith('/prepone')) return 'prepone';
+    if (pathname.startsWith('/prepone') || pathname.startsWith('/workshops')) return 'prepone';
     if (COACHONE_PATHS.some((path) => pathname.startsWith(path))) return 'coachone';
     return null;
 };
@@ -43,7 +43,8 @@ export default function Navbar({ theme = 'dark' }) {
         { name: 'Mock Tests', path: '/prepone/mock-tests' },
         { name: 'PYQs', path: '/prepone/pyqs' },
         { name: 'AI Evaluation', path: '/prepone/ai-evaluation-students' },
-        { name: 'Revision Notes', path: '/prepone/revision-notes' }
+        { name: 'Revision Notes', path: '/prepone/revision-notes' },
+        { name: 'Board Pe Charcha', path: '/workshops' }
     ];
 
     const instituteLinks = [
