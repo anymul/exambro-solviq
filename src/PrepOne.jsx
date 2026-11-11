@@ -26,11 +26,12 @@ import {
     buildBreadcrumbSchema
 } from './componenets/Schema';
 
-import homescreen from './assets/UI_Home_Feed.png';
-import scannerEvaluationImg from './assets/scanner_evaluation.png';
-import mockTestLibraryImg from './assets/mock_test_library.png';
-import postTestAnalysisImg from './assets/post_test_analysis.png';
-import pyqAnalyticsImg from './assets/pyq_analytics.png';
+import homescreen from './assets/UI_Home_Feed.webp';
+import scannerEvaluationImg from './assets/scanner_evaluation.webp';
+import abhyasImg from './assets/abhyasplus_adaptive_practice.webp';
+import chapterTestsImg from './assets/chapterwise_tests.webp';
+import pyqDisplayImg from './assets/pyq_display.webp';
+import progressTrackImg from './assets/progress_track.webp';
 
 // =========================================================================
 // 1. HERO: a handwritten answer being marked
@@ -90,7 +91,7 @@ const Hero = () => (
                     Step marks, like an examiner
                 </span>
                 <div data-speed="-100" className="absolute -bottom-8 -right-4 hidden w-[150px] rotate-6 overflow-hidden rounded-[1.75rem] border-[5px] border-ink bg-white shadow-[6px_6px_0_0_#16193A] sm:block lg:-right-10 lg:w-[170px]">
-                    <img src={homescreen} alt="PrepOne app home screen" width="1080" height="2400" loading="eager" decoding="async" className="block h-auto w-full" />
+                    <img src={homescreen} alt="PrepOne app home screen" width="600" height="1317" loading="eager" decoding="async" className="block h-auto w-full" />
                 </div>
             </div>
         </div>
@@ -213,7 +214,7 @@ const FEATURES = [
             ['Partial step marking', 'Earn marks for correct formulas and derivation steps even if your final arithmetic has a typo.'],
             ['Presentation and unit checks', 'Get alerts for missing SI units, omitted diagrams, or unclear step transitions.']
         ],
-        visual: <PhoneShot src={scannerEvaluationImg} alt="PrepOne AI handwritten answer scanner and evaluation screen" />
+        visual: <PhoneShot src={scannerEvaluationImg} alt="PrepOne check my answer screen showing a marked handwritten solution and marks by part" />
     },
     {
         id: 'practice',
@@ -227,7 +228,7 @@ const FEATURES = [
             ['Weak topic detection', 'Flags whether you are dropping marks to conceptual gaps, derivation steps, or arithmetic.'],
             ['Calibrated difficulty', 'Starts at your current mastery and levels up to board exam standard.']
         ],
-        visual: <PhoneShot src={homescreen} alt="PrepOne home screen with board exam countdown, exam readiness by subject and chapters due for review" />
+        visual: <PhoneShot src={abhyasImg} alt="PrepOne Abhyas+ adaptive practice screen with focus modes, test language and number of questions" />
     },
     {
         id: 'mocks',
@@ -241,7 +242,7 @@ const FEATURES = [
             ['Latest exam patterns', 'Includes assertion-reasoning, case-based questions, and the 50% objective ratio for Bihar Board.'],
             ['Realistic countdown', 'A running timer teaches you to split time between long derivations and short questions.']
         ],
-        visual: <PhoneShot src={mockTestLibraryImg} alt="PrepOne chapter and full syllabus mock test library" />
+        visual: <PhoneShot src={chapterTestsImg} alt="PrepOne Mathematics chapter-wise tests with question counts and progress" />
     },
     {
         id: 'pyqs',
@@ -255,7 +256,7 @@ const FEATURES = [
             ['Chapter-wise PYQ drill', 'Solve every question that has appeared in your board for each chapter.'],
             ['Model handwritten solutions', 'Study topper-grade step presentation and diagram formatting.']
         ],
-        visual: <PhoneShot src={pyqAnalyticsImg} alt="PrepOne previous year questions with chapter-wise analytics" />
+        visual: <PhoneShot src={pyqDisplayImg} alt="PrepOne previous year question paper viewer showing the Mathematics 2026 board paper" />
     },
     {
         id: 'progress',
@@ -269,7 +270,7 @@ const FEATURES = [
             ['Board Readiness Score', 'One calibrated score that predicts your board percentage from real test performance.'],
             ['Revision reminders', 'Timely prompts to review formulas and reactions before they slip.']
         ],
-        visual: <PhoneShot src={postTestAnalysisImg} alt="PrepOne post-test analysis and progress screen" />
+        visual: <PhoneShot src={progressTrackImg} alt="PrepOne progress screen with XP, streak, class rank and accuracy trend" />
     }
 ];
 
@@ -437,10 +438,10 @@ const FeaturesShowcase = () => {
                                 className={`absolute left-1/2 top-1/2 h-[290px] w-[290px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-ink sm:h-[400px] sm:w-[400px] lg:h-[min(400px,42svh)] lg:w-[min(400px,42svh)] ${f.accent}`}
                             />
                             <div data-f="phone" className="relative z-10 mx-auto w-full max-w-[260px] lg:max-w-[min(260px,24svh)]">{f.visual}</div>
-                            <span data-f="chip" className="sticker-sm absolute left-0 top-12 z-20 -rotate-6 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:left-2">
+                            <span data-f="chip" className="sticker-sm absolute left-0 top-4 z-20 -rotate-6 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:-left-6 sm:top-10">
                                 {f.chips[0]}
                             </span>
-                            <span data-f="chip" className="sticker-sm absolute bottom-12 right-0 z-20 rotate-3 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:right-2">
+                            <span data-f="chip" className="sticker-sm absolute bottom-12 right-0 z-20 rotate-3 bg-white px-3 py-1.5 text-xs font-extrabold text-ink sm:-right-6">
                                 {f.chips[1]}
                             </span>
                         </div>

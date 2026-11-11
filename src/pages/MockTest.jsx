@@ -10,8 +10,8 @@ import { buildBreadcrumbSchema } from '../componenets/Schema';
 import { LatexText } from '../componenets/Latex';
 import { DownloadLink, SectionHeading, PhoneShot, PageHero, CtaBand, Hl } from '../componenets/prepone/ui';
 import { CARD_BG } from '../componenets/prepone/tokens';
-import mockTestLibraryImg from '../assets/mock_test_library.png';
-import postTestAnalysisImg from '../assets/post_test_analysis.png';
+import mockTestLibraryImg from '../assets/mock_test_library.webp';
+import postTestAnalysisImg from '../assets/post_test_analysis.webp';
 
 const PAPER_SECTIONS = [
     ['Section A', '16 MCQs'],
@@ -204,9 +204,9 @@ const PostTestAnalytics = () => (
                 <div className="sticker overflow-hidden bg-white">
                     <img
                         src={postTestAnalysisImg}
-                        alt="PrepOne post-test analysis screen"
-                        width="1080"
-                        height="2400"
+                        alt="PrepOne test report card with score and question-wise review"
+                        width="600"
+                        height="1317"
                         loading="lazy"
                         decoding="async"
                         className="h-44 w-full object-cover object-top"

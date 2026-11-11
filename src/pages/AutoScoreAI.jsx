@@ -6,7 +6,6 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
 import { buildBreadcrumbSchema } from '../componenets/Schema';
-import AutoScorePlayground from '../componenets/AutoScorePlayground';
 import BackendStatusBadge from '../componenets/BackendStatusBadge';
 import { SectionHeading, AnswerSheet, PageHero, CtaBand, Hl } from '../componenets/prepone/ui';
 import { CARD_BG } from '../componenets/prepone/tokens';
@@ -23,20 +22,6 @@ const SheetVisual = () => (
             Partial marks, like an examiner
         </span>
     </div>
-);
-
-const StepMarkingMagic = () => (
-    <section className="bg-lilac py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading title={<>Live <span className="marker">step-marking</span> sandbox</>}>
-                In board exams, a wrong final answer doesn&apos;t mean zero marks. Test our vision AI on real student derivations and see partial credits and Hinglish feedback awarded live.
-            </SectionHeading>
-
-            <div className="mt-12">
-                <AutoScorePlayground />
-            </div>
-        </div>
-    </section>
 );
 
 const FEATURES = [
@@ -154,12 +139,11 @@ export default function AIEvaluationStudentPage() {
                 ]}
                 visual={<SheetVisual />}
             />
-            <StepMarkingMagic />
             <FeaturesGrid />
             <ProofSection />
             <CtaBand
                 title={<>Test the AI <Hl>yourself.</Hl></>}
-                body="Upload an old answer sheet right now and see the magic happen. Your first 3 evaluations are free."
+                body="Upload an old answer sheet in the app and see how it gets marked. Your first 3 evaluations are free."
                 label="Download PrepOne App"
                 icon={Scan}
                 placement="ai_footer"

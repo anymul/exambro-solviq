@@ -1,5 +1,5 @@
 import { Check, PlayCircle } from 'lucide-react';
-import homescreen from '../../assets/UI_Home_Feed.png';
+import homescreen from '../../assets/UI_Home_Feed.webp';
 import { primaryButton } from './tokens';
 
 // Shared design system for the PrepOne marketing pages (/prepone and /prepone/*):
@@ -154,7 +154,7 @@ export const AnswerSheet = () => (
 
 export const PhoneShot = ({ src, alt }) => (
     <div className="mx-auto w-full max-w-[240px] rotate-2 overflow-hidden rounded-[2rem] border-[5px] border-ink bg-white shadow-[7px_7px_0_0_#16193A] sm:max-w-[260px]">
-        <img src={src} alt={alt} width="1080" height="2400" loading="lazy" decoding="async" className="block h-auto w-full" />
+        <img src={src} alt={alt} width="600" height="1317" loading="lazy" decoding="async" className="block h-auto w-full" />
     </div>
 );
 
@@ -242,7 +242,7 @@ export const CtaBand = ({ title, body, placement, label = 'Get PrepOne on Google
                     {...(scrub ? { 'data-scrub': 'rise' } : {})}
                     className="relative mx-auto h-[300px] w-[230px] overflow-hidden rounded-t-[2rem] border-[5px] border-b-0 border-ink bg-white sm:h-[380px] sm:w-[260px] lg:rotate-3"
                 >
-                    <img src={phone} alt="PrepOne app home screen" width="1080" height="2400" loading="lazy" decoding="async" className="block h-auto w-full" />
+                    <img src={phone} alt="PrepOne app home screen" width="600" height="1317" loading="lazy" decoding="async" className="block h-auto w-full" />
                 </div>
             </div>
         </section>

@@ -7,9 +7,9 @@ import {
 import Navbar from './componenets/Navbar';
 import Footer from './componenets/Footer';
 import LetterReveal from './componenets/LetterReveal';
-import prepHomeImg from './assets/home/prepone-home.webp';
-import prepAutoscoreImg from './assets/home/prepone-autoscore.webp';
-import prepReportImg from './assets/home/prepone-report-card.webp';
+import prepHomeImg from './assets/UI_Home_Feed.webp';
+import prepAutoscoreImg from './assets/scanner_evaluation.webp';
+import prepReportImg from './assets/post_test_analysis.webp';
 import coachDashboardImg from './assets/coachone/dashboard-home.webp';
 import ProblemStatement from './componenets/ProblemStatement';
 import SEO from './componenets/SEO';
@@ -238,7 +238,7 @@ const PLAY_DOWNLOAD = '/prepone/download?utm_source=website&utm_medium=home_page
 
 const PhoneShot = ({ src, alt, className = '' }) => (
   <figure className={`rounded-[1.6rem] overflow-hidden bg-white border border-[#1e1b4b]/15 shadow-2xl shadow-indigo-950/25 ${className}`}>
-    <img src={src} alt={alt} width={540} height={1200} loading="lazy" decoding="async" className="block w-full h-auto" />
+    <img src={src} alt={alt} width={600} height={1317} loading="lazy" decoding="async" className="block w-full h-auto" />
   </figure>
 );
 
@@ -282,9 +282,9 @@ const PrepOneRow = () => (
 
       <div className="lg:col-span-7">
         <div className="flex items-end justify-center gap-3 sm:gap-5">
-          <PhoneShot src={prepHomeImg} alt="PrepOne home screen with an exam countdown, chapter progress and the AutoScore AI entry" className="w-[30%] max-w-[210px]" />
-          <PhoneShot src={prepAutoscoreImg} alt="PrepOne AutoScore AI evaluation report with what the AI read and step-by-step marks" className="w-[34%] max-w-[240px] -translate-y-8" />
-          <PhoneShot src={prepReportImg} alt="PrepOne report card for a CBSE Physics full exam with correct, wrong and skipped counts" className="w-[30%] max-w-[210px]" />
+          <PhoneShot src={prepHomeImg} alt="PrepOne home screen with a board exam countdown, readiness by subject and today's mission" className="w-[30%] max-w-[210px]" />
+          <PhoneShot src={prepAutoscoreImg} alt="PrepOne check my answer screen with a marked handwritten solution and marks by part" className="w-[34%] max-w-[240px] -translate-y-8" />
+          <PhoneShot src={prepReportImg} alt="PrepOne report card for a Chemistry full exam with correct, wrong and skipped counts" className="w-[30%] max-w-[210px]" />
         </div>
       </div>
     </div>

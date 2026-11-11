@@ -8,15 +8,14 @@ import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
 import { buildBreadcrumbSchema } from '../componenets/Schema';
 import { InlineMath } from '../componenets/Latex';
-import PYQExplorer from '../componenets/PYQExplorer';
 import BackendStatusBadge from '../componenets/BackendStatusBadge';
 import { SectionHeading, PhoneShot, PageHero, CtaBand, Hl } from '../componenets/prepone/ui';
-import pyqAnalyticsImg from '../assets/pyq_analytics.png';
+import pyqDisplayImg from '../assets/pyq_display.webp';
 
 // Hero artwork: the PYQ analytics screen surrounded by the numbers that matter.
 const PyqVisual = () => (
     <div className="relative py-8">
-        <PhoneShot src={pyqAnalyticsImg} alt="PrepOne PYQ analytics screen" />
+        <PhoneShot src={pyqDisplayImg} alt="PrepOne previous year question paper viewer showing the Mathematics 2026 board paper" />
         <div className="sticker absolute -left-1 top-2 flex h-24 w-24 -rotate-12 flex-col items-center justify-center rounded-full bg-sun text-ink sm:left-2">
             <span className="font-display lining-nums text-3xl font-bold leading-none">10+</span>
             <span className="text-[11px] font-extrabold">years</span>
@@ -217,16 +216,6 @@ export default function PYQsMarketingPage() {
                 visual={<PyqVisual />}
             />
             <TrendAnalysis />
-            <section className="bg-white py-20 lg:py-28">
-                <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-                    <SectionHeading title={<>Interactive <span className="marker">PYQ solver</span></>}>
-                        Browse official board questions by subject and view predicted recurrences alongside marking schemes.
-                    </SectionHeading>
-                    <div className="mt-12">
-                        <PYQExplorer />
-                    </div>
-                </div>
-            </section>
             <PracticeModes />
             <OfficialRubricGrading />
             <CtaBand

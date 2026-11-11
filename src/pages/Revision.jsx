@@ -7,11 +7,10 @@ import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
 import { buildBreadcrumbSchema } from '../componenets/Schema';
-import FlashcardDeck from '../componenets/FlashcardDeck';
 import BackendStatusBadge from '../componenets/BackendStatusBadge';
 import { SectionHeading, PageHero, CtaBand, Hl } from '../componenets/prepone/ui';
 import { CARD_BG } from '../componenets/prepone/tokens';
-import flashcardImg from '../assets/flashcard_ui.png';
+import smartRevisionImg from '../assets/smart_revision.webp';
 
 // Hero artwork: a fanned flashcard stack beside the app's flashcard screen.
 const CardsVisual = () => (
@@ -29,7 +28,7 @@ const CardsVisual = () => (
             <p className="mt-3 text-xs text-ink/65">Tap to reveal memory notes and examiner traps</p>
         </div>
         <div className="absolute -right-1 top-0 hidden w-32 rotate-6 overflow-hidden rounded-[1.75rem] border-[5px] border-ink bg-white shadow-[6px_6px_0_0_#16193A] sm:block lg:-right-2">
-            <img src={flashcardImg} alt="PrepOne flashcard screen" width="1080" height="2400" loading="eager" decoding="async" className="block h-auto w-full" />
+            <img src={smartRevisionImg} alt="PrepOne smart revision screen with chapters due today and the revision schedule" width="600" height="1317" loading="eager" decoding="async" className="block h-auto w-full" />
         </div>
         <span className="sticker-sm absolute bottom-6 right-0 rotate-3 bg-sun px-3 py-1.5 text-sm font-extrabold text-ink">
             Next review in 6 days
@@ -143,19 +142,6 @@ const FeatureGrid = () => (
     </section>
 );
 
-const UIPreview = () => (
-    <section className="bg-butter py-20 lg:py-28">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading title={<>Interactive <span className="marker">spaced repetition</span> deck</>}>
-                Test your active recall on high-yield board formulas, rate your retention, and track live Memory Health % in real time.
-            </SectionHeading>
-            <div className="mt-12">
-                <FlashcardDeck />
-            </div>
-        </div>
-    </section>
-);
-
 export default function RevisionNotesPage() {
     return (
         <div className="min-h-screen bg-white font-body text-ink selection:bg-hilite selection:text-ink">
@@ -187,7 +173,6 @@ export default function RevisionNotesPage() {
             />
             <TheProblem />
             <FeatureGrid />
-            <UIPreview />
             <CtaBand
                 title={<>Master CBSE &amp; BSEB revision with <Hl>PrepOne.</Hl></>}
                 body="Turn mock test mistakes in Physics, Chemistry, and Math into targeted active recall flashcards. Review formula sheets, catch examiner traps, and retain high-yield board concepts."
