@@ -1,5 +1,5 @@
 // src/services/api.js
-// Universal API Client for Solviq (PrepOne & CoachOne) with automatic JWT auth & offline resilience
+// Universal API Client for ENEVOR LABS (PrepOne & CoachOne) with automatic JWT auth & offline resilience
 
 const API_BASE = '/api/v1';
 

@@ -13,9 +13,9 @@ export default function TermsOfService() {
     return (
         <div className="min-h-screen bg-[#F8F9FC] font-body selection:bg-[#4F46E5] selection:text-white">
             <SEO
-                title="Terms of Service | SolvIQ India Pvt. Ltd."
-                description="Read the terms and conditions for using SolvIQ platforms including PrepOne and CoachOne."
-                canonicalUrl="https://solviq.in/terms-of-service"
+                title="Terms of Service | ENEVOR LABS Pvt. Ltd."
+                description="Read the terms and conditions for using ENEVOR LABS platforms including PrepOne and CoachOne."
+                canonicalUrl="https://enevorlabs.com/terms-of-service"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },
@@ -32,7 +32,7 @@ export default function TermsOfService() {
                         <Scale className="w-8 h-8" />
                     </div>
                     <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Terms of Service</h1>
-                    <p className="text-gray-400 text-lg">SolvIQ India Pvt. Ltd.</p>
+                    <p className="text-gray-400 text-lg">ENEVOR LABS Pvt. Ltd.</p>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@ export default function TermsOfService() {
                         <div className="space-y-10 animate-fade-in">
                             <div className="mb-10">
                                 <h2 className="font-display text-3xl font-bold text-[#0F172A] mb-2">Terms of Service — PrepOne</h2>
-                                <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
+                                <p className="text-gray-600"><strong>Company:</strong> ENEVOR LABS Pvt. Ltd.</p>
                                 <p className="text-gray-600"><strong>Product:</strong> PrepOne (<a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">Mobile Application</a>)</p>
                                 <p className="text-gray-600"><strong>Effective Date:</strong> June 14, 2026</p>
                                 <p className="text-gray-600"><strong>Last Updated:</strong> June 14, 2026</p>
@@ -74,7 +74,7 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">1. Acceptance of Terms</h3>
-                                <p className="mb-3">These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you") and <strong>SolvIQ India Pvt. Ltd.</strong> ("Company," "we," "us"), a private limited company incorporated under the Companies Act, 2013, with its registered office in Gandhinagar, Gujarat, India.</p>
+                                <p className="mb-3">These Terms of Service ("Terms") constitute a legally binding agreement between you ("User," "you") and <strong>ENEVOR LABS Pvt. Ltd.</strong> ("Company," "we," "us"), a private limited company incorporated under the Companies Act, 2013, with its registered office in Gandhinagar, Gujarat, India.</p>
                                 <p>By downloading, installing, registering, or using the <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline"><strong>PrepOne</strong> mobile application</a>, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree, do not use the App.</p>
                             </section>
 
@@ -97,7 +97,7 @@ export default function TermsOfService() {
                                     <li>You must create an account to access most features of PrepOne.</li>
                                     <li>You agree to provide accurate, current, and complete registration information.</li>
                                     <li>You are solely responsible for maintaining the confidentiality of your credentials and for all activities under your account.</li>
-                                    <li>You must notify us immediately at <strong>support@prepone.in</strong> if you suspect unauthorized access to your account.</li>
+                                    <li>You must notify us immediately at <strong>support@enevorlabs.com</strong> if you suspect unauthorized access to your account.</li>
                                     <li>One individual may not maintain multiple accounts. Duplicate accounts may be terminated.</li>
                                 </ul>
                             </section>
@@ -126,7 +126,7 @@ export default function TermsOfService() {
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700 mb-6">
                                     <li><strong>Monthly Plans:</strong> No refund once the billing cycle has started.</li>
                                     <li><strong>Annual Plans:</strong> Pro-rated refund may be issued within 7 days of purchase if you have not attempted more than 2 mock tests. After 7 days or 2 attempts, no refund is applicable.</li>
-                                    <li>Refund requests must be submitted to <strong>support@prepone.in</strong> with your transaction ID.</li>
+                                    <li>Refund requests must be submitted to <strong>support@enevorlabs.com</strong> with your transaction ID.</li>
                                 </ul>
 
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">4.4 Auto-Renewal</h4>
@@ -166,7 +166,7 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">7. Intellectual Property</h3>
-                                <p className="mb-3">All content on PrepOne — including but not limited to question banks, AI-generated feedback, adaptive algorithms, UI/UX design, logos, and study materials — is the exclusive intellectual property of <strong>SolvIQ India Pvt. Ltd.</strong> and is protected under the Copyright Act, 1957 and other applicable laws.</p>
+                                <p className="mb-3">All content on PrepOne — including but not limited to question banks, AI-generated feedback, adaptive algorithms, UI/UX design, logos, and study materials — is the exclusive intellectual property of <strong>ENEVOR LABS Pvt. Ltd.</strong> and is protected under the Copyright Act, 1957 and other applicable laws.</p>
                                 <p>You are granted a <strong>limited, non-exclusive, non-transferable, revocable license</strong> to access and use PrepOne content solely for personal exam preparation during your active subscription period. No other rights are granted.</p>
                             </section>
 
@@ -177,7 +177,7 @@ export default function TermsOfService() {
                                 <p className="mb-2">When you submit answer text, images, or queries to PrepOne:</p>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700">
                                     <li>You retain ownership of your original content.</li>
-                                    <li>You grant SolvIQ India Pvt. Ltd. a non-exclusive, royalty-free license to process, store, and use such content solely to provide evaluation services and improve platform functionality.</li>
+                                    <li>You grant ENEVOR LABS Pvt. Ltd. a non-exclusive, royalty-free license to process, store, and use such content solely to provide evaluation services and improve platform functionality.</li>
                                     <li>You must not submit copyrighted material belonging to others without authorization.</li>
                                 </ul>
                             </section>
@@ -228,7 +228,7 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">13. Indemnification</h3>
-                                <p>You agree to indemnify and hold harmless SolvIQ India Pvt. Ltd., its directors, employees, and partners from any claims, damages, or expenses (including legal fees) arising from: (a) your use of PrepOne; (b) your violation of these Terms; or (c) your violation of any third-party rights.</p>
+                                <p>You agree to indemnify and hold harmless ENEVOR LABS Pvt. Ltd., its directors, employees, and partners from any claims, damages, or expenses (including legal fees) arising from: (a) your use of PrepOne; (b) your violation of these Terms; or (c) your violation of any third-party rights.</p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -255,14 +255,14 @@ export default function TermsOfService() {
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">16. Contact Us</h3>
                                 <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                                    <p className="font-bold text-[#0F172A]">SolvIQ India Pvt. Ltd.</p>
+                                    <p className="font-bold text-[#0F172A]">ENEVOR LABS Pvt. Ltd.</p>
                                     <p className="text-gray-600 mb-4">Gandhinagar, Gujarat, India</p>
-                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:support@prepone.in" className="text-indigo-600 hover:underline">support@prepone.in</a> | <a href="mailto:legal@solviq.in" className="text-indigo-600 hover:underline">legal@solviq.in</a></p>
-                                    <p className="text-gray-600"><strong>Grievance Officer Email:</strong> <a href="mailto:privacy@solviq.in" className="text-indigo-600 hover:underline">privacy@solviq.in</a></p>
+                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:support@enevorlabs.com" className="text-indigo-600 hover:underline">support@enevorlabs.com</a></p>
+                                    <p className="text-gray-600"><strong>Grievance Officer Email:</strong> <a href="mailto:support@enevorlabs.com" className="text-indigo-600 hover:underline">support@enevorlabs.com</a></p>
                                 </div>
                             </section>
 
-                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 SolvIQ India Pvt. Ltd. All rights reserved.</p>
+                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 ENEVOR LABS Pvt. Ltd. All rights reserved.</p>
                         </div>
                     )}
 
@@ -273,7 +273,7 @@ export default function TermsOfService() {
                         <div className="space-y-10 animate-fade-in">
                             <div className="mb-10">
                                 <h2 className="font-display text-3xl font-bold text-[#0F172A] mb-2">Terms of Service — CoachOne</h2>
-                                <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
+                                <p className="text-gray-600"><strong>Company:</strong> ENEVOR LABS Pvt. Ltd.</p>
                                 <p className="text-gray-600"><strong>Product:</strong> CoachOne (Coaching Institute Management Platform)</p>
                                 <p className="text-gray-600"><strong>Effective Date:</strong> June 14, 2026</p>
                                 <p className="text-gray-600"><strong>Last Updated:</strong> June 14, 2026</p>
@@ -283,7 +283,7 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">1. Acceptance of Terms</h3>
-                                <p className="mb-3">These Terms of Service ("Terms") form a legally binding agreement between <strong>SolvIQ India Pvt. Ltd.</strong> ("Company," "we," "us") and the coaching institute, its authorized representatives, and any staff accessing the CoachOne platform ("Institute," "Client," "you").</p>
+                                <p className="mb-3">These Terms of Service ("Terms") form a legally binding agreement between <strong>ENEVOR LABS Pvt. Ltd.</strong> ("Company," "we," "us") and the coaching institute, its authorized representatives, and any staff accessing the CoachOne platform ("Institute," "Client," "you").</p>
                                 <p>By registering for, accessing, or using <strong>CoachOne</strong>, you represent that you are authorized to bind your organization to these Terms and that your organization agrees to comply with them in full.</p>
                             </section>
 
@@ -361,7 +361,7 @@ export default function TermsOfService() {
                                     <li><strong>Lawful Use Only:</strong> Use CoachOne exclusively for legitimate institute management and educational purposes</li>
                                     <li><strong>Compliance:</strong> Comply with all applicable laws including DPDPA 2023, the RTE Act, and any state-level regulations governing educational institutions</li>
                                     <li><strong>Security:</strong> Maintain strong passwords, enable MFA, and restrict platform access to authorized personnel only</li>
-                                    <li><strong>Breach Notification:</strong> Notify SolvIQ immediately at <strong>privacy@solviq.in</strong> if you suspect unauthorized access to your CoachOne account or student data</li>
+                                    <li><strong>Breach Notification:</strong> Notify ENEVOR LABS immediately at <strong>support@enevorlabs.com</strong> if you suspect unauthorized access to your CoachOne account or student data</li>
                                 </ul>
                             </section>
 
@@ -386,13 +386,13 @@ export default function TermsOfService() {
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-4">7. Intellectual Property</h3>
 
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">7.1 Platform IP</h4>
-                                <p className="mb-6">All platform technology, software, AI models, UI/UX, brand assets, and documentation are the exclusive intellectual property of <strong>SolvIQ India Pvt. Ltd.</strong> You are granted a limited, non-exclusive, non-transferable license to use CoachOne during your active subscription period.</p>
+                                <p className="mb-6">All platform technology, software, AI models, UI/UX, brand assets, and documentation are the exclusive intellectual property of <strong>ENEVOR LABS Pvt. Ltd.</strong> You are granted a limited, non-exclusive, non-transferable license to use CoachOne during your active subscription period.</p>
 
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">7.2 Institute Content</h4>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700">
                                     <li>Question papers created using CoachOne's tools remain the intellectual property of the <strong>institute</strong>, subject to the following:
                                         <ul className="list-disc pl-5 mt-2">
-                                            <li>SolvIQ may use anonymized, aggregated patterns from generated questions to improve platform AI features, unless the institute opts out in writing.</li>
+                                            <li>ENEVOR LABS may use anonymized, aggregated patterns from generated questions to improve platform AI features, unless the institute opts out in writing.</li>
                                         </ul>
                                     </li>
                                     <li>Student academic data entered into the platform belongs to the <strong>institute and respective students</strong>.</li>
@@ -417,11 +417,11 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">9. Data Processing Agreement</h3>
-                                <p className="mb-2">By accepting these Terms, the institute also enters into a <strong>Data Processing Agreement (DPA)</strong> with SolvIQ India Pvt. Ltd., under which:</p>
+                                <p className="mb-2">By accepting these Terms, the institute also enters into a <strong>Data Processing Agreement (DPA)</strong> with ENEVOR LABS Pvt. Ltd., under which:</p>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700">
-                                    <li>SolvIQ acts as a Data Processor for student and staff personal data</li>
+                                    <li>ENEVOR LABS acts as a Data Processor for student and staff personal data</li>
                                     <li>The institute acts as the Data Controller/Fiduciary</li>
-                                    <li>SolvIQ shall process personal data only as instructed by the institute and as described in the CoachOne Privacy Policy</li>
+                                    <li>ENEVOR LABS shall process personal data only as instructed by the institute and as described in the CoachOne Privacy Policy</li>
                                     <li>Full DPA terms are available at <strong>coachone.solviq.in/dpa</strong></li>
                                 </ul>
                             </section>
@@ -440,7 +440,7 @@ export default function TermsOfService() {
                                             <li>Normal queries: 48-hour response</li>
                                         </ul>
                                     </li>
-                                    <li>Support channels: <strong>support@solviq.in</strong> | In-app chat</li>
+                                    <li>Support channels: <strong>support@enevorlabs.com</strong> | In-app chat</li>
                                 </ul>
                                 <p>SLA credits for downtime exceeding 99.5% target will be issued as account credits per the SLA Policy document, not cash refunds.</p>
                             </section>
@@ -449,7 +449,7 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">11. Confidentiality</h3>
-                                <p>Both parties agree to maintain strict confidentiality of each other's proprietary information. The institute agrees not to disclose SolvIQ's proprietary technology details, pricing structures, or unreleased feature information. SolvIQ agrees not to disclose institute business data or student records to unauthorized parties.</p>
+                                <p>Both parties agree to maintain strict confidentiality of each other's proprietary information. The institute agrees not to disclose ENEVOR LABS' proprietary technology details, pricing structures, or unreleased feature information. ENEVOR LABS agrees not to disclose institute business data or student records to unauthorized parties.</p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -458,10 +458,10 @@ export default function TermsOfService() {
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-4">12. Termination</h3>
 
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">12.1 By the Institute</h4>
-                                <p className="mb-4">You may terminate your subscription at any time by providing 30 days' written notice to <strong>support@solviq.in</strong>. You may request a data export within the notice period.</p>
+                                <p className="mb-4">You may terminate your subscription at any time by providing 30 days' written notice to <strong>support@enevorlabs.com</strong>. You may request a data export within the notice period.</p>
 
-                                <h4 className="font-bold text-[#0F172A] text-lg mb-2">12.2 By SolvIQ</h4>
-                                <p className="mb-4">SolvIQ may terminate or suspend your account:</p>
+                                <h4 className="font-bold text-[#0F172A] text-lg mb-2">12.2 By ENEVOR LABS</h4>
+                                <p className="mb-4">ENEVOR LABS may terminate or suspend your account:</p>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700 mb-4">
                                     <li>Immediately for material violations of these Terms, fraudulent activity, or legal non-compliance</li>
                                     <li>With 30 days' notice for any other reason</li>
@@ -476,8 +476,8 @@ export default function TermsOfService() {
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">13. Limitation of Liability</h3>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700">
-                                    <li>SolvIQ's aggregate liability to the institute for any claim arising from use of CoachOne shall not exceed the <strong>total fees paid by the institute in the 6 months preceding the claim</strong>.</li>
-                                    <li>SolvIQ is not liable for: loss of student data due to institute-side security failures, incorrect AI evaluations used for official certification decisions, or business losses resulting from platform downtime within the agreed SLA.</li>
+                                    <li>ENEVOR LABS' aggregate liability to the institute for any claim arising from use of CoachOne shall not exceed the <strong>total fees paid by the institute in the 6 months preceding the claim</strong>.</li>
+                                    <li>ENEVOR LABS is not liable for: loss of student data due to institute-side security failures, incorrect AI evaluations used for official certification decisions, or business losses resulting from platform downtime within the agreed SLA.</li>
                                     <li>Neither party is liable for indirect, special, or consequential damages.</li>
                                 </ul>
                             </section>
@@ -487,7 +487,7 @@ export default function TermsOfService() {
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">14. Indemnification</h3>
                                 <p className="mb-3">Each party shall indemnify and hold harmless the other from claims arising from: (a) its own breach of these Terms; (b) its violation of applicable law; or (c) its negligence or willful misconduct.</p>
-                                <p>The institute specifically indemnifies SolvIQ against claims arising from the institute's failure to obtain proper consent from students or parents before entering their data into CoachOne.</p>
+                                <p>The institute specifically indemnifies ENEVOR LABS against claims arising from the institute's failure to obtain proper consent from students or parents before entering their data into CoachOne.</p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -506,7 +506,7 @@ export default function TermsOfService() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">16. Amendments</h3>
-                                <p>SolvIQ may amend these Terms at any time with 30 days' advance notice to institute administrators via email. Continued use after the effective date constitutes acceptance. For Enterprise clients with signed MSAs, contractual terms in the MSA shall prevail over these general Terms.</p>
+                                <p>ENEVOR LABS may amend these Terms at any time with 30 days' advance notice to institute administrators via email. Continued use after the effective date constitutes acceptance. For Enterprise clients with signed MSAs, contractual terms in the MSA shall prevail over these general Terms.</p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -514,14 +514,14 @@ export default function TermsOfService() {
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">17. Contact Us</h3>
                                 <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
-                                    <p className="font-bold text-[#0F172A]">SolvIQ India Pvt. Ltd.</p>
+                                    <p className="font-bold text-[#0F172A]">ENEVOR LABS Pvt. Ltd.</p>
                                     <p className="text-gray-600 mb-4">Gandhinagar, Gujarat, India</p>
-                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:support@solviq.in" className="text-amber-600 hover:underline">support@solviq.in</a> | <a href="mailto:legal@solviq.in" className="text-amber-600 hover:underline">legal@solviq.in</a></p>
-                                    <p className="text-gray-600"><strong>Grievance Officer:</strong> <a href="mailto:privacy@solviq.in" className="text-amber-600 hover:underline">privacy@solviq.in</a></p>
+                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:support@enevorlabs.com" className="text-amber-600 hover:underline">support@enevorlabs.com</a></p>
+                                    <p className="text-gray-600"><strong>Grievance Officer:</strong> <a href="mailto:support@enevorlabs.com" className="text-amber-600 hover:underline">support@enevorlabs.com</a></p>
                                 </div>
                             </section>
 
-                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 SolvIQ India Pvt. Ltd. All rights reserved.</p>
+                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 ENEVOR LABS Pvt. Ltd. All rights reserved.</p>
                         </div>
                     )}
                 </div>

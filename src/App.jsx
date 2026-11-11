@@ -14,8 +14,8 @@ import coachDashboardImg from './assets/coachone/dashboard-home.webp';
 import ProblemStatement from './componenets/ProblemStatement';
 import SEO from './componenets/SEO';
 import { 
-  SOLVIQ_ORGANIZATION_SCHEMA, 
-  SOLVIQ_WEBSITE_SCHEMA, 
+  ENEVOR_ORGANIZATION_SCHEMA, 
+  ENEVOR_WEBSITE_SCHEMA, 
   buildPrepOneAppSchema, 
   buildCoachOneSaasSchema 
 } from './componenets/Schema';
@@ -144,7 +144,7 @@ const Hero = () => {
         </h1>
 
         <p className="font-body text-base sm:text-lg text-[#a8b4c4] max-w-2xl mb-8 leading-relaxed co-fade" style={{ '--d': '1000ms' }}>
-          Education shouldn't be an act of guessing in the dark. SolvIQ builds the intelligence layer that transforms subjective tests into clear, measurable understanding for every student and coaching institute in India.
+          Education shouldn't be an act of guessing in the dark. ENEVOR LABS builds the intelligence layer that transforms subjective tests into clear, measurable understanding for every student and coaching institute in India.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto co-fade" style={{ '--d': '1200ms' }}>
@@ -455,17 +455,17 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F8F9FC] font-body selection:bg-[#4F46E5] selection:text-white">
       <SEO
-        title="SolvIQ India | Building the Intelligence Layer for Student Evaluation"
-        description="SolvIQ builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable. Stop guessing. Start engineering your success."
-        keywords="SolvIQ, AI educational tools, student evaluation, exam preparation, learning analytics, EdTech India, CoachOne, PrepOne"
-        canonicalUrl="https://solviq.in/"
+        title="ENEVOR LABS | Building the Intelligence Layer for Student Evaluation"
+        description="ENEVOR LABS builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable. Stop guessing. Start engineering your success."
+        keywords="ENEVOR LABS, AI educational tools, student evaluation, exam preparation, learning analytics, EdTech India, CoachOne, PrepOne"
+        canonicalUrl="https://enevorlabs.com/"
         schema={[
-          SOLVIQ_ORGANIZATION_SCHEMA,
-          SOLVIQ_WEBSITE_SCHEMA,
+          ENEVOR_ORGANIZATION_SCHEMA,
+          ENEVOR_WEBSITE_SCHEMA,
           {
             "@context": "https://schema.org",
             "@type": "ItemList",
-            "name": "SolvIQ Flagship EdTech Platforms",
+            "name": "ENEVOR LABS Flagship EdTech Platforms",
             "itemListElement": [
               {
                 "@type": "ListItem",

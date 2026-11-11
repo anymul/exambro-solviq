@@ -132,7 +132,7 @@ export default function AIEvaluationStudentPage() {
                 title="AutoScore AI | 60-Second Handwritten Answer Evaluation | PrepOne"
                 description="Get instant feedback on your handwritten answers with PrepOne's AutoScore AI. Step-by-step grading against official CBSE & Bihar Board rubrics in 60 seconds."
                 keywords="AI grading, handwritten answer evaluation, CBSE step marking, Bihar board answer checker, student performance tracking"
-                canonicalUrl="https://solviq.in/prepone/ai-evaluation-students"
+                canonicalUrl="https://enevorlabs.com/prepone/ai-evaluation-students"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

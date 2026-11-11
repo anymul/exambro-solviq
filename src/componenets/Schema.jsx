@@ -4,21 +4,21 @@
  * Reusable JSON-LD schema helper components for Schema.org compliance.
  */
 
-export const SOLVIQ_ORGANIZATION_SCHEMA = {
+export const ENEVOR_ORGANIZATION_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "@id": "https://solviq.in/#organization",
-  "name": "SolvIQ India",
-  "legalName": "SolvIQ India Pvt. Ltd.",
-  "url": "https://solviq.in",
+  "@id": "https://enevorlabs.com/#organization",
+  "name": "ENEVOR LABS",
+  "legalName": "ENEVOR LABS Pvt. Ltd.",
+  "url": "https://enevorlabs.com",
   "logo": {
     "@type": "ImageObject",
-    "url": "https://solviq.in/social-banner.jpg",
+    "url": "https://enevorlabs.com/social-banner.jpg",
     "width": "1200",
     "height": "630"
   },
-  "image": "https://solviq.in/social-banner.jpg",
-  "description": "SolvIQ builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable for CBSE, Bihar Board students and coaching institutes.",
+  "image": "https://enevorlabs.com/social-banner.jpg",
+  "description": "ENEVOR LABS builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable for CBSE, Bihar Board students and coaching institutes.",
   "founder": [
     {
       "@type": "Person",
@@ -45,19 +45,19 @@ export const SOLVIQ_ORGANIZATION_SCHEMA = {
   "contactPoint": {
     "@type": "ContactPoint",
     "contactType": "customer support",
-    "url": "https://solviq.in/about"
+    "url": "https://enevorlabs.com/about"
   }
 };
 
-export const SOLVIQ_WEBSITE_SCHEMA = {
+export const ENEVOR_WEBSITE_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "@id": "https://solviq.in/#website",
-  "url": "https://solviq.in/",
-  "name": "SolvIQ India",
+  "@id": "https://enevorlabs.com/#website",
+  "url": "https://enevorlabs.com/",
+  "name": "ENEVOR LABS",
   "description": "Building the Intelligence Layer for Student Evaluation and Institute Management",
   "publisher": {
-    "@id": "https://solviq.in/#organization"
+    "@id": "https://enevorlabs.com/#organization"
   }
 };
 
@@ -69,7 +69,7 @@ export function buildBreadcrumbSchema(items) {
       "@type": "ListItem",
       "position": index + 1,
       "name": item.name,
-      "item": item.url.startsWith("http") ? item.url : `https://solviq.in${item.url}`
+      "item": item.url.startsWith("http") ? item.url : `https://enevorlabs.com${item.url}`
     }))
   };
 }
@@ -108,14 +108,14 @@ export function buildArticleSchema({
     },
     "headline": title,
     "description": description,
-    "image": imageUrl ? [imageUrl] : ["https://solviq.in/social-banner.jpg"],
+    "image": imageUrl ? [imageUrl] : ["https://enevorlabs.com/social-banner.jpg"],
     "datePublished": datePublished,
     "dateModified": dateModified || datePublished,
     "author": {
       "@type": "Person",
       "name": authorName
     },
-    "publisher": SOLVIQ_ORGANIZATION_SCHEMA,
+    "publisher": ENEVOR_ORGANIZATION_SCHEMA,
     "articleSection": category
   };
 }
@@ -127,11 +127,11 @@ export function buildPrepOneAppSchema() {
     "name": "PrepOne",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Android, Web",
-    "url": "https://solviq.in/prepone",
+    "url": "https://enevorlabs.com/prepone",
     "downloadUrl": "https://play.google.com/store/apps/details?id=com.solviq.prepone",
-    "image": "https://solviq.in/social-banner.jpg",
+    "image": "https://enevorlabs.com/social-banner.jpg",
     "description": "PrepOne is an AI-powered board exam strategist app for CBSE and Bihar Board Class 10 & 12 students. Features Abhyas+ adaptive practice, 60-second AutoScore AI handwritten answer grading, and Spaced Repetition flashcards.",
-    "author": SOLVIQ_ORGANIZATION_SCHEMA,
+    "author": ENEVOR_ORGANIZATION_SCHEMA,
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
@@ -165,10 +165,10 @@ export function buildCoachOneSaasSchema() {
     "name": "CoachOne",
     "applicationCategory": "BusinessApplication",
     "operatingSystem": "Web (SaaS)",
-    "url": "https://solviq.in/coachone",
-    "image": "https://solviq.in/social-banner.jpg",
+    "url": "https://enevorlabs.com/coachone",
+    "image": "https://enevorlabs.com/social-banner.jpg",
     "description": "CoachOne is an all-in-one software platform for coaching institutes in India. Integrates student management, AI handwritten copy checking with authentic step-marking, 1 lakh+ verified question test maker (MCQ and subjective), student mistake diagnostics, and automated WhatsApp parent reports.",
-    "author": SOLVIQ_ORGANIZATION_SCHEMA,
+    "author": ENEVOR_ORGANIZATION_SCHEMA,
     "offers": [
       {
         "@type": "Offer",

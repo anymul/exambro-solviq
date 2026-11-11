@@ -1348,7 +1348,7 @@ export default function CoachOne() {
                 title="CoachOne | All-in-One Software for Coaching Institutes & Academies"
                 description="Complete software for coaching institutes. AI handwritten copy checking with step marks, test paper generator with a 1 lakh+ verified question bank, student mistake analysis, and automated WhatsApp parent report cards."
                 keywords="coaching institute software, AI copy checking, test paper generator, CBSE step marking software, coaching CRM, parent WhatsApp report cards, coaching ERP India"
-                canonicalUrl="https://solviq.in/coachone"
+                canonicalUrl="https://enevorlabs.com/coachone"
                 schema={[
                     buildCoachOneSaasSchema(),
                     buildFaqSchema(COACHONE_FAQS),

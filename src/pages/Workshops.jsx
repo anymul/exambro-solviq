@@ -228,7 +228,7 @@ export default function WorkshopsPage() {
                 title="Board Pe Charcha | Live Board Exam Workshops by IITians | PrepOne"
                 description="Board Pe Charcha is PrepOne's series of live learning and practice workshops for CBSE and Bihar Board students in Classes 10 to 12, taught by IITians. Concepts, question practice and exam hacks on one topic at a time."
                 keywords="board exam workshops, CBSE class 10 workshop, CBSE class 12 workshop, live classes by IITians, board exam preparation, PrepOne workshops, Board Pe Charcha"
-                canonicalUrl="https://solviq.in/workshops"
+                canonicalUrl="https://enevorlabs.com/workshops"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

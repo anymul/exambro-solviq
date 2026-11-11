@@ -67,9 +67,9 @@ export default function Footer() {
         }
     ];
     const socials = [
-        { label: 'SolvIQ on X', href: 'https://x.com/solviq_in', Icon: TwitterIcon },
-        { label: 'SolvIQ on LinkedIn', href: 'https://www.linkedin.com/company/solviq', Icon: LinkedinIcon },
-        { label: 'SolvIQ on Instagram', href: 'https://www.instagram.com/solviq.in', Icon: InstagramIcon }
+        { label: 'ENEVOR LABS on X', href: 'https://x.com/solviq_in', Icon: TwitterIcon },
+        { label: 'ENEVOR LABS on LinkedIn', href: 'https://www.linkedin.com/company/solviq', Icon: LinkedinIcon },
+        { label: 'ENEVOR LABS on Instagram', href: 'https://www.instagram.com/solviq.in', Icon: InstagramIcon }
     ];
 
     return (
@@ -101,8 +101,8 @@ export default function Footer() {
                 {/* Brand and links */}
                 <div className="grid grid-cols-2 lg:grid-cols-12 gap-x-6 gap-y-10 py-14">
                     <div className="col-span-2 lg:col-span-5">
-                        <Link to="/" className="inline-block mb-4 text-white hover:text-gray-200 transition-colors" aria-label="SolvIQ home">
-                            <Logo className="h-8 md:h-9 w-auto" />
+                        <Link to="/" className="inline-block mb-4 text-white hover:text-gray-200 transition-colors" aria-label="ENEVOR LABS home">
+                            <Logo onDark className="h-8 md:h-9 w-auto" />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
                             AI-powered exam preparation and automated subjective evaluation for CBSE &amp; BSEB students, paired with test operations for coaching institutes.
@@ -172,7 +172,7 @@ export default function Footer() {
                 </div>
 
                 <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-gray-500 text-xs sm:text-sm">
-                    <p>&copy; {currentYear} SolvIQ India Pvt Ltd. All rights reserved.</p>
+                    <p>&copy; {currentYear} ENEVOR LABS Pvt Ltd. All rights reserved.</p>
                     <div className="flex items-center gap-6">
                         <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy policy</Link>
                         <Link to="/terms-of-service" className="hover:text-white transition-colors">Terms of service</Link>

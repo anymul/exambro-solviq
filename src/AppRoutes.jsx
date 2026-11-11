@@ -24,7 +24,7 @@ import NotFound from './pages/NotFound.jsx';
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Main SolvIQ Landing Page */}
+      {/* Main ENEVOR LABS Landing Page */}
       <Route path="/" element={<App />} />
 
       {/* Flagship Product Pages */}

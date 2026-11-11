@@ -27,7 +27,7 @@ export default function InstituteOperationsMarketingPage() {
                 title="Coaching Institute Operations & Management | CoachOne"
                 description="Manage admissions, automate fee collection with WhatsApp receipts, track daily attendance, and launch your institute website with CoachOne."
                 keywords="coaching institute management, coaching fee collection, student attendance tracker, coaching admissions software, institute website builder"
-                canonicalUrl="https://solviq.in/institute-operations"
+                canonicalUrl="https://enevorlabs.com/institute-operations"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

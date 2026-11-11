@@ -10,7 +10,7 @@ import SEO from '../componenets/SEO';
 import { DownloadLink } from '../componenets/prepone/ui';
 import { DemoLink } from '../componenets/coachone/ui';
 import { BTN_ON_TEAL, BTN_GHOST_ON_TEAL } from '../componenets/coachone/tokens';
-import { SOLVIQ_ORGANIZATION_SCHEMA, buildBreadcrumbSchema } from '../componenets/Schema';
+import { ENEVOR_ORGANIZATION_SCHEMA, buildBreadcrumbSchema } from '../componenets/Schema';
 
 // Scroll-scrubbed choreography (GSAP ScrollTrigger), used only where it adds impact: key text coming from faded to
 // full as you read it, the learning loop building step by step, and the timeline drawing itself. Opacity is the only
@@ -131,12 +131,12 @@ function useScrollChoreography(rootRef) {
 const Hero = () => (
   <section className="co-sheet text-white overflow-hidden pt-28 pb-20 lg:pt-40 lg:pb-28">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <p className="co-note text-xl text-[#ffd84d] mb-3 inline-block co-fade">About SolvIQ</p>
+      <p className="co-note text-xl text-[#ffd84d] mb-3 inline-block co-fade">About ENEVOR LABS</p>
       <h1 className="font-display text-5xl md:text-7xl leading-[1.04] co-fade" style={{ '--d': '100ms' }}>
         Students work hard. Almost no one tells them what to fix.
       </h1>
       <p className="font-body text-lg md:text-xl text-teal-50/90 mt-8 max-w-2xl leading-relaxed co-fade" style={{ '--d': '250ms' }}>
-        SolvIQ builds PrepOne for students and CoachOne for coaching institutes. Both close the loop between practice and feedback, the part of learning that classrooms rarely have time for.
+        ENEVOR LABS builds PrepOne for students and CoachOne for coaching institutes. Both close the loop between practice and feedback, the part of learning that classrooms rarely have time for.
       </p>
     </div>
   </section>
@@ -173,7 +173,7 @@ const Story = () => (
               They were not short of teaching. What they lacked was a learning loop: practise, find out exactly what went wrong, fix it, and try again. A coaching class of a hundred cannot give each student that kind of one-to-one attention, however good the teacher is.
             </p>
             <p>
-              So we started SolvIQ to build it: tools that check a student's actual work, explain where the marks went, and say what to practise next. We began in Bihar, and we are building for all of India.
+              So we started ENEVOR LABS to build it: tools that check a student's actual work, explain where the marks went, and say what to practise next. We began in Bihar, and we are building for all of India.
             </p>
           </div>
         </div>
@@ -306,10 +306,10 @@ const FOUNDERS = [
     name: 'Anmol Kumar',
     role: 'Co-founder & CEO',
     photo: anmol,
-    alt: 'Anmol Kumar, co-founder and CEO of SolvIQ',
+    alt: 'Anmol Kumar, co-founder and CEO of ENEVOR LABS',
     bio: [
       'Anmol is an IIT Gandhinagar alumnus in Mechanical Engineering who saw first-hand the gap between raw effort and measurable results in the Indian education system.',
-      'With a background in full-stack development and AI engineering, Anmol leads the product and the technology behind SolvIQ: evaluation that is instant, fair and tells a student what to do next.'
+      'With a background in full-stack development and AI engineering, Anmol leads the product and the technology behind ENEVOR LABS: evaluation that is instant, fair and tells a student what to do next.'
     ],
     link: 'https://www.linkedin.com/in/anmolkumariitgn/'
   },
@@ -317,10 +317,10 @@ const FOUNDERS = [
     name: 'Abhinav Kumar',
     role: 'Co-founder, Operations',
     photo: abhinav,
-    alt: 'Abhinav Kumar, co-founder of SolvIQ',
+    alt: 'Abhinav Kumar, co-founder of ENEVOR LABS',
     bio: [
       'Abhinav is an IIT Gandhinagar alumnus in Chemical Engineering. The problem that pulled Abhinav in is the root of it: students who never get a chance to fix their fundamentals, and so keep losing marks on things they should already know.',
-      'Abhinav loves solving that kind of problem with technology, and runs operations at SolvIQ, from working with institutes to making sure what we build works for the students and teachers who use it.'
+      'Abhinav loves solving that kind of problem with technology, and runs operations at ENEVOR LABS, from working with institutes to making sure what we build works for the students and teachers who use it.'
     ]
   }
 ];
@@ -328,7 +328,7 @@ const FOUNDERS = [
 const FounderSection = () => (
   <section className="bg-white py-20 lg:py-28 overflow-hidden">
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h2 className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] max-w-3xl">The people behind SolvIQ</h2>
+      <h2 className="font-display text-3xl md:text-5xl leading-[1.08] text-[#032b2e] max-w-3xl">The people behind ENEVOR LABS</h2>
       <p className="mt-5 text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
         Two IIT Gandhinagar alumni from Bihar, who met on campus and kept coming back to the same problem.
       </p>
@@ -429,26 +429,26 @@ export default function About() {
   return (
     <div ref={rootRef} className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
       <SEO
-        title="About SolvIQ | PrepOne and CoachOne, Learning Feedback for Bihar and India"
-        description="SolvIQ builds PrepOne for students and CoachOne for coaching institutes, closing the practice and feedback loop that large classes cannot give. Started in Bihar, built for India."
-        keywords="About SolvIQ, SolvIQ India, IIT Gandhinagar EdTech, AI exam prep India, Anmol Kumar SolvIQ"
-        canonicalUrl="https://solviq.in/about"
+        title="About ENEVOR LABS | PrepOne and CoachOne, Learning Feedback for Bihar and India"
+        description="ENEVOR LABS builds PrepOne for students and CoachOne for coaching institutes, closing the practice and feedback loop that large classes cannot give. Started in Bihar, built for India."
+        keywords="About ENEVOR LABS, ENEVOR LABS, IIT Gandhinagar EdTech, AI exam prep India, Anmol Kumar ENEVOR LABS"
+        canonicalUrl="https://enevorlabs.com/about"
         schema={[
-          SOLVIQ_ORGANIZATION_SCHEMA,
+          ENEVOR_ORGANIZATION_SCHEMA,
           {
             "@context": "https://schema.org",
             "@type": "AboutPage",
-            "@id": "https://solviq.in/about#webpage",
-            "url": "https://solviq.in/about",
-            "name": "About SolvIQ India",
-            "description": "SolvIQ India is an educational technology company born out of IIT Gandhinagar, building the intelligence layer for student evaluation and coaching institute management.",
+            "@id": "https://enevorlabs.com/about#webpage",
+            "url": "https://enevorlabs.com/about",
+            "name": "About ENEVOR LABS",
+            "description": "ENEVOR LABS is an educational technology company born out of IIT Gandhinagar, building the intelligence layer for student evaluation and coaching institute management.",
             "mainEntity": {
-              "@id": "https://solviq.in/#organization"
+              "@id": "https://enevorlabs.com/#organization"
             }
           },
           buildBreadcrumbSchema([
             { name: 'Home', url: '/' },
-            { name: 'About SolvIQ', url: '/about' }
+            { name: 'About ENEVOR LABS', url: '/about' }
           ])
         ]}
       />

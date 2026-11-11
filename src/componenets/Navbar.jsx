@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown, Smartphone, Laptop, ChevronRight, ArrowUpRight } from 'lucide-react';
-import Logo, { DARK_BG_ACCENT, LIGHT_BG_ACCENT } from './Logo';
+import Logo from './Logo';
 
 // One chrome for every page; the accent follows the product you are reading about.
 const PRODUCT = {
@@ -71,7 +71,7 @@ export default function Navbar({ theme = 'dark' }) {
                             onClick={() => setMobileMenuOpen(false)}
                             className={`flex-shrink-0 flex items-center cursor-pointer relative z-10 transition-colors duration-300 ${isLight ? 'text-[#1f2a2a]' : 'text-white'}`}
                         >
-                            <Logo accent={isLight ? LIGHT_BG_ACCENT : DARK_BG_ACCENT} />
+                            <Logo onDark={!isLight} className="h-8 md:h-9 w-auto" />
                         </Link>
 
                         {/* Desktop Nav */}
@@ -172,8 +172,8 @@ export default function Navbar({ theme = 'dark' }) {
                 className={`md:hidden fixed inset-0 bg-[#0b1413] text-white z-[110] transform transition-transform duration-300 ease-in-out flex flex-col ${mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}
             >
                 <div className="flex justify-between items-center px-5 py-4 border-b border-white/10">
-                    <Link to="/" onClick={() => setMobileMenuOpen(false)} className="font-body font-extrabold text-2xl tracking-tight">
-                        SolvIQ
+                    <Link to="/" onClick={() => setMobileMenuOpen(false)} aria-label="ENEVOR LABS home">
+                        <Logo onDark className="h-8 w-auto" />
                     </Link>
                     <button
                         onClick={() => setMobileMenuOpen(false)}

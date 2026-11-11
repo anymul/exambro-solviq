@@ -323,7 +323,7 @@ export function googleCalendarUrl(workshop) {
         text: `Board Pe Charcha: ${workshop.title}`,
         dates: `${stamp(workshop.start)}/${stamp(workshop.end)}`,
         ctz: 'Asia/Kolkata',
-        details: `${workshop.topic}\n\nTaught by ${workshop.instructor.name}, ${workshop.instructor.credential}.\nJoining details will be sent to the mobile number you registered with.\n\nSchedule: https://solviq.in/workshops`,
+        details: `${workshop.topic}\n\nTaught by ${workshop.instructor.name}, ${workshop.instructor.credential}.\nJoining details will be sent to the mobile number you registered with.\n\nSchedule: https://enevorlabs.com/workshops`,
         location: 'Online (joining details sent on registered mobile)'
     });
     return `https://calendar.google.com/calendar/render?${params}`;

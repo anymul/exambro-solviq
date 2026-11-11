@@ -3,17 +3,17 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 export default function SEO({ 
-    title = "SolvIQ India | Building the Intelligence Layer for Student Evaluation", 
-    description = "SolvIQ builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable. Stop guessing. Start engineering your success.", 
-    keywords = "SolvIQ, AI educational tools, student evaluation, exam preparation, learning analytics, EdTech India, CoachOne, PrepOne", 
-    canonicalUrl = "https://solviq.in/", 
-    ogImage = "https://solviq.in/social-banner.jpg",
+    title = "ENEVOR LABS | Building the Intelligence Layer for Student Evaluation", 
+    description = "ENEVOR LABS builds AI-powered tools that make learning measurable, exam preparation precise, and outcomes predictable. Stop guessing. Start engineering your success.", 
+    keywords = "ENEVOR LABS, AI educational tools, student evaluation, exam preparation, learning analytics, EdTech India, CoachOne, PrepOne", 
+    canonicalUrl = "https://enevorlabs.com/", 
+    ogImage = "https://enevorlabs.com/social-banner.jpg",
     ogType = "website",
     schema = null,
-    author = "SolvIQ India Pvt. Ltd.",
+    author = "ENEVOR LABS Pvt. Ltd.",
     robots = "index, follow"
 }) {
-    const siteName = "SolvIQ India";
+    const siteName = "ENEVOR LABS";
     const schemas = Array.isArray(schema) ? schema.filter(Boolean) : (schema ? [schema] : []);
 
     return (

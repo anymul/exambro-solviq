@@ -223,7 +223,7 @@ export default function MockTestsPage() {
             <SEO
                 title="PrepOne Mock Tests | AI-Evaluated, Board-Aligned Practice Papers"
                 description="Experience the future of exam prep with PrepOne's AI-evaluated mock tests. Download full-length, board-aligned papers, practice on physical paper, and get instant AI feedback to boost your performance."
-                canonicalUrl="https://solviq.in/prepone/mock-tests"
+                canonicalUrl="https://enevorlabs.com/prepone/mock-tests"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

@@ -194,7 +194,7 @@ export default function PYQsMarketingPage() {
                 title="10+ Years Board Exam PYQs Decoded by AI | PrepOne"
                 description="Practice chapter-wise Past Year Questions (PYQs) for CBSE and Bihar Board. Get your handwritten answers graded against official board marking schemes."
                 keywords="board exam PYQs, previous year question papers solved, chapter-wise PYQs class 12, AI PYQ evaluation, CBSE 10 year papers"
-                canonicalUrl="https://solviq.in/prepone/pyqs"
+                canonicalUrl="https://enevorlabs.com/prepone/pyqs"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

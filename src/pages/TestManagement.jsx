@@ -41,7 +41,7 @@ export default function TestManagementMarketingPage() {
                 title="Academic Test Studio & Question Bank | CoachOne"
                 description="Create balanced CBSE, State Board, JEE, and NEET test papers in minutes. Pull from 1 lakh+ verified MCQ and subjective questions, included in every plan, with formatted LaTeX math and watermarked PDF exports."
                 keywords="coaching test paper maker, CBSE question bank, test paper creator, coaching institute test management, LaTeX question editor, pre-board test generator"
-                canonicalUrl="https://solviq.in/test-management"
+                canonicalUrl="https://enevorlabs.com/test-management"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

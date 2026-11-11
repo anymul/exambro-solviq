@@ -48,9 +48,9 @@ export default function BookDemo() {
     return (
         <div className="min-h-screen bg-white font-body selection:bg-[#01696f] selection:text-white">
             <SEO
-                title="Book a Demo | CoachOne by SolvIQ"
+                title="Book a Demo | CoachOne by ENEVOR LABS"
                 description="Schedule a 20-minute personalized walkthrough of CoachOne's AI-powered bulk evaluation, pedagogical telemetry, and academic test studio for your institute."
-                canonicalUrl="https://solviq.in/book-demo"
+                canonicalUrl="https://enevorlabs.com/book-demo"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

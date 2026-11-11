@@ -804,7 +804,7 @@ const PREPONE_FAQS = [
     },
     {
         q: 'Can coaching institutes connect with PrepOne?',
-        a: 'Yes. Coaching centers using SolvIQ CoachOne can assign tests directly to students on the PrepOne app, providing automated institute-level evaluation and parent reports.'
+        a: 'Yes. Coaching centers using ENEVOR LABS CoachOne can assign tests directly to students on the PrepOne app, providing automated institute-level evaluation and parent reports.'
     }
 ];
 
@@ -1033,8 +1033,8 @@ export default function PrepOne() {
             <SEO
                 title="PrepOne: CBSE & BSEB Exam Prep | Your Personal AI Exam Strategist"
                 description="Prepare smarter for CBSE Class 12 and Bihar Board Class 10 & 12 with PrepOne. AI handwritten answer evaluation, ABHYAS+ personalized practice, chapter PYQs, and realistic board mock tests. Built by IITians."
-                keywords="PrepOne, CBSE Class 12 Science preparation, Bihar Board Class 10 Matric, Bihar Board Class 12 Inter, BSEB exam prep, AI subjective answer evaluation, handwritten answer evaluation, board exam mock tests, chapter PYQ practice, ABHYAS adaptive practice, SolvIQ"
-                canonicalUrl="https://solviq.in/prepone"
+                keywords="PrepOne, CBSE Class 12 Science preparation, Bihar Board Class 10 Matric, Bihar Board Class 12 Inter, BSEB exam prep, AI subjective answer evaluation, handwritten answer evaluation, board exam mock tests, chapter PYQ practice, ABHYAS adaptive practice, ENEVOR LABS"
+                canonicalUrl="https://enevorlabs.com/prepone"
                 schema={[
                     buildPrepOneAppSchema(),
                     buildFaqSchema(PREPONE_FAQS),

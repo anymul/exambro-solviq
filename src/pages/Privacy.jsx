@@ -13,9 +13,9 @@ export default function PrivacyPolicy() {
     return (
         <div className="min-h-screen bg-[#F8F9FC] font-body selection:bg-[#4F46E5] selection:text-white">
             <SEO
-                title="Privacy Policy | SolvIQ India Pvt. Ltd."
-                description="Learn how SolvIQ protects your data across the PrepOne student app and CoachOne institute platform."
-                canonicalUrl="https://solviq.in/privacy-policy"
+                title="Privacy Policy | ENEVOR LABS Pvt. Ltd."
+                description="Learn how ENEVOR LABS protects your data across the PrepOne student app and CoachOne institute platform."
+                canonicalUrl="https://enevorlabs.com/privacy-policy"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },
@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
                         <Shield className="w-8 h-8" />
                     </div>
                     <h1 className="font-display text-4xl md:text-5xl font-bold text-white mb-4">Privacy Policy</h1>
-                    <p className="text-gray-400 text-lg">SolvIQ India Pvt. Ltd. • Last Updated: June 14, 2026</p>
+                    <p className="text-gray-400 text-lg">ENEVOR LABS Pvt. Ltd. • Last Updated: June 14, 2026</p>
                 </div>
             </div>
 
@@ -64,7 +64,7 @@ export default function PrivacyPolicy() {
                         <div className="space-y-10 animate-fade-in">
                             <div className="mb-10">
                                 <h2 className="font-display text-3xl font-bold text-[#0F172A] mb-2">Privacy Policy — PrepOne</h2>
-                                <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
+                                <p className="text-gray-600"><strong>Company:</strong> ENEVOR LABS Pvt. Ltd.</p>
                                 <p className="text-gray-600"><strong>Product:</strong> PrepOne (<a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">Mobile Application</a>)</p>
                                 <p className="text-gray-600"><strong>Effective Date:</strong> June 14, 2026</p>
                                 <p className="text-gray-600"><strong>Last Updated:</strong> June 14, 2026</p>
@@ -74,7 +74,7 @@ export default function PrivacyPolicy() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">1. Introduction</h3>
-                                <p className="mb-3">SolvIQ India Pvt. Ltd. ("Company," "we," "us," or "our"), a company incorporated under the Companies Act, 2013, with its registered office in Gandhinagar, Gujarat, India, operates <strong>PrepOne</strong> — an AI-powered adaptive mock test and exam preparation platform for students.</p>
+                                <p className="mb-3">ENEVOR LABS Pvt. Ltd. ("Company," "we," "us," or "our"), a company incorporated under the Companies Act, 2013, with its registered office in Gandhinagar, Gujarat, India, operates <strong>PrepOne</strong> — an AI-powered adaptive mock test and exam preparation platform for students.</p>
                                 <p className="mb-3">This Privacy Policy explains how we collect, use, store, share, and protect your personal information when you use the <a href={PREPONE_PLAY_STORE_URL} target="_blank" rel="noreferrer" className="text-indigo-600 hover:underline">PrepOne mobile application</a> ("App"). By accessing or using PrepOne, you agree to the terms of this Privacy Policy. If you do not agree, please discontinue use of the App immediately.</p>
                                 <p>This policy complies with the <strong>Information Technology Act, 2000</strong>, the <strong>Information Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011</strong>, and the <strong>Digital Personal Data Protection Act, 2023 (DPDPA)</strong>.</p>
                             </section>
@@ -209,7 +209,7 @@ export default function PrivacyPolicy() {
                                     <li><strong>Nomination:</strong> Nominate another individual to exercise your rights in case of death or incapacity</li>
                                     <li><strong>Withdraw Consent:</strong> Withdraw consent for any processing activity at any time; withdrawal will not affect prior lawful processing</li>
                                 </ul>
-                                <p>To exercise any of these rights, contact us at: <strong>privacy@solviq.in</strong></p>
+                                <p>To exercise any of these rights, contact us at: <strong>support@enevorlabs.com</strong></p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -256,14 +256,14 @@ export default function PrivacyPolicy() {
                                 <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
                                     <p className="text-gray-600"><strong>Name:</strong>Anmol Kumar</p>
                                     <p className="text-gray-600"><strong>Designation:</strong> Data Protection Officer</p>
-                                    <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
-                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:privacy@solviq.in" className="text-indigo-600 hover:underline">privacy@solviq.in</a></p>
+                                    <p className="text-gray-600"><strong>Company:</strong> ENEVOR LABS Pvt. Ltd.</p>
+                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:support@enevorlabs.com" className="text-indigo-600 hover:underline">support@enevorlabs.com</a></p>
                                     <p className="text-gray-600"><strong>Address:</strong> Gandhinagar, Gujarat, India</p>
                                     <p className="text-gray-600"><strong>Response Time:</strong> Within 72 hours of receipt of complaint</p>
                                 </div>
                             </section>
 
-                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 SolvIQ India Pvt. Ltd. All rights reserved.</p>
+                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 ENEVOR LABS Pvt. Ltd. All rights reserved.</p>
                         </div>
                     )}
 
@@ -274,7 +274,7 @@ export default function PrivacyPolicy() {
                         <div className="space-y-10 animate-fade-in">
                             <div className="mb-10">
                                 <h2 className="font-display text-3xl font-bold text-[#0F172A] mb-2">Privacy Policy — CoachOne</h2>
-                                <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
+                                <p className="text-gray-600"><strong>Company:</strong> ENEVOR LABS Pvt. Ltd.</p>
                                 <p className="text-gray-600"><strong>Product:</strong> CoachOne (Coaching Institute Management Platform)</p>
                                 <p className="text-gray-600"><strong>Effective Date:</strong> June 14, 2026</p>
                                 <p className="text-gray-600"><strong>Last Updated:</strong> June 14, 2026</p>
@@ -284,7 +284,7 @@ export default function PrivacyPolicy() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">1. Introduction</h3>
-                                <p className="mb-3">SolvIQ India Pvt. Ltd. ("Company," "we," "us," or "our"), incorporated under the Companies Act, 2013 with its registered office in Gandhinagar, Gujarat, India, operates <strong>CoachOne</strong> — a B2B Coaching Operating System (OS) designed for coaching institutes to manage students, conduct tests, generate AI-powered question papers, and manage fees and staff.</p>
+                                <p className="mb-3">ENEVOR LABS Pvt. Ltd. ("Company," "we," "us," or "our"), incorporated under the Companies Act, 2013 with its registered office in Gandhinagar, Gujarat, India, operates <strong>CoachOne</strong> — a B2B Coaching Operating System (OS) designed for coaching institutes to manage students, conduct tests, generate AI-powered question papers, and manage fees and staff.</p>
                                 <p className="mb-3">This Privacy Policy governs how we collect, process, store, and protect data relating to:</p>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700 mb-4">
                                     <li><strong>Coaching Institute Administrators and Staff</strong> (Business Customers)</li>
@@ -300,10 +300,10 @@ export default function PrivacyPolicy() {
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">2. Data Controller and Processor Relationship</h3>
                                 <p className="mb-3">CoachOne operates under a <strong>dual data relationship</strong>:</p>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700">
-                                    <li><strong>SolvIQ India Pvt. Ltd.</strong> acts as a <strong>Data Processor</strong> for student personal data entered by coaching institutes.</li>
+                                    <li><strong>ENEVOR LABS Pvt. Ltd.</strong> acts as a <strong>Data Processor</strong> for student personal data entered by coaching institutes.</li>
                                     <li><strong>Coaching Institutes</strong> act as independent <strong>Data Controllers/Fiduciaries</strong> for the student and parent data they collect and enter into CoachOne.</li>
                                     <li>Coaching institutes are solely responsible for obtaining valid consent from students, parents/guardians, and staff before entering their data into CoachOne.</li>
-                                    <li>SolvIQ India Pvt. Ltd. acts as the primary <strong>Data Fiduciary</strong> for institute administrator and staff account data.</li>
+                                    <li>ENEVOR LABS Pvt. Ltd. acts as the primary <strong>Data Fiduciary</strong> for institute administrator and staff account data.</li>
                                 </ul>
                             </section>
 
@@ -360,16 +360,16 @@ export default function PrivacyPolicy() {
                                             </tr>
                                         </thead>
                                         <tbody className="text-gray-600">
-                                            <tr className="border-b border-gray-100"><td className="p-3">Providing institute management dashboard</td><td className="p-3">Admin & staff account data</td><td className="p-3">SolvIQ (Controller)</td></tr>
+                                            <tr className="border-b border-gray-100"><td className="p-3">Providing institute management dashboard</td><td className="p-3">Admin & staff account data</td><td className="p-3">ENEVOR LABS (Controller)</td></tr>
                                             <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">Student enrollment and batch management</td><td className="p-3">Student identity & academic data</td><td className="p-3">Coaching Institute (Controller)</td></tr>
                                             <tr className="border-b border-gray-100"><td className="p-3">Test generation and AI question paper creation</td><td className="p-3">Syllabus config, past performance data</td><td className="p-3">Coaching Institute (Controller)</td></tr>
                                             <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">AI answer evaluation and result generation</td><td className="p-3">Student answer submissions</td><td className="p-3">Coaching Institute (Controller)</td></tr>
                                             <tr className="border-b border-gray-100"><td className="p-3">Fee management and payment reminders</td><td className="p-3">Fee records, student contact</td><td className="p-3">Coaching Institute (Controller)</td></tr>
                                             <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">Attendance tracking and reporting</td><td className="p-3">Attendance records</td><td className="p-3">Coaching Institute (Controller)</td></tr>
-                                            <tr className="border-b border-gray-100"><td className="p-3">Platform performance analytics</td><td className="p-3">Anonymized aggregate usage data</td><td className="p-3">SolvIQ (Controller)</td></tr>
-                                            <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">Billing and subscription management</td><td className="p-3">Institute billing data</td><td className="p-3">SolvIQ (Controller)</td></tr>
-                                            <tr className="border-b border-gray-100"><td className="p-3">Customer support and onboarding</td><td className="p-3">Account and configuration data</td><td className="p-3">SolvIQ (Controller)</td></tr>
-                                            <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">Security monitoring and fraud prevention</td><td className="p-3">Login events, IP logs</td><td className="p-3">SolvIQ (Controller)</td></tr>
+                                            <tr className="border-b border-gray-100"><td className="p-3">Platform performance analytics</td><td className="p-3">Anonymized aggregate usage data</td><td className="p-3">ENEVOR LABS (Controller)</td></tr>
+                                            <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">Billing and subscription management</td><td className="p-3">Institute billing data</td><td className="p-3">ENEVOR LABS (Controller)</td></tr>
+                                            <tr className="border-b border-gray-100"><td className="p-3">Customer support and onboarding</td><td className="p-3">Account and configuration data</td><td className="p-3">ENEVOR LABS (Controller)</td></tr>
+                                            <tr className="border-b border-gray-100 bg-gray-50"><td className="p-3">Security monitoring and fraud prevention</td><td className="p-3">Login events, IP logs</td><td className="p-3">ENEVOR LABS (Controller)</td></tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -384,7 +384,7 @@ export default function PrivacyPolicy() {
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">5.1 Within Platform Operations</h4>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700 mb-6">
                                     <li>Data entered by institutes is accessible only to authorized users of that institute's CoachOne account (role-based access control).</li>
-                                    <li>SolvIQ's internal engineering and support teams may access data under confidentiality obligations strictly for support and maintenance purposes.</li>
+                                    <li>ENEVOR LABS' internal engineering and support teams may access data under confidentiality obligations strictly for support and maintenance purposes.</li>
                                 </ul>
 
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">5.2 Third-Party Service Providers</h4>
@@ -400,7 +400,7 @@ export default function PrivacyPolicy() {
                                 <p className="mb-6">Data may be disclosed to law enforcement or government authorities as required by applicable Indian law, valid court orders, or to prevent fraud and protect user safety.</p>
 
                                 <h4 className="font-bold text-[#0F172A] text-lg mb-2">5.4 No Sale of Data</h4>
-                                <p>SolvIQ India Pvt. Ltd. does not sell, rent, or commercially exploit student or institute data to any third party.</p>
+                                <p>ENEVOR LABS Pvt. Ltd. does not sell, rent, or commercially exploit student or institute data to any third party.</p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -439,7 +439,7 @@ export default function PrivacyPolicy() {
                                     <li>Obtain valid and documented consent from students, parents/guardians, and staff before entering their data into CoachOne</li>
                                     <li>Provide students and parents with a copy of this Privacy Policy or their own privacy disclosure that accurately describes data processing through CoachOne</li>
                                     <li>Ensure accuracy of data entered into the platform</li>
-                                    <li>Immediately notify SolvIQ at <strong>privacy@solviq.in</strong> upon becoming aware of any data breach involving student records</li>
+                                    <li>Immediately notify ENEVOR LABS at <strong>support@enevorlabs.com</strong> upon becoming aware of any data breach involving student records</li>
                                     <li>Comply with all applicable local and national data protection laws in their jurisdiction</li>
                                 </ul>
                             </section>
@@ -448,7 +448,7 @@ export default function PrivacyPolicy() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">8. Rights of Students and Parents</h3>
-                                <p className="mb-3">Students and parents whose data is processed via CoachOne may exercise the following rights under DPDPA 2023 by contacting their <strong>coaching institute administrator</strong> (as Data Controller) or directly contacting SolvIQ at <strong>privacy@solviq.in</strong>:</p>
+                                <p className="mb-3">Students and parents whose data is processed via CoachOne may exercise the following rights under DPDPA 2023 by contacting their <strong>coaching institute administrator</strong> (as Data Controller) or directly contacting ENEVOR LABS at <strong>support@enevorlabs.com</strong>:</p>
                                 <ul className="space-y-2 pl-5 list-disc text-gray-700">
                                     <li><strong>Right to Access:</strong> Obtain a copy of personal data held</li>
                                     <li><strong>Right to Correction:</strong> Request rectification of inaccurate data</li>
@@ -478,7 +478,7 @@ export default function PrivacyPolicy() {
 
                             <section>
                                 <h3 className="font-display text-2xl font-bold text-[#0F172A] mb-3">10. Children's Data (Students Under 18)</h3>
-                                <p>A significant portion of students managed through CoachOne may be minors. Coaching institutes (as Data Controllers) are solely responsible for obtaining verifiable parental or guardian consent for all students under 18. SolvIQ will process such data only on the lawful instructions of the institute.</p>
+                                <p>A significant portion of students managed through CoachOne may be minors. Coaching institutes (as Data Controllers) are solely responsible for obtaining verifiable parental or guardian consent for all students under 18. ENEVOR LABS will process such data only on the lawful instructions of the institute.</p>
                             </section>
 
                             <hr className="border-gray-200" />
@@ -502,14 +502,14 @@ export default function PrivacyPolicy() {
                                 <div className="bg-gray-50 p-6 rounded-xl border border-gray-200">
                                     <p className="text-gray-600"><strong>Name:</strong> Anmol Kumar</p>
                                     <p className="text-gray-600"><strong>Designation:</strong> Data Protection Officer</p>
-                                    <p className="text-gray-600"><strong>Company:</strong> SolvIQ India Pvt. Ltd.</p>
-                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:privacy@solviq.in" className="text-indigo-600 hover:underline">privacy@solviq.in</a></p>
+                                    <p className="text-gray-600"><strong>Company:</strong> ENEVOR LABS Pvt. Ltd.</p>
+                                    <p className="text-gray-600"><strong>Email:</strong> <a href="mailto:support@enevorlabs.com" className="text-indigo-600 hover:underline">support@enevorlabs.com</a></p>
                                     <p className="text-gray-600"><strong>Address:</strong> Gandhinagar, Gujarat, India</p>
                                     <p className="text-gray-600"><strong>Response Time:</strong> Within 72 hours of receipt</p>
                                 </div>
                             </section>
 
-                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 SolvIQ India Pvt. Ltd. All rights reserved.</p>
+                            <p className="text-sm text-gray-400 mt-8 text-center italic">© 2026 ENEVOR LABS Pvt. Ltd. All rights reserved.</p>
                         </div>
                     )}
                 </div>

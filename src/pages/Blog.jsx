@@ -4,7 +4,7 @@ import { Search, ArrowRight, Clock, FileText, X } from 'lucide-react';
 import Navbar from '../componenets/Navbar';
 import Footer from '../componenets/Footer';
 import SEO from '../componenets/SEO';
-import { buildBreadcrumbSchema, SOLVIQ_ORGANIZATION_SCHEMA } from '../componenets/Schema';
+import { buildBreadcrumbSchema, ENEVOR_ORGANIZATION_SCHEMA } from '../componenets/Schema';
 import { CtaBand, Hl } from '../componenets/prepone/ui';
 import { CARD_BG } from '../componenets/prepone/tokens';
 import blogsData from '../data/blogs.json';
@@ -183,12 +183,12 @@ export default function SEOBlogHub() {
     const gridPosts = !isFiltered ? filteredPosts.slice(1) : filteredPosts;
 
     const blogHubSchemas = [
-        SOLVIQ_ORGANIZATION_SCHEMA,
+        ENEVOR_ORGANIZATION_SCHEMA,
         {
             "@context": "https://schema.org",
             "@type": "CollectionPage",
-            "@id": "https://solviq.in/blog#collection",
-            "url": "https://solviq.in/blog",
+            "@id": "https://enevorlabs.com/blog#collection",
+            "url": "https://enevorlabs.com/blog",
             "name": "CBSE & Bihar Board Class 10 & 12 Study Material & PYQs Hub",
             "description": "Free PDF downloads for CBSE and Bihar Board Class 10 & 12 Previous Year Question Papers (PYQs), chapter-wise important questions, and revision notes.",
             "mainEntity": {
@@ -196,7 +196,7 @@ export default function SEOBlogHub() {
                 "itemListElement": blogsData.map((post, idx) => ({
                     "@type": "ListItem",
                     "position": idx + 1,
-                    "url": `https://solviq.in/study-material/${post.slug}`,
+                    "url": `https://enevorlabs.com/study-material/${post.slug}`,
                     "name": post.title
                 }))
             }
@@ -210,10 +210,10 @@ export default function SEOBlogHub() {
     return (
         <div className="min-h-screen bg-wash font-body selection:bg-sun selection:text-ink">
             <SEO
-                title="Download CBSE & Bihar Board Class 10 & 12 PYQs, Important Questions | SolvIQ"
+                title="Download CBSE & Bihar Board Class 10 & 12 PYQs, Important Questions | ENEVOR LABS"
                 description="Free PDF downloads for CBSE and Bihar Board Class 10 & 12 Previous Year Question Papers (PYQs), chapter-wise important questions, and revision notes."
                 keywords="CBSE class 12 PYQ pdf, Bihar board class 12 important questions, BSEB previous year papers, CBSE marking scheme, class 12 revision notes"
-                canonicalUrl="https://solviq.in/blog"
+                canonicalUrl="https://enevorlabs.com/blog"
                 schema={blogHubSchemas}
             />
             <Navbar />

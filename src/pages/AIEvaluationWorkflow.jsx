@@ -23,7 +23,7 @@ export default function AIEvaluationMarketingPage() {
                 title="AI Handwritten Copy Checking Software for Coaching Institutes | CoachOne"
                 description="Check 100+ handwritten subjective test papers in minutes. Step-by-step board marking, teacher review mode, and instant WhatsApp parent report cards."
                 keywords="AI copy checking, handwritten answer checking software, coaching test evaluation, CBSE step marking software, paper checker for institutes"
-                canonicalUrl="https://solviq.in/ai-evaluation"
+                canonicalUrl="https://enevorlabs.com/ai-evaluation"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

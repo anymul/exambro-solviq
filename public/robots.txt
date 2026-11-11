@@ -1,5 +1,5 @@
-# SolvIQ India - Robots Configuration
-# https://solviq.in/
+# ENEVOR LABS - Robots Configuration
+# https://enevorlabs.com/
 
 # All standard search crawlers
 User-agent: *
@@ -36,4 +36,4 @@ User-agent: Bytespider
 Allow: /
 
 # Sitemap Reference
-Sitemap: https://solviq.in/sitemap.xml
+Sitemap: https://enevorlabs.com/sitemap.xml

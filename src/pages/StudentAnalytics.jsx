@@ -25,7 +25,7 @@ export default function StudentAnalyticsMarketingPage() {
                 title="Student Analytics & Learning Gaps | CoachOne"
                 description="Understand where students struggle, trace gaps back to earlier classes, and keep parents updated with automated WhatsApp reports."
                 keywords="student analytics, coaching institute analytics, mistake analysis, CBSE marking schemes, prerequisite learning gaps, parent updates"
-                canonicalUrl="https://solviq.in/student-analytics"
+                canonicalUrl="https://enevorlabs.com/student-analytics"
                 schema={[
                     buildBreadcrumbSchema([
                         { name: 'Home', url: '/' },

@@ -38,7 +38,7 @@ export default function DynamicArticlePage() {
             e.preventDefault();
             triggerWarning();
             if (e.clipboardData) {
-                e.clipboardData.setData('text/plain', 'Content protected by SolvIQ PrepOne. Copying is disabled.');
+                e.clipboardData.setData('text/plain', 'Content protected by ENEVOR LABS PrepOne. Copying is disabled.');
             }
             return false;
         };
@@ -131,7 +131,7 @@ export default function DynamicArticlePage() {
         );
     }
 
-    const articleUrl = `https://solviq.in/study-material/${article.slug}`;
+    const articleUrl = `https://enevorlabs.com/study-material/${article.slug}`;
 
     const articleSchemas = [
         buildArticleSchema({
@@ -157,7 +157,7 @@ export default function DynamicArticlePage() {
     return (
         <div className="min-h-screen bg-wash font-body selection:bg-sun selection:text-ink">
             <SEO
-                title={`${article.title} | SolvIQ PrepOne`}
+                title={`${article.title} | ENEVOR LABS PrepOne`}
                 description={article.seoDescription}
                 canonicalUrl={articleUrl}
                 ogImage={article.image}

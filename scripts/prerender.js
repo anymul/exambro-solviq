@@ -45,25 +45,25 @@ const allRoutes = [...new Set([...staticRoutes, ...blogRoutes])];
 
 // Canonical routes for sitemap (excluding aliases/redirects)
 const sitemapRoutes = [
-  { url: 'https://solviq.in/', priority: '1.0', changefreq: 'daily' },
-  { url: 'https://solviq.in/prepone', priority: '0.9', changefreq: 'weekly' },
-  { url: 'https://solviq.in/coachone', priority: '0.9', changefreq: 'weekly' },
-  { url: 'https://solviq.in/about', priority: '0.8', changefreq: 'monthly' },
-  { url: 'https://solviq.in/blog', priority: '0.8', changefreq: 'weekly' },
-  { url: 'https://solviq.in/test-management', priority: '0.7', changefreq: 'monthly' },
-  { url: 'https://solviq.in/student-analytics', priority: '0.7', changefreq: 'monthly' },
-  { url: 'https://solviq.in/ai-evaluation', priority: '0.7', changefreq: 'monthly' },
-  { url: 'https://solviq.in/institute-operations', priority: '0.7', changefreq: 'monthly' },
-  { url: 'https://solviq.in/book-demo', priority: '0.7', changefreq: 'monthly' },
-  { url: 'https://solviq.in/prepone/mock-tests', priority: '0.8', changefreq: 'weekly' },
-  { url: 'https://solviq.in/prepone/pyqs', priority: '0.8', changefreq: 'weekly' },
-  { url: 'https://solviq.in/prepone/ai-evaluation-students', priority: '0.8', changefreq: 'weekly' },
-  { url: 'https://solviq.in/prepone/revision-notes', priority: '0.8', changefreq: 'weekly' },
-  { url: 'https://solviq.in/workshops', priority: '0.8', changefreq: 'weekly' },
-  { url: 'https://solviq.in/terms-of-service', priority: '0.3', changefreq: 'yearly' },
-  { url: 'https://solviq.in/privacy-policy', priority: '0.3', changefreq: 'yearly' },
+  { url: 'https://enevorlabs.com/', priority: '1.0', changefreq: 'daily' },
+  { url: 'https://enevorlabs.com/prepone', priority: '0.9', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/coachone', priority: '0.9', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/about', priority: '0.8', changefreq: 'monthly' },
+  { url: 'https://enevorlabs.com/blog', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/test-management', priority: '0.7', changefreq: 'monthly' },
+  { url: 'https://enevorlabs.com/student-analytics', priority: '0.7', changefreq: 'monthly' },
+  { url: 'https://enevorlabs.com/ai-evaluation', priority: '0.7', changefreq: 'monthly' },
+  { url: 'https://enevorlabs.com/institute-operations', priority: '0.7', changefreq: 'monthly' },
+  { url: 'https://enevorlabs.com/book-demo', priority: '0.7', changefreq: 'monthly' },
+  { url: 'https://enevorlabs.com/prepone/mock-tests', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/prepone/pyqs', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/prepone/ai-evaluation-students', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/prepone/revision-notes', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/workshops', priority: '0.8', changefreq: 'weekly' },
+  { url: 'https://enevorlabs.com/terms-of-service', priority: '0.3', changefreq: 'yearly' },
+  { url: 'https://enevorlabs.com/privacy-policy', priority: '0.3', changefreq: 'yearly' },
   ...blogs.map(b => ({
-    url: `https://solviq.in/study-material/${b.slug}`,
+    url: `https://enevorlabs.com/study-material/${b.slug}`,
     priority: '0.8',
     changefreq: 'monthly'
   }))
@@ -168,8 +168,8 @@ ${sitemapRoutes.map(r => `  <url>
 
   // Step C: Generate Robots.txt with AI Bot Rules
   console.log('🤖 Generating robots.txt with search & AI bot permissions...');
-  const robotsTxt = `# SolvIQ India - Robots Configuration
-# https://solviq.in/
+  const robotsTxt = `# ENEVOR LABS - Robots Configuration
+# https://enevorlabs.com/
 
 # All standard search crawlers
 User-agent: *
@@ -206,7 +206,7 @@ User-agent: Bytespider
 Allow: /
 
 # Sitemap Reference
-Sitemap: https://solviq.in/sitemap.xml
+Sitemap: https://enevorlabs.com/sitemap.xml
 `;
 
   fs.writeFileSync(path.resolve(distDir, 'robots.txt'), robotsTxt, 'utf8');

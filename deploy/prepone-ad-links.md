@@ -24,7 +24,7 @@ The whole `referrer` value must stay URL-encoded (`%3D` for `=`, `%26` for `&`),
 Website URL:
 
 ```
-https://solviq.in/prepone/download
+https://enevorlabs.com/prepone/download
 ```
 
 URL parameters field in Meta Ads Manager:

@@ -117,7 +117,7 @@ export default function WorkshopRegisterPage() {
             <SEO
                 title="Register for Board Pe Charcha | PrepOne"
                 description="Reserve your seat in a Board Pe Charcha live workshop by PrepOne."
-                canonicalUrl="https://solviq.in/workshops/register"
+                canonicalUrl="https://enevorlabs.com/workshops/register"
                 robots="noindex, follow"
             />
             <Navbar />
