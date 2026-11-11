@@ -28,10 +28,19 @@ export default function BookDemo() {
         setMessage('');
 
         try {
-            await emailjs.sendForm(
+            // The template body renders {{message}}, so build it from the answers instead of sending a blank field.
+            const data = Object.fromEntries(new FormData(formRef.current));
+            const details = [
+                `Name: ${data.from_name}`,
+                `Mobile: ${data.phone}`,
+                `Institute: ${data.institute_name}`,
+                `Active students: ${data.active_students}`
+            ].join('\n');
+
+            await emailjs.send(
                 EMAILJS_SERVICE_ID,
                 EMAILJS_TEMPLATE_ID,
-                formRef.current,
+                { ...data, message: `${data.form_name}\n\n${details}` },
                 EMAILJS_PUBLIC_KEY
             );
 
@@ -100,7 +109,6 @@ export default function BookDemo() {
                                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
                                     <input type="hidden" name="form_name" value="CoachOne demo request" />
                                     <input type="hidden" name="to_name" value="Anmol" />
-                                    <input type="hidden" name="message" value="" />
 
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <div>
@@ -113,20 +121,22 @@ export default function BookDemo() {
                                                 type="text"
                                                 required
                                                 className="w-full bg-white border border-gray-300 px-3.5 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#01696f]/30 focus:border-[#01696f] transition-colors text-gray-900 placeholder-gray-400 text-sm"
-                                                placeholder="e.g. Ramesh Sharma"
                                             />
                                         </div>
                                         <div>
-                                            <label htmlFor="reply_to" className="block text-sm font-bold text-[#032b2e] mb-1.5">
-                                                Work Email
+                                            <label htmlFor="phone" className="block text-sm font-bold text-[#032b2e] mb-1.5">
+                                                Mobile Number
                                             </label>
                                             <input
-                                                id="reply_to"
-                                                name="reply_to"
-                                                type="email"
+                                                id="phone"
+                                                name="phone"
+                                                type="tel"
+                                                inputMode="tel"
+                                                autoComplete="tel"
+                                                pattern="(\+91[\s\-]?)?[6-9][0-9]{4}[\s\-]?[0-9]{5}"
+                                                title="Enter a 10-digit mobile number, with or without +91"
                                                 required
                                                 className="w-full bg-white border border-gray-300 px-3.5 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#01696f]/30 focus:border-[#01696f] transition-colors text-gray-900 placeholder-gray-400 text-sm"
-                                                placeholder="director@institute.com"
                                             />
                                         </div>
                                     </div>
@@ -141,7 +151,6 @@ export default function BookDemo() {
                                             type="text"
                                             required
                                             className="w-full bg-white border border-gray-300 px-3.5 py-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#01696f]/30 focus:border-[#01696f] transition-colors text-gray-900 placeholder-gray-400 text-sm"
-                                            placeholder="e.g. Apex Classes"
                                         />
                                     </div>
 
